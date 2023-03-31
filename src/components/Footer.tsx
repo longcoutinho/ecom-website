@@ -4,7 +4,7 @@ import Image from "./Image"
 const Footer = () => {
     return (
         <Container disableGutters maxWidth={false} sx={{
-            height: 200,
+            height: 300,
             width: '100%',
             display: 'flex',
             flexDirection: 'column'
@@ -21,21 +21,21 @@ const Footer = () => {
                 flexDirection: 'row'
             }}> 
                 <Box className='logo' sx={{
-                    width: '20%',
+                    width: '30%',
                     height: '100%',
                 }}> 
-                    <Image src='https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo.png' sx = {{
-                            objectFit: 'cover',
+                    <Image src='https://vanphongxanh.vn/wp-content/uploads/2022/03/logo-social.png' sx = {{
+                            objectFit: 'fill',
                             width: '100%',
                             height: '100%'
                     }} />          
                 </Box>  
                 <Box className='banner' sx={{
-                    width: '80%',
+                    width: '70%',
                     height: '100%',
                 }}>        
                     <Image src='https://ocnhoi.net/wp-content/uploads/2019/11/contact-person-la-gi.png' sx = {{
-                        objectFit: 'cover',
+                        objectFit: 'fill',
                         width: '100%',
                         height: '100%'
                     }} />   

@@ -1,51 +1,75 @@
 import { Box } from "@mui/material"
 import Container from "@mui/system/Container"
+import { useEffect, useState } from "react";
 import Image from "./Image"
 
-export default function Header() {
+interface Header {
+    menuIndex: number;
+}
+
+interface MenuItem {
+    title: String;
+    redirectLink: String;
+}
+
+const Header = (props: Header) => {
     //data
-    const listMenuItem = [
+    const initMenuItem = [
         {
             title: 'Trang tin tức huyền học',
-            redirect_link: '#'
+            redirect_link: '#',
         },
         {
             title: 'Sản phẩm phong thủy',
-            redirect_link: '#'
+            redirect_link: '#',
         },
         {
             title: 'Lập lá số phong thủy',
-            redirect_link: '#'
+            redirect_link: '#',
         },
         {
             title: 'Đặt lịch tư vấn',
-            redirect_link: '#'
+            redirect_link: '#',
         }
     ]
+    //init
+    const [listMenuItem, setListMenuItem] = useState(initMenuItem)
     //components
     const Menu = () => {
-        const listMenu = listMenuItem.map((menuItem) => 
+        const listMenu = listMenuItem.map((menuItem, index) => 
             <Box className='menu-item' sx={{
-                width: 'auto',
-                height: '100%',
+                    width: '20%',
+                    height: '90%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: props.menuIndex !== index ? 'white' : '#8F0101',
+                    backgroundColor: props.menuIndex !== index ? '#8F0101' : 'white',
+                    fontWeight: 700,
+                    margin: '0px 10px 0px 10px'
+    
             }}>
                 <a href={menuItem.redirect_link}>{menuItem.title}</a>
-            </Box>);
+            </Box>)
         return (
             <Box className='menu' sx={{
                 width: '100%',
                 height: '15%',
                 display: 'flex',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'end',
+                backgroundColor: '#8F0101'
             }}>
                 {listMenu}
             </Box> 
         )
     }
+    
     //export components
     return (
         <Container disableGutters maxWidth={false} sx={{
-            height: 200,
+            height: 300,
             width: '100%',
             display: 'flex',
             flexDirection: 'column'
@@ -62,21 +86,21 @@ export default function Header() {
                 flexDirection: 'row'
             }}> 
                 <Box className='logo' sx={{
-                    width: '20%',
+                    width: '30%',
                     height: '100%',
                 }}> 
-                    <Image src='https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo.png' sx = {{
-                            objectFit: 'cover',
+                    <Image src='https://vanphongxanh.vn/wp-content/uploads/2022/03/logo-social.png' sx = {{
+                            objectFit: 'fill',
                             width: '100%',
                             height: '100%'
                     }} />          
                 </Box>  
                 <Box className='banner' sx={{
-                    width: '80%',
+                    width: '70%',
                     height: '100%',
                 }}>        
-                    <Image src='https://img.timviecthietke.com/2021/06/kich-thuoc-banner-website-1.png' sx = {{
-                        objectFit: 'cover',
+                    <Image src='https://viettelnamban.com/wp-content/uploads/2021/03/21-1400x438.png' sx = {{
+                        objectFit: 'fill',
                         width: '100%',
                         height: '100%'
                     }} />   
@@ -86,3 +110,4 @@ export default function Header() {
         </Container>
     )
 }
+export default Header
