@@ -14,7 +14,11 @@ const TitleContent = (props: TitleContent) => {
     return (
         <Box className='title-content' sx={{
             width: '100%',
-            height: '100px',
+            height: '100px',    
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'start',
         }}> 
             <Box className='shape-title-content' sx={{
             width: '20px',
@@ -22,7 +26,7 @@ const TitleContent = (props: TitleContent) => {
             backgroundColor: '#8F0101'
             }}> 
             </Box>
-            <p>{props.titleContent}</p>
+            <p style={{marginLeft: '20px', fontSize: '40px', fontWeight: '700', color: '#8F0101'}}>{props.titleContent}</p>
         </Box>
     )
 }
