@@ -26,7 +26,14 @@ export default function Home() {
     "Bài viết 4",
     "Bài viết 5",
   ];
-
+  const listPaginatorPosts = [
+    "Bài viết 1",
+    "Bài viết 1",
+    "Bài viết 2",
+    "Bài viết 3",
+    "Bài viết 4",
+    "Bài viết 5",
+  ]
   //components
   const ListFeaturedNews = () => {
     const arr = listFeaturedNews.map((content, index) => (
@@ -78,6 +85,36 @@ export default function Home() {
       </Box>
     );
   };
+  const ListPaginatorPosts = () => {
+    const listPostJSX = listPaginatorPosts.map((post) => (
+      <Box
+        className=""
+        sx={{
+          width: "100%",
+          height: '266px',
+          border: '2px solid #8F0101',
+          marginTop: '100px',
+        }}
+      >
+        <p>{post}</p>
+      </Box>
+    ))
+    return (
+      <Box
+          className=""
+          sx={{
+            width: "100%",
+            height: 'auto',
+            display: "flex",
+            flexDirection: "column",
+            marginTop: '100px',
+            borderTop: '2px solid #8F0101'
+          }}
+      >
+        {listPostJSX}
+      </Box>
+    )
+  }
   return (
     <Page title={PAGE_TITLE.HOME}>
       <Box
@@ -105,10 +142,10 @@ export default function Home() {
           className="focus-content"
           sx={{
             width: "100%",
-            height: 1600,
             display: "flex",
             flexDirection: "row",
             borderBottom: "2px solid red",
+            padding: '50px'
           }}
         >
           <Box
@@ -118,7 +155,8 @@ export default function Home() {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            borderBottom: "2px solid red",
+            borderBottom: "2px solid #8F0101",
+            
           }}
           >
             <TitleContent titleContent={"Các bài viết mới nhất"}></TitleContent>
@@ -129,7 +167,7 @@ export default function Home() {
               height: "700px",
               display: "flex",
               flexDirection: "row",
-              border: "2px solid red",
+              marginTop: '20px'
             }}
             >
               <Box
@@ -138,8 +176,9 @@ export default function Home() {
                 width: "70%",
                 height: "100%",
                 display: "flex",
-                flexDirection: "column",
-                border: "2px solid red",
+                flexDirection: "column",  
+                border: "2px solid #8F0101",
+                borderRight: "none",
               }}
               >
                 <Box
@@ -149,21 +188,21 @@ export default function Home() {
                   height: "70%",
                   display: "flex",
                   flexDirection: "column",
-                  border: "2px solid red",
                 }}
                 >
-                  <Image src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+                  <Image sx={{
+                    objectFit: 'fill'
+                  }} src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
                 </Box>
               </Box>
               <Box
                 className="small-table-newest-posts"
                 sx={{
-                  width: "100%",
-                  height: "70%",
+                  width: "30%",
+                  height: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  border: "2px solid red",
-                  backgroundColor: "red"
+                  border: '2px solid #8F0101' 
                 }}
               >
                 <Box
@@ -171,42 +210,54 @@ export default function Home() {
                 sx={{
                   width: "100%",
                   height: "33.33%",
-                  border: "2px solid red",
                 }}
                 >
-                  <Image src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+                  <Image sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: "fill"
+                  }} src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
                 </Box>
                 <Box
                 className="image-small-table-newest-posts"
                 sx={{
                   width: "100%",
                   height: "33.33%",
-                  border: "2px solid red",
                 }}
                 >
-                  <Image src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+                  <Image sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: "fill"
+                  }} src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
                 </Box>
                 <Box
                 className="image-small-table-newest-posts"
                 sx={{
                   width: "100%",
                   height: "33.33%",
-                  border: "2px solid red",
+                  backgroundColor: 'red',
                 }}
                 >
-                  <Image src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+                  <Image sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: "fill"
+                  }} src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
                 </Box>
               </Box>
             </Box>
+            <ListPaginatorPosts></ListPaginatorPosts>
           </Box>
           <Box
           className="right-focus-content"
           sx={{
             width: "30%",
-            height: "100%",
+            height: "900px",
             display: "flex",
             flexDirection: "column",
-            borderBottom: "2px solid red",
+            border: '2px solid #8F0101', 
+            marginLeft: '50px',
           }}
           >
           </Box>
