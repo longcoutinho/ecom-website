@@ -80,8 +80,8 @@ export default function Home() {
     );
   };
   const ListPaginatorPosts = () => {
-    const listPostJSX = listPaginatorPosts.map((post) => (
-      <Box
+    const listPostJSX = listPaginatorPosts.map((post, index) => (
+      <Box key={index}
         className="list-paginator-posts full-width"
         sx={{
           height: '266px',

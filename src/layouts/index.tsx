@@ -8,9 +8,6 @@ import { IPageProps } from "@/interfaces";
 const Page = (props: IPageProps) => {
   const { children, title, admin } = props;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div>

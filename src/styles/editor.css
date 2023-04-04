@@ -1,0 +1,32 @@
+.ql-toolbar.ql-snow{
+    display:flex;
+    background: gray;
+    height:55px;
+}
+.ql-formats{
+    display:flex;
+
+}
+.ql-toolbar.ql-snow .ql-picker-label{
+    color: black !important;
+}
+.ql-toolbar.ql-snow .ql-expanded .ql-picker-options {
+    
+    background-color: white !important;
+}
+.ql-header{
+    display:block !important;
+    color:white;
+}
+.ql-expanded, .ql-picker{
+    display:none !important;
+}
+.ql-hidden, .ql-clipboard{
+    display:none !important;
+}
+.ql-container.ql-snow {
+    color:black;
+}
+ .ql-editor {
+    margin: 20px;
+}

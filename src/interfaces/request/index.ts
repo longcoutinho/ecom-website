@@ -1,3 +1,3 @@
-export interface ITest {
-  test: string;
+export interface ICreatePost {
+  content: string;
 }
