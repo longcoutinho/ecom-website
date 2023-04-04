@@ -43,9 +43,8 @@ export default function Home() {
     ));
     return (
       <Box
-        className="list-featured-news"
+        className="list-featured-news full-width"
         sx={{
-          width: "100%",
           height: "70%",
         }}
       >
@@ -70,14 +69,9 @@ export default function Home() {
   const SearchInput = () => {
     return (
       <Box
-        className="search-input"
+        className= "search-input full-width center flex-row"
         sx={{
-          width: "100%",
-          height: 100,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
+          height: '100px',
         }}
       >
         <Input sx={{}}></Input>
@@ -88,9 +82,8 @@ export default function Home() {
   const ListPaginatorPosts = () => {
     const listPostJSX = listPaginatorPosts.map((post) => (
       <Box
-        className=""
+        className="list-paginator-posts full-width"
         sx={{
-          width: "100%",
           height: '266px',
           border: '2px solid #8F0101',
           marginTop: '100px',
@@ -101,12 +94,9 @@ export default function Home() {
     ))
     return (
       <Box
-          className=""
+          className="wrap-list-paginator-posts full-width flex-col"
           sx={{
-            width: "100%",
             height: 'auto',
-            display: "flex",
-            flexDirection: "column",
             marginTop: '100px',
             borderTop: '2px solid #8F0101'
           }}
@@ -117,21 +107,11 @@ export default function Home() {
   }
   return (
     <Page title={PAGE_TITLE.HOME}>
-      <Box
-        className="content"
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <Box className="content full-width flex-col">
         <Box
-          className="header-content"
+          className="header-content full-width flex-col"
           sx={{
-            width: "100%",
-            height: 600,
-            display: "flex",
-            flexDirection: "column",
+            height: '600px',
             borderBottom: "2px solid red",
           }}
         >
@@ -139,55 +119,39 @@ export default function Home() {
           <ListFeaturedNews></ListFeaturedNews>
         </Box>
         <Box
-          className="focus-content"
+          className="focus-content full-width flex-row"
           sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
             borderBottom: "2px solid red",
-            padding: '50px'
+            padding: '50px',
           }}
         >
           <Box
-          className="left-focus-content"
+          className="left-focus-content full-height flex-col"
           sx={{
             width: "70%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
             borderBottom: "2px solid #8F0101",
-            
           }}
           >
             <TitleContent titleContent={"Các bài viết mới nhất"}></TitleContent>
             <Box
-            className="table-newest-posts"
+            className="table-newest-posts full-width flex-row"
             sx={{
-              width: "100%",
-              height: "700px",
-              display: "flex",
-              flexDirection: "row",
-              marginTop: '20px'
+              height: '700px',
+              marginTop: '20px',
             }}
             >
               <Box
-              className="biggest-table-newest-posts"
+              className="biggest-table-newest-posts full-height flex-col"
               sx={{
                 width: "70%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",  
                 border: "2px solid #8F0101",
                 borderRight: "none",
               }}
               >
                 <Box
-                className="image-biggest-table-newest-posts"
+                className="image-biggest-table-newest-posts full-width flex-col"
                 sx={{
-                  width: "100%",
                   height: "70%",
-                  display: "flex",
-                  flexDirection: "column",
                 }}
                 >
                   <Image sx={{
@@ -196,12 +160,9 @@ export default function Home() {
                 </Box>
               </Box>
               <Box
-                className="small-table-newest-posts"
+                className="small-table-newest-posts full-height flex-col"
                 sx={{
                   width: "30%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
                   border: '2px solid #8F0101' 
                 }}
               >
