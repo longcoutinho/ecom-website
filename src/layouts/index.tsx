@@ -6,15 +6,14 @@ import Footer from "@/components/Footer";
 import { IPageProps } from "@/interfaces";
 
 const Page = (props: IPageProps) => {
-  const { children, title, admin } = props;
-
+  const { children, title, admin, menuIndex } = props;
 
   return (
     <div>
       <Head>
         <title>{PAGE_TITLE.PREFIX + title}</title>
       </Head>
-      <Header menuIndex={0} admin={admin} />
+      <Header menuIndex={menuIndex} admin={admin} />
       {children}
       <Footer />
     </div>

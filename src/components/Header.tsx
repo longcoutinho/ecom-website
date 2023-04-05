@@ -1,28 +1,39 @@
-import { Box } from "@mui/material";
+import {
+  Box,
+  Button,
+  Input,
+  InputAdornment,
+  Stack,
+  TextField,
+} from "@mui/material";
 import Container from "@mui/system/Container";
 import { useEffect, useState } from "react";
 import Image from "./Image";
 import { IHeader, IMenuItem } from "@/interfaces";
+import { PATH_PAGE } from "@/routes/path";
+import Link from "next/link";
+import Iconify from "./Iconify";
 
 const Header = (props: IHeader) => {
   const { menuIndex, admin } = props;
+  const [search, setSearch] = useState("");
   //data
   const initMenuItem = [
     {
       title: "Trang tin tức huyền học",
-      redirect_link: "#",
+      redirect_link: PATH_PAGE.user.tab1,
     },
     {
       title: "Sản phẩm phong thủy",
-      redirect_link: "#",
+      redirect_link: PATH_PAGE.user.tab2,
     },
     {
       title: "Lập lá số phong thủy",
-      redirect_link: "#",
+      redirect_link: PATH_PAGE.user.tab3,
     },
     {
       title: "Đặt lịch tư vấn",
-      redirect_link: "#",
+      redirect_link: PATH_PAGE.user.tab4,
     },
   ];
   const menuAdmimItem = [
@@ -47,7 +58,7 @@ const Header = (props: IHeader) => {
         className="menu-item"
         sx={{
           width: "20%",
-          height: "90%",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -57,7 +68,9 @@ const Header = (props: IHeader) => {
           margin: "0px 10px 0px 10px",
         }}
       >
-        <a href={menuItem.redirect_link}>{menuItem.title}</a>
+        <Link href={menuItem.redirect_link}>
+          <p>{menuItem.title}</p>
+        </Link>
       </Box>
     ));
     return (
@@ -84,7 +97,7 @@ const Header = (props: IHeader) => {
       disableGutters
       maxWidth={false}
       sx={{
-        height: 300,
+        height: 350,
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -143,6 +156,16 @@ const Header = (props: IHeader) => {
         </Box>
       </Box>
       <Menu></Menu>
+      <Stack direction={"row"} sx={{ py: 2, px: 2 }}>
+        <TextField
+          fullWidth
+          size="small"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <Button>Tìm kiếm</Button>
+      </Stack>
     </Container>
   );
 };

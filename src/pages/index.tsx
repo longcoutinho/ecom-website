@@ -106,7 +106,7 @@ export default function Home() {
     )
   }
   return (
-    <Page title={PAGE_TITLE.HOME}>
+    <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="content full-width flex-col">
         <Box
           className="header-content full-width flex-col"
@@ -115,7 +115,6 @@ export default function Home() {
             borderBottom: "2px solid red",
           }}
         >
-          <SearchInput></SearchInput>
           <ListFeaturedNews></ListFeaturedNews>
         </Box>
         <Box
