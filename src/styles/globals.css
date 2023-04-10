@@ -128,6 +128,16 @@ body {
   height: 100%; 
 }
 
+.one-third-col {
+  width: 100%;
+  height: 33.33%; 
+}
+
+.one-third-row {
+  width: 33.33%;
+  height: 100%; 
+}
+
 .full-width {
   width: 100%;
 }
@@ -151,3 +161,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.list-courses-detail-element:not(:last-child) {
+  border-bottom: 2px solid red;
+} 

@@ -13,7 +13,6 @@ const Page = (props: IPageProps) => {
       <Head>
         <title>{PAGE_TITLE.PREFIX + title}</title>
       </Head>
-      <Header menuIndex={menuIndex} admin={admin} />
       {children}
       <Footer />
     </div>
