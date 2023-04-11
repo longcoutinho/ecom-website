@@ -10,6 +10,14 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
+import { type } from "os";
+
+interface TypePost {
+  id: Number,
+  name: string,
+}
 
 interface Post {
   image: string,
@@ -138,10 +146,24 @@ export default function Home() {
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      title: "Trà quý cho sức khỏe vàng ngày",
       author: "longhvh",
       createTime: new Date,
       type: 3,
+    },
+  ]
+  const listPostType:TypePost[] = [
+    {
+      id: 1,
+      name: 'Tin tức',
+    },
+    {
+      id: 2,
+      name: 'Kinh Nghiệm',
+    },
+    {
+      id: 3,
+      name: 'Dịch vụ tư vấn',
     },
   ]
   //components
@@ -190,12 +212,32 @@ export default function Home() {
             className="list-courses-detail-element flex-col full-width one-third-col"
             sx={{
               backgroundColor: '#333333',
-
+              padding: '20px',
             }}
         >
-          <h1>{course.title}</h1>
-          <p>{course.studyTime}</p>
-          <p>{course.openDate.toDateString()}</p>
+          <Box sx={{height: '20px'}} className="full-width flex-row center-no-dir">
+            <Image className="full-height" src="http://hongkyfengshui.vn/modules/main/images/main/icon.png"/>
+            <h1 style={{
+              color: 'white',
+              textTransform: 'uppercase',
+              fontSize: '17px',
+              marginLeft: '15px',
+              }}>{course.title}</h1>
+          </Box>
+          <Box sx={{height: '20px', margin: '10px 0px 0px 40px'}} className="full-width flex-row center-no-dir">
+            <FontAwesomeIcon style={{color: 'gray'}} icon={faCalendarDays}/>
+            <p style={{color: 'gray',
+              fontSize: '12px',
+              marginLeft: '15px',
+            }}><b>Khai giảng:</b> {course.openDate.toDateString()}</p>
+          </Box>
+          <Box sx={{height: '20px', margin: '5px 0px 0px 40px'}} className="full-width flex-row center-no-dir">
+            <FontAwesomeIcon style={{color: 'gray'}} icon={faCalendarDays}/>
+            <p style={{color: 'gray',
+              fontSize: '12px',
+              marginLeft: '15px',
+            }}><b>Thời gian học:</b> {course.studyTime}</p>
+          </Box>
         </Box>
       )
     })
@@ -204,14 +246,12 @@ export default function Home() {
         className="list-courses-content flex-row"
         sx={{
           width: "100%",
-          borderBottom: "2px solid #8F0101",
           height: "350px",
         }}
       >
         <Box
           className="list-courses-introduce full-height half-row"
           sx={{
-            backgroundColor: 'red',
             overflow: 'hidden',
           }}
         >
@@ -227,8 +267,25 @@ export default function Home() {
   }
 
   const ListPosts = () => {
-    const ListPostComponent = (props:any) => {
-      const ListPostsElement = listPosts.map((post) => {
+    
+    const PostTitle = (props:any) => {
+      return (
+        <Box className="flex-row">
+          <p style={{fontSize: '20px'}} className="list-posts-title">{props.name}</p>
+          <Box sx={{
+            position: 'absolute',
+            width: '50px',
+            borderBottom: '2px solid red',
+            marginLeft: '100px',
+            marginTop: '10px',
+          }}>
+          </Box>
+        </Box>
+      )
+    }
+
+    const ListPostComponents = (props:any) => {
+      const ListPostsContent = listPosts.map((post) => {
         if (post.type == props.type) {
           return (
             <Box
@@ -243,11 +300,19 @@ export default function Home() {
       return (
         <Box
           className="list-posts-detail flex-col one-third-row full-height"
-            >{ListPostsElement}
+        >
+          <PostTitle name={props.name}></PostTitle>
+          {ListPostsContent}
         </Box>
       )
     }
     
+    const ListPostsContainer = listPostType.map((posttype) => {
+      return (
+        <ListPostComponents type={posttype.id} name={posttype.name}></ListPostComponents>
+      )
+    })
+
     return (
       <Box
         className="list-posts-content flex-row full-width full-height"
@@ -255,9 +320,7 @@ export default function Home() {
           height: "300px",
         }}
       >
-        <ListPostComponent type="1"></ListPostComponent>
-        <ListPostComponent type="2"></ListPostComponent>
-        <ListPostComponent type="3"></ListPostComponent>
+        {ListPostsContainer}
       </Box>
     );
   }

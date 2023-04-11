@@ -16,14 +16,14 @@
 .swiper-service-link {
   width: 100%;
   float: bottom;
-  background-color: black;
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   text-transform: uppercase;
   text-align: center;
   padding: 10px;
-  font-weight: 300;
-}
+  font-weight: 500;
+  z-index: 1;
+} 
 
 .swiper-service-image {
   position: absolute;
@@ -35,4 +35,18 @@
   transform: scale(1.2);
   transition-duration: 1s;
   cursor: pointer;
+}
+
+.list-courses-detail-element:not(:last-child) {
+  border-bottom: 1px solid gray;
+} 
+
+.list-posts-title {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.list-posts-title::after {
+  content: "";
 }

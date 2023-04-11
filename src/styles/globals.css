@@ -162,6 +162,10 @@ body {
   justify-content: center;
 }
 
-.list-courses-detail-element:not(:last-child) {
-  border-bottom: 2px solid red;
-} 
+.center-no-dir {
+  align-items: center;
+}
+
+.center-dir {
+  justify-content: center;
+}
