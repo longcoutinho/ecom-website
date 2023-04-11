@@ -9,30 +9,29 @@ import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
+import Link from "next/link";
 
 interface Post {
-  image: String,
-  title: String,
-  author: String,
+  image: string,
+  title: string,
+  author: string,
   createTime: Date,
   type: Number,
 }
 
 interface Course {
-  title: String,
-  studyTime: String,
+  title: string,
+  studyTime: string,
   openDate: Date, 
+}
+
+interface Service {
+  name: string,
+  image: string,
 }
 
 export default function Home() {
   //datas
-  const listFeaturedNews = [
-    "Bài viết 1",
-    "Bài viết 2",
-    "Bài viết 3",
-    "Bài viết 4",
-    "Bài viết 5",
-  ];
   const listPaginatorPosts = [
     "Bài viết 1",
     "Bài viết 1",
@@ -40,6 +39,28 @@ export default function Home() {
     "Bài viết 3",
     "Bài viết 4",
     "Bài viết 5",
+  ]
+  const listServices:Service[] = [
+    {
+      name: "dịch vụ tư vấn",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
+    },
+    {
+      name: "chia sẻ kinh nghiệm",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
+    },
+    {
+      name: "hệ thống đào tạo",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
+    },
+    {
+      name: "hệ thống đào tạo",
+      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
+    },
+    {
+      name: "hệ thống đào tạo",
+      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
+    }
   ]
   const listCoursesDetail:Course[] = [
     {
@@ -125,25 +146,29 @@ export default function Home() {
   ]
   //components
   const ListServices = () => {
-    const arr = listFeaturedNews.map((content, index) => (
-      <SwiperSlide key={index} className="swiper-slide-featured-news">
-        {content}
-      </SwiperSlide>
+    const arr = listServices.map((service, index) => (
+      <Box>
+        <SwiperSlide key={index} className="swiper-slide-featured-news">
+          <Image src={service.image} className="swiper-service-image"></Image>
+          <Link className="swiper-service-link" href="#">{service.name}</Link>
+        </SwiperSlide>
+      </Box>
+      
     ));
     return (
       <Box
         className="list-services-content flex-col"
         sx={{
           width: "100%",
-          borderBottom: "2px solid #8F0101",
-          height: "200px",
+          height: "300px",
+          paddingTop: '40px',
         }}
       >
         <Swiper
           className="swiper-featured-news"
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={100}
+          spaceBetween={60}
           slidesPerView={3}
           navigation
           pagination={{ clickable: true }}
@@ -161,8 +186,12 @@ export default function Home() {
   const ListCourses = () => {
     const ListCoursesDetail = listCoursesDetail.map((course) => {
       return (
-        <Box
+        <Box 
             className="list-courses-detail-element flex-col full-width one-third-col"
+            sx={{
+              backgroundColor: '#333333',
+
+            }}
         >
           <h1>{course.title}</h1>
           <p>{course.studyTime}</p>
@@ -181,6 +210,10 @@ export default function Home() {
       >
         <Box
           className="list-courses-introduce full-height half-row"
+          sx={{
+            backgroundColor: 'red',
+            overflow: 'hidden',
+          }}
         >
           <Image src="http://hongkyfengshui.vn/vnt_upload/weblink/Slide2bb_1.png"/>
         </Box>
@@ -270,21 +303,23 @@ export default function Home() {
   }
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width flex-col">
+      <Box className="content full-width">
         <Box
           className="header-content full-width flex-col"
           sx={{
             height: '600px',
-            backgroundSize: '100% 100%',
-            backgroundImage: 'url("http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-1-1360x600_1.jpg")'
+            backgroundSize: 'cover',
+            backgroundImage: 'url("http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-1-1360x600_1.jpg")',
           }}
         >
         </Box>
         <Box
           className="focus-content full-width flex-col"
           sx={{
-            borderBottom: "2px solid red",
             padding: '0px 300px 0px 300px',
+            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.9) 0%)',
+            backgroundClip: 'padding-box',
+            marginTop: '-94px',
           }}
         >
           <ListServices></ListServices>
