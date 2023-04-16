@@ -1,6 +1,5 @@
 export interface IHeader {
   menuIndex: number;
-  admin?: boolean;
 }
 export interface IMenuItem {
   title: String;

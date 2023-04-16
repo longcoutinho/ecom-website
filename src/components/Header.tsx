@@ -13,9 +13,10 @@ import { IHeader, IMenuItem } from "@/interfaces";
 import { PATH_PAGE } from "@/routes/path";
 import Link from "next/link";
 import Iconify from "./Iconify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone, faSearch, faSignIn } from "@fortawesome/free-solid-svg-icons";
 
-const Header = (props: IHeader) => {
-  const { menuIndex, admin } = props;
+const Header = () => {
   const [search, setSearch] = useState("");
   //data
   const initMenuItem = [
@@ -47,12 +48,21 @@ const Header = (props: IHeader) => {
     },
   ];
   //init
+  /*
   const [listMenuItem, setListMenuItem] = useState(
     admin ? menuAdmimItem : initMenuItem
   );
+  */
   //components
+  const Logo = () => {
+    return (
+      <Box className="full-height" sx={{width: '130px', objectFit: 'fill'}}>
+        <Image className="logo" src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"></Image>
+      </Box>
+    )
+  }
   const Menu = () => {
-    const listMenu = listMenuItem.map((menuItem: IMenuItem, index) => (
+    const listMenu = initMenuItem.map((menuItem: IMenuItem, index) => (
       <Box
         key={index}
         className="menu-item"
@@ -62,8 +72,6 @@ const Header = (props: IHeader) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: props.menuIndex !== index ? "white" : "#8F0101",
-          backgroundColor: props.menuIndex !== index ? "#8F0101" : "white",
           fontWeight: 700,
           margin: "0px 10px 0px 10px",
         }}
@@ -78,12 +86,13 @@ const Header = (props: IHeader) => {
         className="menu"
         sx={{
           width: "100%",
-          height: "15%",
+          height: "30%",
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "end",
-          backgroundColor: "#8F0101",
+          color: 'white',
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
         }}
       >
         {listMenu}
@@ -91,81 +100,54 @@ const Header = (props: IHeader) => {
     );
   };
 
+  const Contact = () => {
+    const ListItemContactComponent = () => {
+      return (
+        <Box className="flex-row center list-contact-items" sx={{
+          fontSize: '15px',
+          justifyContent: 'center',
+        }}> 
+          <FontAwesomeIcon className="contact-item" icon={faPhone} style={{color: 'red'}}/>
+          <p>0123456789</p>
+          <FontAwesomeIcon className="contact-item" icon={faEnvelope}/>
+          <FontAwesomeIcon className="contact-item" icon={faSearch}/>
+          <FontAwesomeIcon className="contact-item" icon={faSignIn}/>
+        </Box>
+      )
+    }
+
+    return (
+      <Box
+        className="menu flex-row"
+        sx={{
+          height: '30%',
+          color: 'white',
+          width: '300px'
+        }}
+      >
+        <ListItemContactComponent></ListItemContactComponent>
+      </Box>
+    )
+  }
+
   //export components
   return (
     <Container
       disableGutters
       maxWidth={false}
+      className = "flex-row"
       sx={{
-        height: 350,
+        position: 'absolute',
+        top: '0px',
+        height: '100px',
         width: "100%",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <Box
-        className="line"
-        sx={{
-          width: "100%",
-          height: "10%",
-          backgroundColor: "#8F0101",
-        }}
-      />
-      <Box
-        className="logo and banner"
-        sx={{
-          width: "100%",
-          height: "75%",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <Box
-          className="logo"
-          sx={{
-            width: "30%",
-            height: "100%",
-          }}
-        >
-          <Image
-            alt=""
-            src="https://vanphongxanh.vn/wp-content/uploads/2022/03/logo-social.png"
-            sx={{
-              objectFit: "fill",
-              width: "100%",
-              height: "100%",
-            }}
-          />
-        </Box>
-        <Box
-          className="banner"
-          sx={{
-            width: "70%",
-            height: "100%",
-          }}
-        >
-          <Image
-            alt=""
-            src="https://viettelnamban.com/wp-content/uploads/2021/03/21-1400x438.png"
-            sx={{
-              objectFit: "fill",
-              width: "100%",
-              height: "100%",
-            }}
-          />
-        </Box>
-      </Box>
+      <Logo></Logo>
       <Menu></Menu>
-      <Stack direction={"row"} sx={{ py: 2, px: 2 }}>
-        <TextField
-          fullWidth
-          size="small"
-          placeholder="Search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <Button>Tìm kiếm</Button>
-      </Stack>
+      <Contact></Contact>
     </Container>
   );
 };

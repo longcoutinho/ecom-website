@@ -13,7 +13,9 @@ import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { type } from "os";
+import zIndex from "@mui/material/styles/zIndex";
 
+<link rel="preconnect" href="https://fonts.gstatic.com"></link>
 interface TypePost {
   id: Number,
   name: string,
@@ -189,7 +191,7 @@ export default function Home() {
         <Swiper
           className="swiper-featured-news"
           // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, Scrollbar, A11y]}
           spaceBetween={60}
           slidesPerView={3}
           navigation
@@ -247,6 +249,7 @@ export default function Home() {
         sx={{
           width: "100%",
           height: "350px",
+          marginTop: '10px',
         }}
       >
         <Box
@@ -271,15 +274,7 @@ export default function Home() {
     const PostTitle = (props:any) => {
       return (
         <Box className="flex-row">
-          <p style={{fontSize: '20px'}} className="list-posts-title">{props.name}</p>
-          <Box sx={{
-            position: 'absolute',
-            width: '50px',
-            borderBottom: '2px solid red',
-            marginLeft: '100px',
-            marginTop: '10px',
-          }}>
-          </Box>
+          <p style={{fontSize: '20px'}} className="list-posts-title"><span>{props.name}</span></p>
         </Box>
       )
     }
@@ -289,11 +284,17 @@ export default function Home() {
         if (post.type == props.type) {
           return (
             <Box
-                className="list-posts-detail-element flex-col full-width one-third-col"
+                className="list-posts-detail-element flex-row full-width one-third-col"
+                sx={{padding: '10px 0px 10px 0px', marginTop: '5px'}}
             >
-              <h1>{post.title}</h1>
-              <p>{post.createTime.toDateString()}</p>
-            </Box>
+              <Box className = "full-height half-row">
+                <Image id="image-post" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+              </Box>
+              <Box className = "full-height half-row" sx={{padding: '10px'}}>
+                <h1 style={{fontSize: '15px', color: 'white'}}>{post.title}</h1>
+                <p style={{fontSize: '15px', color: 'gray', marginTop: '5px'}}>{post.createTime.toDateString()}</p>
+              </Box>    
+            </Box> 
           )
         }
       })
@@ -318,6 +319,7 @@ export default function Home() {
         className="list-posts-content flex-row full-width full-height"
         sx={{
           height: "300px",
+          marginTop: "40px",
         }}
       >
         {ListPostsContainer}
@@ -368,21 +370,33 @@ export default function Home() {
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="content full-width">
         <Box
-          className="header-content full-width flex-col"
+          className="header-content full-width flex-row"
           sx={{
+            position: 'relative',
+            padding: '0px 300px 70px 300px',
             height: '600px',
             backgroundSize: 'cover',
             backgroundImage: 'url("http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-1-1360x600_1.jpg")',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+            zIndex: -1,
           }}
         >
+          <Box className="flex-row half-col half-row" sx={{alignItems: 'flex-end', justifyContent: 'flex-start'}}>
+            <Image className="phong-thuy-image" src="https://top10tphcm.com/wp-content/uploads/2020/06/phong-thuy-la-gi-1.jpg"></Image>
+          </Box>
+          <Box className="flex-col" sx={{alignItems: 'flex-start', justifyContent: 'flex-start', paddingRight: '120px', width: '50%', height: '50%'}}>
+            <p className="phong-thuy-text" style={{fontSize: '50px', color: 'white', fontWeight: 1000}}><span>Phong thủy</span></p>
+            <p style={{marginTop: '20px', fontSize: '18px', color: 'white', fontWeight: 300}}>Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa</p>
+          </Box>
         </Box>
         <Box
           className="focus-content full-width flex-col"
           sx={{
             padding: '0px 300px 0px 300px',
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.9) 0%)',
+            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.95) 45%, rgba(0, 0, 0, 0.95) 0%)',
             backgroundClip: 'padding-box',
-            marginTop: '-94px',
+            marginTop: '-105px',
           }}
         >
           <ListServices></ListServices>

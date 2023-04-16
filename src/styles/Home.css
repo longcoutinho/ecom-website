@@ -47,6 +47,74 @@
   font-weight: 500;
 }
 
+.list-posts-title {
+  position: relative;
+  font-weight: 700;
+}
+
+
 .list-posts-title::after {
   content: "";
+  display: inline-block;
+  height: 0.5em;
+  width: 50px;
+  margin-right: -100%;
+  margin-left: 10px;
+  border-bottom: 2px solid red;
+}
+
+.list-posts-detail:not(:last-child) {
+  padding-right: 10px;
+}
+
+#image-post {
+  height: 90%;
+  width: 90%;
+}
+
+.logo {
+  width: 100%;
+  height: 100px;
+  object-fit: fill;
+}
+
+.contact-item {
+  margin-left: 15px;
+}
+
+.contact-item:hover {
+  cursor: pointer;
+}
+
+.phong-thuy-image {
+  width: 80%;
+  height: 100%;
+}
+
+.phong-thuy-text {
+  position: relative;
+}
+
+.phong-thuy-text span {
+  padding-right: 10px;
+}
+
+.phong-thuy-text::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0.5em;
+  border-bottom: 40px solid red;
+  z-index: -1;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: white;
+}
+
+.swiper-scrollbar-drag {
+  color: rgba(0,0,0,0.1)  
 }
