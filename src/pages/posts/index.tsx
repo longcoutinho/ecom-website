@@ -15,6 +15,7 @@ import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 
+
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>
 interface TypePost {
   id: Number,
@@ -27,6 +28,7 @@ interface Post {
   author: string,
   createTime: Date,
   type: Number,
+  content: String,
 }
 
 interface Course {
@@ -96,6 +98,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -103,6 +106,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -110,6 +114,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -117,6 +122,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -124,6 +130,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -131,6 +138,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -138,6 +146,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -145,6 +154,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
     {
       image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
@@ -152,6 +162,7 @@ export default function Home() {
       author: "longhvh",
       createTime: new Date,
       type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
     },
   ]
   const listPostType:TypePost[] = [
@@ -169,140 +180,31 @@ export default function Home() {
     },
   ]
   //components
-  const ListServices = () => {
-    const arr = listServices.map((service, index) => (
-      <Box>
-        <SwiperSlide key={index} className="swiper-slide-featured-news">
-          <Image src={service.image} className="swiper-service-image"></Image>
-          <Link className="swiper-service-link" href="#">{service.name}</Link>
-        </SwiperSlide>
-      </Box>
-      
-    ));
-    return (
-      <Box
-        className="list-services-content flex-col"
-        sx={{
-          width: "100%",
-          height: "300px",
-          paddingTop: '40px',
-        }}
-      >
-        <Swiper
-          className="swiper-featured-news"
-          // install Swiper modules
-          modules={[Navigation, Scrollbar, A11y]}
-          spaceBetween={60}
-          slidesPerView={3}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={(swiper: any) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          {arr}
-          ...
-        </Swiper>
-      </Box>
-    );
-  };
-
-  const ListCourses = () => {
-    const ListCoursesDetail = listCoursesDetail.map((course) => {
-      return (
-        <Box 
-            className="list-courses-detail-element flex-col full-width one-third-col"
-            sx={{
-              backgroundColor: '#333333',
-              padding: '20px',
-            }}
-        >
-          <Box sx={{height: '20px'}} className="full-width flex-row center-no-dir">
-            <Image className="full-height" src="http://hongkyfengshui.vn/modules/main/images/main/icon.png"/>
-            <h1 style={{
-              color: 'white',
-              textTransform: 'uppercase',
-              fontSize: '17px',
-              marginLeft: '15px',
-              }}>{course.title}</h1>
-          </Box>
-          <Box sx={{height: '20px', margin: '10px 0px 0px 40px'}} className="full-width flex-row center-no-dir">
-            <FontAwesomeIcon style={{color: 'gray'}} icon={faCalendarDays}/>
-            <p style={{color: 'gray',
-              fontSize: '12px',
-              marginLeft: '15px',
-            }}><b>Khai giảng:</b> {course.openDate.toDateString()}</p>
-          </Box>
-          <Box sx={{height: '20px', margin: '5px 0px 0px 40px'}} className="full-width flex-row center-no-dir">
-            <FontAwesomeIcon style={{color: 'gray'}} icon={faCalendarDays}/>
-            <p style={{color: 'gray',
-              fontSize: '12px',
-              marginLeft: '15px',
-            }}><b>Thời gian học:</b> {course.studyTime}</p>
-          </Box>
-        </Box>
-      )
-    })
-    return (
-      <Box
-        className="list-courses-content flex-row"
-        sx={{
-          width: "100%",
-          height: "350px",
-          marginTop: '10px',
-        }}
-      >
-        <Box
-          className="list-courses-introduce full-height half-row"
-          sx={{
-            overflow: 'hidden',
-          }}
-        >
-          <Image src="http://hongkyfengshui.vn/vnt_upload/weblink/Slide2bb_1.png"/>
-        </Box>
-        <Box
-          className="list-cources-detail flex-col full-height half-row"
-        >
-          {ListCoursesDetail}
-        </Box>
-      </Box>
-    );
-  }
-
+  
   const ListPosts = () => {
-    
-    const PostTitle = (props:any) => {
-      return (
-        <Box className="flex-row">
-          <p style={{fontSize: '20px'}} className="list-posts-title"><span>{props.name}</span></p>
-        </Box>
-      )
-    }
 
     const ListPostComponents = (props:any) => {
       const ListPostsContent = listPosts.map((post) => {
-        if (post.type == props.type) {
           return (
             <Box
-                className="list-posts-detail-element flex-row full-width one-third-col"
-                sx={{padding: '10px 0px 10px 0px', marginTop: '5px'}}
+                className="list-posts-detail-element flex-col"
+                sx={{padding: '10px 0px 10px 0px', width: '300px', height: '400px', marginTop: '10px'}}
             >
-              <Box className = "full-height half-row">
+              <Box className = "full-width half-col">
                 <Image id="image-post" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
               </Box>
-              <Box className = "full-height half-row" sx={{padding: '10px'}}>
+              <Box className = "full-width half-col flex-col" sx={{padding: '10px', justifyContent: 'space-between'}}>
                 <h1 style={{fontSize: '15px', color: 'white'}}>{post.title}</h1>
                 <p style={{fontSize: '15px', color: 'gray', marginTop: '5px'}}>{post.createTime.toDateString()}</p>
+                <Button sx={{color: 'white', backgroundColor: 'red', borderRadius: '3px'}}>Xem chi tiết</Button>
               </Box>    
             </Box> 
           )
-        }
       })
       return (
         <Box
           className="list-posts-detail flex-col one-third-row full-height"
         >
-          <PostTitle name={props.name}></PostTitle>
           {ListPostsContent}
         </Box>
       )
@@ -327,42 +229,18 @@ export default function Home() {
     );
   }
 
-  const SearchInput = () => {
+  const MenuPostComponent = () => {
+    const listMenuItems = ['Tin phong thủy', 'Vật phẩm phong thủy', 'Sự kiện', 'Ứng dụng vạn sự kỳ thư', 'Tin trà']
+    const ListMenuPostComponent = listMenuItems.map((item) => {
+      return (
+        <Box sx={{marginLeft: '20px'}}>
+          <p style={{color: 'gray', textTransform: 'uppercase'}}>{item}</p>
+        </Box>
+      )
+    })
     return (
-      <Box
-        className= "search-input full-width center flex-row"
-        sx={{
-          height: '100px',
-        }}
-      >
-        <Input sx={{}}></Input>
-        <Button>Tìm kiếm</Button>
-      </Box>
-    );
-  };
-  const ListPaginatorPosts = () => {
-    const listPostJSX = listPaginatorPosts.map((post, index) => (
-      <Box key={index}
-        className="list-paginator-posts full-width"
-        sx={{
-          height: '266px',
-          border: '2px solid #8F0101',
-          marginTop: '100px',
-        }}
-      >
-        <p>{post}</p>
-      </Box>
-    ))
-    return (
-      <Box
-          className="wrap-list-paginator-posts full-width flex-col"
-          sx={{
-            height: 'auto',
-            marginTop: '100px',
-            borderTop: '2px solid #8F0101'
-          }}
-      >
-        {listPostJSX}
+      <Box sx={{height: '50px'}} className="flex-row full-width center">
+        {ListMenuPostComponent}
       </Box>
     )
   }
@@ -374,33 +252,27 @@ export default function Home() {
           sx={{
             position: 'relative',
             padding: '0px 300px 70px 300px',
-            height: '600px',
+            height: '350px',
             backgroundSize: 'cover',
-            backgroundImage: 'url("http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-1-1360x600_1.jpg")',
+            backgroundImage: 'url("http://hongkyfengshui.vn/vnt_upload/weblink/slide_1.jpg")',
             justifyContent: 'flex-end',
             alignItems: 'flex-end',
             zIndex: -1,
           }}
         >
-          <Box className="flex-row half-col half-row" sx={{alignItems: 'flex-end', justifyContent: 'flex-start'}}>
-            <Image className="phong-thuy-image" src="https://top10tphcm.com/wp-content/uploads/2020/06/phong-thuy-la-gi-1.jpg"></Image>
-          </Box>
-          <Box className="flex-col" sx={{alignItems: 'flex-start', justifyContent: 'flex-start', paddingRight: '120px', width: '50%', height: '50%'}}>
-            <p className="phong-thuy-text" style={{fontSize: '50px', color: 'white', fontWeight: 1000}}><span>Phong thủy</span></p>
-            <p style={{marginTop: '20px', fontSize: '18px', color: 'white', fontWeight: 300}}>Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn học quan trọng trong cuộc sống của người Trung Hoa</p>
+          <Box className="flex-col center full-width full-height" sx={{color: 'white'}}>
+           <p style={{textTransform: 'uppercase', fontSize: '30px', marginTop: '70px'}}><span style={{padding: '10px 30px 10px 30px', border: '2px solid white'}}>Tin tức</span></p>
           </Box>
         </Box>
         <Box
           className="focus-content full-width flex-col"
           sx={{
             padding: '0px 300px 0px 300px',
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.95) 45%, rgba(0, 0, 0, 0.95) 0%)',
+            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7) 50px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.95) 0%)',
             backgroundClip: 'padding-box',
-            marginTop: '-105px',
           }}
         >
-          <ListServices></ListServices>
-          <ListCourses></ListCourses>  
+          <MenuPostComponent></MenuPostComponent>
           <ListPosts></ListPosts>
         </Box>
       </Box>
