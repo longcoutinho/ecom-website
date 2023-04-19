@@ -16,7 +16,7 @@ import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>
@@ -30,8 +30,7 @@ interface Post {
   title: string,
   author: string,
   type: Number,
-  content: String,
-  id: Number,
+  content: any,
 }
 
 interface Course {
@@ -45,19 +44,28 @@ interface Service {
   image: string,
 }
 
-export default function Post() {
-  const [listPosts, setListPost] = useState<Post[]>([]);
-  const router = useRouter();
+export default function PostDetail() {
+  const [detailPost, setListPost] = useState<Post>();
+  const route = useRouter();
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'http://10.248.158.167:1112/posts',
-    }).then((res) => {
-      setListPost(res.data.content)
-    }, (err) => {
-      console.log(err)
-    })
-  },[])
+    if (route.query.id !== undefined) {
+      const URL = 'http://10.248.158.167:1112/posts/' + route.query.id;
+      console.log(route.query.id);
+      axios({
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        method: 'get',
+        url: URL,
+      }).then((res) => {
+        const newArr = res.data as Post;
+        console.log(res.data);
+        setListPost(newArr);
+      }, (err) => {
+        console.log(err)
+      })
+    }
+  },[route.query])
   //datas
   const listPaginatorPosts = [
     "Bài viết 1",
@@ -106,44 +114,108 @@ export default function Post() {
       openDate: new Date
     }
   ]
-
+  const listPoss:Post[] = [
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 1,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 2,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày xuân",
+      author: "longhvh",
+      type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+    {
+      image: "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
+      title: "Trà quý cho sức khỏe vàng ngày",
+      author: "longhvh",
+      type: 3,
+      content: "asdasdasdasdasdddddddddddddddddddddd",
+    },
+  ]
+  const listPostType:TypePost[] = [
+    {
+      id: 1,
+      name: 'Tin tức',
+    },
+    {
+      id: 2,
+      name: 'Kinh Nghiệm',
+    },
+    {
+      id: 3,
+      name: 'Dịch vụ tư vấn',
+    },
+  ]
+  //components
   
   const ListPosts = () => {
 
-    const redirect = (id: any) => {
-      router.push({
-        pathname: '/posts/detail',
-        search: "?" + new URLSearchParams({id: id}),
-      })
-    }
-
     const ListPostComponents = (props:any) => {
-      const ListPostsContent = listPosts.map((post) => {
+      const ListPostsContent = () => {
           return (
             <Box
                 className="list-posts-detail-element flex-col"
                 sx={{padding: '10px 0px 10px 0px', width: '300px', height: '400px', marginTop: '10px'}}
             >
-              <Box className = "full-width half-col">
-                <Image id="image-post" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
-              </Box>
-              <Box className = "full-width half-col flex-col" sx={{padding: '10px', justifyContent: 'space-between'}}>
-                <h1 style={{fontSize: '15px', color: 'white'}}>{post.title}</h1>
-                <p style={{fontSize: '15px', color: 'gray', marginTop: '5px'}}>aa</p>
-                <Button onClick={() => redirect(post.id)} sx={{color: 'white', backgroundColor: 'red', borderRadius: '3px'}}>Xem chi tiết</Button>
-              </Box>    
+              <Box dangerouslySetInnerHTML={{ __html: detailPost?.content}}></Box>
             </Box> 
           )
-      })
+      }
       return (
         <Box
           className="list-posts-detail flex-col one-third-row full-height"
         >
-          {ListPostsContent}
+          <ListPostsContent></ListPostsContent>
         </Box>
       )
     }
-    
 
     return (
       <Box
