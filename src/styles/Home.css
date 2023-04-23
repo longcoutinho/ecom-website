@@ -1,3 +1,4 @@
+@import './responsive.css';
 .swiper-featured-news {
   width: 100%;
   height: 100%;
@@ -8,7 +9,7 @@
   background-size: 100%;
   height: 90% !important;
   display: flex !important;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   overflow: hidden;
 }
@@ -89,6 +90,9 @@
 .phong-thuy-image {
   width: 80%;
   height: 100%;
+  @media (max-width: 899px){
+    width:100%;
+  }
 }
 
 .phong-thuy-text {
@@ -97,6 +101,9 @@
 
 .phong-thuy-text span {
   padding-right: 10px;
+  @media (max-width: 690px) {
+    font-size:32px;
+  }
 }
 
 .phong-thuy-text::after {
@@ -117,4 +124,85 @@
 
 .swiper-scrollbar-drag {
   color: rgba(0,0,0,0.1)  
+}
+.header-content{
+  display:flex;
+  align-items: center;
+  height:500px;
+  padding: 0px ;
+  @media (max-width: 690px) {
+    flex-direction:column;
+  }
+  @media (min-width: 900px) {
+    align-items: flex-end;
+    height:600px;
+    flex-direction:row;
+    padding: 0px 140px 70px 140px ;
+
+  }
+}
+.banner-left{
+  height:fit-content !important;
+  @media (max-width: 690px) {
+    align-items:flex-end;
+  }
+  @media (max-width: 899px){
+    align-items:center;
+    justify-content:center;
+    padding:0 40px;
+  } 
+}
+.banner-right{
+  padding-right: 0;
+  @media (max-width: 690px) {
+    width:80%;
+    justify-content:center;
+    align-items:center;
+  }
+  @media (max-width: 899px){
+    padding-right:30px;
+  } 
+}
+.body-content_home{
+  @media (min-width: 900px) {
+    padding: 0px 200px ;
+    margin-top: -105px;
+  }
+  @media (min-width: 480px) {
+    padding: 0px 50px ;
+
+  }
+}
+.list-courses-content{
+  display:flex;
+  flex-direction:row;
+  height:350px;
+  @media (max-width: 690px) {
+    flex-direction:column;
+    height:fit-content;
+  }
+}
+.list-courses-introduce{
+
+  width:100%;
+  @media (min-width: 690px) {
+    width:50%;
+  }
+}
+.list-cources-detail{
+  width:100%;
+  @media (min-width: 690px) {
+    width:50%;
+  }
+
+}
+.list-posts-content{
+  display:flex;
+  flex-direction:column;
+  @media (min-width: 1100px) {
+    flex-direction:row;
+height:300px;
+width:33.3%;
+  }
+
 }

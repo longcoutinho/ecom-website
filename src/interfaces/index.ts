@@ -2,7 +2,7 @@ export interface IHeader {
   menuIndex: number;
 }
 export interface IMenuItem {
-  title: String;
+  title: string;
   redirect_link: any;
 }
 export interface IPageProps {
