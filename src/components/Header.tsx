@@ -190,16 +190,14 @@ const Header = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <>
-            {initMenuItem.map((item: any, index: number) => (
-              <MenuItem
-                key={index}
-                onClick={() => handleGoToPage(item.redirect_link)}
-              >
-                {item.title}
-              </MenuItem>
-            ))}
-          </>
+          {initMenuItem.map((item: any, index: number) => (
+            <MenuItem
+              key={index}
+              onClick={() => handleGoToPage(item.redirect_link)}
+            >
+              {item.title}
+            </MenuItem>
+          ))}
         </Menu>
       </div>
     </Container>
