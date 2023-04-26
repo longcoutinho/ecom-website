@@ -81,6 +81,7 @@ export default function Item() {
   const ListItems = () => {
 
     const redirect = (id: any) => {
+      id = "52e01873-0137-4917-ace8-1e9bfab2ba0d";
       router.push({
         pathname: '/items/detail',
         search: "?" + new URLSearchParams({id: id}),
