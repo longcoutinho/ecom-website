@@ -67,15 +67,22 @@ export default function Item() {
   const router = useRouter();
   //datas
   
-  const formatVND(price) {
-    
+  const formatVND = (price: string) => {
+    var len = price.length;
+    var ind = len - 3;
+    while(ind > 0) {
+      price = price.substring(0, ind) + "." + price.substring(ind, len);
+      len++;
+      ind -= 3;
+    }
+    return price + " VNĐ";
   }
 
   const ListItems = () => {
 
     const redirect = (id: any) => {
       router.push({
-        pathname: '/posts/detail',
+        pathname: '/items/detail',
         search: "?" + new URLSearchParams({id: id}),
       })
     }
@@ -83,23 +90,24 @@ export default function Item() {
     const ListItemComponents = (props:any) => {
       const ListItemContent = listItems.map((item) => {
           return (
-            <Box
+            <Box 
+                onClick={() => redirect(item.title)}
                 className="list-items-detail-element flex-col"
-                sx={{padding: '10px 0px 10px 0px', width: '300px', height: '400px', marginTop: '10px', backgroundColor: 'red'}}
+                sx={{padding: '10px 0px 10px 0px', width: '200px', height: '300px', margin: '10px', backgroundColor: 'gray', flexDirection: 'space-between'}}
             >
-              <Box className = "full-width half-col">
+              <Box className = "full-width half-col flex-col center" sx={{objectFit: 'cover'}}>
                 <Image id="image-post" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
               </Box>
-              <Box className = "full-width half-col flex-col" sx={{padding: '10px', justifyContent: 'space-between'}}>
+              <Box className = "full-width half-col flex-col center" sx={{padding: '10px'}}>
                 <h1 style={{fontSize: '15px', color: 'white'}}>{item.title}</h1>
-                <p style={{fontSize: '15px', color: 'gray', marginTop: '5px'}}>{item.price.toString()}</p>
+                <h1 style={{fontSize: '15px', color: 'red'}}>{formatVND(item.price.toString())}</h1>
               </Box>    
             </Box> 
           )
       })
       return (
         <Box
-          className="list-posts-detail flex-col one-third-row full-height"
+          className="list-posts-detail flex-row full-height"
         >
           {ListItemContent}
         </Box>
@@ -108,11 +116,7 @@ export default function Item() {
     
 
     return (
-      <Box
-        className="list-posts-content flex-row full-width full-height"
-      >
         <ListItemComponents></ListItemComponents>
-      </Box>
     );
   }
 

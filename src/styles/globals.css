@@ -174,3 +174,7 @@ body {
 .center-dir {
   justify-content: center;
 }
+
+.list-items-detail-element:hover {
+  cursor: pointer;
+}
