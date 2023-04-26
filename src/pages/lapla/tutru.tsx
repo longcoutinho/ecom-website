@@ -18,7 +18,6 @@ import {
   TableContainer,
   TableBody,
 } from "@mui/material";
-
 const dataTable = [
   { index: 1, hao: "Hào Thượng" },
   { index: 2, hao: "Hào Ngũ" },
@@ -27,11 +26,11 @@ const dataTable = [
   { index: 5, hao: "Hào Nhị" },
   { index: 6, hao: "Hào Sơ" },
 ];
-export default function LucHao() {
+export default function TuTru() {
   return (
     <Page title={PAGE_TITLE.LAPLA} menuIndex={2}>
       <Box className="lapla">
-        <h1>Gieo quẻ lục hào</h1>
+        <h1>Lập lá số tứ tru bát tự</h1>
         <Box className="tuvi">
           <Stack>
             <h3>Họ và tên:</h3>

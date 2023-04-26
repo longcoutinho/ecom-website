@@ -17,5 +17,7 @@ export const PATH_PAGE = {
     root: path(ROOTS_PAGE, "lapla"),
     tuvi: path(ROOTS_PAGE, "lapla/tuvi"),
     luchao: path(ROOTS_PAGE, "lapla/luchao"),
+    tutru: path(ROOTS_PAGE, "lapla/tutru"),
+    thansohoc: path(ROOTS_PAGE, "lapla/thansohoc"),
   },
 };

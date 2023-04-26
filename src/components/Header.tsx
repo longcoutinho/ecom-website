@@ -42,7 +42,7 @@ const Header = () => {
     },
     {
       title: "Lập lá số phong thủy",
-      redirect_link: PATH_PAGE.user.tab3,
+      redirect_link: PATH_PAGE.lapla.root,
     },
     {
       title: "Đặt lịch tư vấn",

@@ -16,8 +16,8 @@ const Item = styled(Paper)(({ theme }) => ({
 const TITLE_TAB = [
   { title: "Lập lá số tử vi", url: PATH_PAGE.lapla.tuvi },
   { title: "Lập quẻ lục hào", url: PATH_PAGE.lapla.luchao },
-  { title: "Lập lá số tứ trụ", url: "" },
-  { title: "Thần số học", url: "" },
+  { title: "Lập lá số tứ trụ", url: PATH_PAGE.lapla.tutru },
+  { title: "Thần số học", url: PATH_PAGE.lapla.thansohoc },
 ];
 const TINTUC = [
   "Tin tuc de xuat 1",
