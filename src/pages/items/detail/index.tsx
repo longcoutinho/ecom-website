@@ -11,12 +11,13 @@ import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare, faMinusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare, faMinusSquare, faCartShopping  } from "@fortawesome/free-solid-svg-icons";
 import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 interface TypePost {
@@ -56,6 +57,8 @@ export default function PostDetail() {
   });
   const [amount, setAmount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [amountCartItem, setAmountCartItem] = useState(0);
+  const [displayAmount, setDisplayAmout] = useState("none");
   const route = useRouter();
   useEffect(() => {
     if (route.query.id !== undefined) {
@@ -82,6 +85,26 @@ export default function PostDetail() {
   //datas
   //components
 
+  useEffect(() => {
+    var cart: any = window.localStorage.getItem('cart');
+    
+    var newCart = [];
+    if (cart != null) {
+        newCart = JSON.parse(window.localStorage.getItem("cart") || "");
+    } 
+    console.log(newCart);
+    var totalAmount = 0;
+    for(var i = 0; i < newCart.length; i++)
+      totalAmount += newCart[i].amount;
+    setAmountCartItem(totalAmount);
+    if (newCart.length == 0) {
+      setDisplayAmout("none");
+    }
+    else {
+      setDisplayAmout("flex");
+    }
+  }, [])
+
   const formatVND = (price: any) => {
     var len = price.length;
     var ind = len - 3;
@@ -105,6 +128,7 @@ export default function PostDetail() {
   }
 
   const addtoCart = () => {
+    console.log("kk");
     var cart: any = window.localStorage.getItem('cart');
     var newCart = [];
     if (cart != null) {
@@ -122,8 +146,44 @@ export default function PostDetail() {
       price: detailItem.price,
       totalPrice: totalPrice
     };
-    newCart[ind++] = addItem;
+    var havedInCart = false;
+    for(var i = 0; i < newCart.length; i++) {
+      if (newCart[i].id == addItem.id) {
+        newCart[i].amount += addItem.amount;
+        newCart[i].totalPrice += addItem.totalPrice; 
+        havedInCart = true;
+      }
+    }
+    if (havedInCart == false) newCart[ind++] = addItem;
     window.localStorage.setItem('cart', JSON.stringify(newCart));
+    var totalAmount = 0;
+    for(var i = 0; i < newCart.length; i++)
+      totalAmount += newCart[i].amount;
+    setAmountCartItem(totalAmount);
+    if (newCart.length == 0) {
+      setDisplayAmout("none");
+    }
+    else {
+      setDisplayAmout("flex");
+    }
+  }
+
+  const gotoCart = () => {
+    route.push({
+      pathname: '/cart',
+    }
+    )
+  }
+
+  const CartComponent = () => {
+    return (
+      <Box className="cart-shopping" onClick={() => gotoCart()}>
+        <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
+        <div className="cart-amount" style={{display: displayAmount}}>
+          <p>{amountCartItem}</p>
+        </div>
+      </Box>
+    )
   }
 
   const ListPosts = () => {
@@ -158,6 +218,7 @@ export default function PostDetail() {
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
+      <CartComponent></CartComponent>
       <Box className="item-detail-content full-width">
         <Box
           className="focus-content full-width flex-col"
