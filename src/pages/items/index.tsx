@@ -55,8 +55,22 @@ export default function Item() {
     ]);
   const [amount, setAmount] = useState(0);
   const router = useRouter();
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://10.248.158.167:1112/item",
+    }).then(
+      (res) => {
+        setListItem(res.data.content);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }, []);
   //datas
-  
+    
+
   const formatVND = (price: string) => {
     var len = price.length;
     var ind = len - 3;

@@ -38,7 +38,7 @@ const Header = () => {
     },
     {
       title: "Sản phẩm phong thủy",
-      redirect_link: PATH_PAGE.user.tab2,
+      redirect_link: PATH_PAGE.user.tab3,
     },
     {
       title: "Lập lá số phong thủy",
