@@ -30,17 +30,6 @@ interface Item {
   price: Number,
 }
 
-interface Course {
-  title: string,
-  studyTime: string,
-  openDate: Date, 
-}
-
-interface Service {
-  name: string,
-  image: string,
-}
-
 export default function Item() {
   const [listItems, setListItem] = useState<Item[]>([
     {
@@ -64,6 +53,7 @@ export default function Item() {
         price: 650000,
     },
     ]);
+  const [amount, setAmount] = useState(0);
   const router = useRouter();
   //datas
   

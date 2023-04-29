@@ -205,7 +205,10 @@ body {
 }
 
 .amount-item {
-  background-color: red;
   display: flex;
   flex-direction: row;
+}
+
+.amount-icon:hover {
+  cursor: pointer;
 }

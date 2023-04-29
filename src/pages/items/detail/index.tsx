@@ -20,17 +20,42 @@ import { useRouter } from "next/router";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 interface TypePost {
-  id: Number;
+  id: number;
   name: string;
 }
 
 interface Item {
+  id: string,
   title: string,
-  price: Number,
+  price: number,
+  introduction: null,
+  content: null,
+  status: number,
+  createAt: string,
+  updateAt: null,
+}
+
+interface ItemToCart {
+  id: string,
+  title: string,
+  price: number,
+  amount: number,
+  totalPrice: number,
 }
 
 export default function PostDetail() {
-  const [detailItem, setListItem] = useState<Item>();
+  const [detailItem, setListItem] = useState<Item>({
+    "id": "52e01873-0137-4917-ace8-1e9bfab2ba0d",
+    "title": "Vòng tay phong thủy 2",
+    "introduction": null,
+    "content": null,
+    "status": 1,
+    "price": 20000,
+    "createAt": "2023-04-26T08:10:49.000+00:00",
+    "updateAt": null
+  });
+  const [amount, setAmount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const route = useRouter();
   useEffect(() => {
     if (route.query.id !== undefined) {
@@ -58,7 +83,6 @@ export default function PostDetail() {
   //components
 
   const formatVND = (price: any) => {
-    if (price === undefined) return "0 VNĐ"
     var len = price.length;
     var ind = len - 3;
     while(ind > 0) {
@@ -69,6 +93,39 @@ export default function PostDetail() {
     return price + " VNĐ";
   }
 
+  const changeAmount = (type: any) => {
+    var newAmount = amount; 
+    if (type == 0) {
+      newAmount++;
+    }
+    else if (newAmount) newAmount--;
+    console.log(newAmount);
+    setAmount(newAmount);
+    setTotalPrice(newAmount * detailItem.price);
+  }
+
+  const addtoCart = () => {
+    var cart: any = window.localStorage.getItem('cart');
+    var newCart = [];
+    if (cart != null) {
+      newCart = JSON.parse(window.localStorage.getItem("cart") || "");
+      //console.log(cart[0]);
+      //console.log(JSON.parse(cart));
+      //newCart = JSON.parse(cart);
+    } 
+    
+    var ind = newCart.length;
+    var addItem: ItemToCart = {
+      id: detailItem.id,
+      title: detailItem.title,
+      amount: amount,
+      price: detailItem.price,
+      totalPrice: totalPrice
+    };
+    newCart[ind++] = addItem;
+    window.localStorage.setItem('cart', JSON.stringify(newCart));
+  }
+
   const ListPosts = () => {
 
     return (
@@ -77,17 +134,20 @@ export default function PostDetail() {
       >
         <Box className="content-item">
               <Box className="image-item">
-                <Image src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"/>
+                <Image src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"></Image>
               </Box>
               <Box className="info-item">
                 <p>{detailItem?.title}</p>
-                <p>{formatVND(detailItem?.price.toString())}</p>
+                <p>{formatVND(totalPrice)}</p>
                 <Box className="amount-item">
-                  <FontAwesomeIcon icon={faPlusSquare}></FontAwesomeIcon>
-                  <p>1</p>
-                  <FontAwesomeIcon icon={faMinusSquare}></FontAwesomeIcon>
+                  <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(1)} icon={faMinusSquare}></FontAwesomeIcon>
+                  <p>{amount}</p>
+                  <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(0)} icon={faPlusSquare}></FontAwesomeIcon>
                 </Box>
-                
+                <Box>
+                  <Button>Mua ngay</Button>
+                  <Button onClick={() => addtoCart()}>Thêm vào cửa hàng</Button>
+                </Box>
               </Box>
         </Box>
         <Box className="intro-item">
@@ -98,11 +158,11 @@ export default function PostDetail() {
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width">
+      <Box className="item-detail-content full-width">
         <Box
           className="focus-content full-width flex-col"
           sx={{
-            padding: "0px 300px 0px 300px",
+            padding: "100px 300px 0px 300px",
             backgroundImage:
               "linear-gradient(rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 0%)",
             backgroundClip: "padding-box",
