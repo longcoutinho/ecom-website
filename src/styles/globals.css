@@ -203,3 +203,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.amount-item {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+}

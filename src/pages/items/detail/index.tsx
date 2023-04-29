@@ -11,7 +11,7 @@ import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare, faMinusSquare } from "@fortawesome/free-solid-svg-icons";
 import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
@@ -82,6 +82,12 @@ export default function PostDetail() {
               <Box className="info-item">
                 <p>{detailItem?.title}</p>
                 <p>{formatVND(detailItem?.price.toString())}</p>
+                <Box className="amount-item">
+                  <FontAwesomeIcon icon={faPlusSquare}></FontAwesomeIcon>
+                  <p>1</p>
+                  <FontAwesomeIcon icon={faMinusSquare}></FontAwesomeIcon>
+                </Box>
+                
               </Box>
         </Box>
         <Box className="intro-item">
