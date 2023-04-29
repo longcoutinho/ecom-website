@@ -11,7 +11,7 @@ import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
@@ -53,9 +53,28 @@ export default function Item() {
         price: 650000,
     },
     ]);
-  const [amount, setAmount] = useState(0);
+  const [amountCartItem, setAmountCartItem] = useState(0);
+  const [displayAmount, setDisplayAmout] = useState("none");
   const router = useRouter();
   useEffect(() => {
+    var cart: any = window.localStorage.getItem('cart');
+    
+    var newCart = [];
+    if (cart != null) {
+        newCart = JSON.parse(window.localStorage.getItem("cart") || "");
+    } 
+    console.log(newCart);
+    var totalAmount = 0;
+    for(var i = 0; i < newCart.length; i++)
+      totalAmount += newCart[i].amount;
+    setAmountCartItem(totalAmount);
+    if (newCart.length == 0) {
+      setDisplayAmout("none");
+    }
+    else {
+      setDisplayAmout("flex");
+    }
+
     axios({
       method: "get",
       url: "http://10.248.158.167:1112/item",
@@ -70,6 +89,23 @@ export default function Item() {
   }, []);
   //datas
     
+  const gotoCart = () => {
+    router.push({
+      pathname: '/cart',
+    }
+    )
+  }
+
+  const CartComponent = () => {
+    return (
+      <Box className="cart-shopping" onClick={() => gotoCart()}>
+        <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
+        <div className="cart-amount" style={{display: displayAmount}}>
+          <p>{amountCartItem}</p>
+        </div>
+      </Box>
+    )
+  }
 
   const formatVND = (price: string) => {
     var len = price.length;
@@ -127,6 +163,7 @@ export default function Item() {
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
+      <CartComponent></CartComponent>
       <Box className="content full-width">
         <Box
           className="header-content full-width flex-row"
