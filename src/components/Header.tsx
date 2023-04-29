@@ -34,7 +34,7 @@ const Header = () => {
   const initMenuItem: any = [
     {
       title: "Tin tức huyền học",
-      redirect_link: PATH_PAGE.user.tab1,
+      redirect_link: PATH_PAGE.tintuc.root,
     },
     {
       title: "Sản phẩm phong thủy",
