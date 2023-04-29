@@ -13,6 +13,10 @@ export const PATH_PAGE = {
     tab3: path(ROOTS_PAGE, "items"),
     tab4: path(ROOTS_PAGE, "lapla"),
   },
+  tintuc: {
+    root: path(ROOTS_PAGE, "posts"),
+    detail: path(ROOTS_PAGE, "posts/detail"),
+  },
   lapla: {
     root: path(ROOTS_PAGE, "lapla"),
     tuvi: path(ROOTS_PAGE, "lapla/tuvi"),
