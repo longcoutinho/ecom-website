@@ -182,7 +182,7 @@ body {
 
 .list-items-content {
   width: 100%;
-  height: auto;
+  height: 600px;
   margin-top: 40px;
 }
 
@@ -194,12 +194,19 @@ body {
 }
 
 .image-item {
-  width: 50%;
+  border: 2px solid gray;
+  width: 40%;
   height: 100%;
+  object-fit: fill;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 }
 
 .info-item {
-  width: 50%;
+  padding: 20px;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -242,4 +249,87 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 15px;
+}
+
+.title-item {
+  color: white;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.price-item {
+  color: red;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.introduction-item {
+  margin-top: 10px;
+  background-color: gray;
+  font-size: 15px;
+  height: 50%;
+  padding: 10px;
+}
+
+.amount-item {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: white;
+}
+
+.buy-now-button {
+  background-color: red;
+  color: white;
+  width: 45%;
+}
+
+.buy-now-button:hover {
+  background-color: red;
+
+}
+
+.amount-icon {
+  font-size: 30px;
+}
+
+.amount-title {
+  margin-top: 10px;
+}
+
+.amount-number {
+  border: 2px solid gray;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amount-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.buy-button-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-to-cart-button {
+  background-color: white;
+  color: red;
+  width: 45%;
+}
+
+.add-to-cart-button:hover {
+  background-color: white;
+}
+
+.title-cart-table {
+  background-color: gray;
 }

@@ -55,8 +55,8 @@ export default function PostDetail() {
     "createAt": "2023-04-26T08:10:49.000+00:00",
     "updateAt": null
   });
-  const [amount, setAmount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [amount, setAmount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(detailItem.price);
   const [amountCartItem, setAmountCartItem] = useState(0);
   const [displayAmount, setDisplayAmout] = useState("none");
   const route = useRouter();
@@ -197,16 +197,22 @@ export default function PostDetail() {
                 <Image src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"></Image>
               </Box>
               <Box className="info-item">
-                <p>{detailItem?.title}</p>
-                <p>{formatVND(totalPrice)}</p>
-                <Box className="amount-item">
-                  <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(1)} icon={faMinusSquare}></FontAwesomeIcon>
-                  <p>{amount}</p>
-                  <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(0)} icon={faPlusSquare}></FontAwesomeIcon>
+                <p className="title-item">{detailItem?.title}</p>
+                <p className="price-item">{formatVND(totalPrice)}</p>
+                <Box className="introduction-item">
+                  <p>- Quá đẹp</p>
                 </Box>
-                <Box>
-                  <Button>Mua ngay</Button>
-                  <Button onClick={() => addtoCart()}>Thêm vào cửa hàng</Button>
+                <Box className="amount-item">
+                  <p className="amount-title">Số lượng</p>
+                  <Box className="amount-container">
+                    <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(1)} icon={faMinusSquare}></FontAwesomeIcon>
+                    <p className="amount-number">{amount}</p>
+                    <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(0)} icon={faPlusSquare}></FontAwesomeIcon>
+                  </Box>
+                </Box>
+                <Box className="buy-button-container">
+                  <Button className="buy-now-button">Mua ngay</Button>
+                  <Button className="add-to-cart-button" onClick={() => addtoCart()}>Thêm vào cửa hàng</Button>
                 </Box>
               </Box>
         </Box>
@@ -225,7 +231,7 @@ export default function PostDetail() {
           sx={{
             padding: "100px 300px 0px 300px",
             backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 0%)",
+              "linear-gradient(rgba(0, 0, 0, 0.5) 100px, rgba(0, 0, 0, 0.85) 50%)",
             backgroundClip: "padding-box",
           }}
         >
