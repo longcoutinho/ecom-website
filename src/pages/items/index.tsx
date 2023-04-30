@@ -26,32 +26,14 @@ interface TypePost {
 }
 
 interface Item {
+  id: number,
   title: string,
   price: Number,
+  titleImageUrlStream: string,
 }
 
 export default function Item() {
   const [listItems, setListItem] = useState<Item[]>([
-    {
-        title: "Cốt Thất Bảo Thờ Phật",
-        price: 650000,
-    },
-    {
-        title: "Cốt Thất Bảo Thờ Phật",
-        price: 650000,
-    },
-    {
-        title: "Cốt Thất Bảo Thờ Phật",
-        price: 650000,
-    },
-    {
-        title: "Cốt Thất Bảo Thờ Phật",
-        price: 650000,
-    },
-    {
-        title: "Cốt Thất Bảo Thờ Phật",
-        price: 650000,
-    },
     ]);
   const [amountCartItem, setAmountCartItem] = useState(0);
   const [displayAmount, setDisplayAmout] = useState("none");
@@ -108,6 +90,7 @@ export default function Item() {
   }
 
   const formatVND = (price: string) => {
+    if (price == undefined) return "0 VNĐ";
     var len = price.length;
     var ind = len - 3;
     while(ind > 0) {
@@ -121,7 +104,6 @@ export default function Item() {
   const ListItems = () => {
 
     const redirect = (id: any) => {
-      id = "52e01873-0137-4917-ace8-1e9bfab2ba0d";
       router.push({
         pathname: '/items/detail',
         search: "?" + new URLSearchParams({id: id}),
@@ -132,16 +114,16 @@ export default function Item() {
       const ListItemContent = listItems.map((item) => {
           return (
             <Box 
-                onClick={() => redirect(item.title)}
+                onClick={() => redirect(item.id)}
                 className="list-items-detail-element flex-col"
                 sx={{padding: '10px 0px 10px 0px', width: '200px', height: '300px', margin: '10px', backgroundColor: 'gray', flexDirection: 'space-between'}}
             >
               <Box className = "full-width half-col flex-col center" sx={{objectFit: 'cover'}}>
-                <Image id="image-post" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"></Image>
+                <Image id="image-post" src={item.titleImageUrlStream}></Image>
               </Box>
               <Box className = "full-width half-col flex-col center" sx={{padding: '10px'}}>
                 <h1 style={{fontSize: '15px', color: 'white'}}>{item.title}</h1>
-                <h1 style={{fontSize: '15px', color: 'red'}}>{formatVND(item.price.toString())}</h1>
+                <h1 style={{fontSize: '15px', color: 'red'}}>{formatVND(item.price?.toString())}</h1>
               </Box>    
             </Box> 
           )
