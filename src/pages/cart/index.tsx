@@ -125,10 +125,13 @@ export default function Cart() {
   const CartTable = () => {
     return (
         <div>
+    <p>Giỏ hàng của bạn</p>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow className="title-cart-table">
+            <TableCell>STT</TableCell>
+            <TableCell>Ảnh sản phẩm</TableCell>
             <TableCell>Tên sản phẩm</TableCell>
             <TableCell >Giá sản phẩm&nbsp;(g)</TableCell>
             <TableCell >Số lượng&nbsp;(g)</TableCell>
@@ -159,7 +162,7 @@ export default function Cart() {
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="item-detail-content full-width">
         <Box
-          className="focus-content full-width flex-col"
+          className="cart-content full-width flex-row"
           sx={{
             padding: "100px 300px 0px 300px",
             backgroundImage:
@@ -169,34 +172,37 @@ export default function Cart() {
         >
           <CartTable></CartTable>
           <Box>
-            <TextField sx={{width: "100%"}}
+            <p>Thông tin đơn hàng</p>
+            <Box>
+              <TextField sx={{width: "100%"}}
+                  id="title-post"
+                  label="Họ và tên"
+                  placeholder="Write here"
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      console.log(event.target.value);
+                      setFullName(event.target.value);
+                  }}
+                  />
+              <TextField sx={{width: "100%"}}
                 id="title-post"
-                label="Họ và tên"
+                label="SỐ điện thoại liên hệ"
                 placeholder="Write here"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    console.log(event.target.value);
-                    setFullName(event.target.value);
+                  console.log(event.target.value);
+                  setPhoneNumber(event.target.value);
                 }}
-                />
-            <TextField sx={{width: "100%"}}
-              id="title-post"
-              label="SỐ điện thoại liên hệ"
-              placeholder="Write here"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                console.log(event.target.value);
-                setPhoneNumber(event.target.value);
-              }}
-            />
-            <TextField sx={{width: "100%"}}
-              id="title-post"
-              label="Địa chỉ nhận hàng"
-              placeholder="Write here"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                console.log(event.target.value);
-                setAddress(event.target.value);
-              }}
-            />
-            <Button onClick={() => order()}>Đặt hàng</Button>
+              />
+              <TextField sx={{width: "100%"}}
+                id="title-post"
+                label="Địa chỉ nhận hàng"
+                placeholder="Write here"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  console.log(event.target.value);
+                  setAddress(event.target.value);
+                }}
+              />
+              <Button onClick={() => order()}>Đặt hàng</Button>
+            </Box>
           </Box>
         </Box>
       </Box>
