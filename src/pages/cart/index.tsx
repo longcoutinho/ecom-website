@@ -43,11 +43,17 @@ interface Item {
 }
 
 interface ItemToCart {
+  itemId: string,
   id: string,
   title: string,
   price: number,
   amount: number,
   totalPrice: number,
+}
+
+interface SendItem {
+  itemId: string,
+  amount: number,
 }
 
 export default function Cart() {
@@ -83,17 +89,27 @@ export default function Cart() {
 
   axios.defaults.baseURL = 'http://10.248.158.167:1112';
   const order = () => {
+    console.log("cart")
+    console.log(cart);
+    var newCart:SendItem[] = [];
+    for(var i = 0; i < cart.length; i++) {
+      newCart[i] = Object.assign({}, cart[i]);
+      newCart[i].itemId = cart[i].id;
+      newCart[i] = (({ itemId, amount }) => ({ itemId, amount }))(newCart[i]);
+    }
+    console.log("send");
+    console.log(newCart);
     axios({
       headers: {
         'Accept': '*/*',
         'accept': 'application/json',
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
       method: 'post',
       url: '/order',
       data: {
-        cart: cart,
+        cart: newCart,
         name: fullName,
         address: address,
         phone: phoneNumber,
