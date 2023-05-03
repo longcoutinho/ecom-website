@@ -5,16 +5,10 @@ import Image from "./Image";
 import { IMenuItem } from "@/interfaces";
 import { PATH_PAGE } from "@/routes/path";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faPhone,
-  faSearch,
-  faSignIn,
-} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import { useRouter } from "next/router";
+import ShoppingCartIcon from "./ShoppingCart";
 
 const Header = () => {
   const route = useRouter();
@@ -103,7 +97,7 @@ const Header = () => {
         className="big-menu"
         sx={{
           width: "100%",
-          height: "30%",
+          height: "70%",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "end",
@@ -112,45 +106,14 @@ const Header = () => {
         }}
       >
         {listMenu}
+        <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
       </Box>
     );
   };
-
-  const Contact = () => {
-    const ListItemContactComponent = () => {
-      return (
-        <Box
-          className="flex-row center list-contact-items"
-          sx={{
-            fontSize: "15px",
-            justifyContent: "center",
-          }}
-        >
-          <FontAwesomeIcon
-            className="contact-item"
-            icon={faPhone}
-            style={{ color: "red" }}
-          />
-          <p>0123456789</p>
-          <FontAwesomeIcon className="contact-item" icon={faEnvelope} />
-          <FontAwesomeIcon className="contact-item" icon={faSearch} />
-          <FontAwesomeIcon className="contact-item" icon={faSignIn} />
-        </Box>
-      );
-    };
-
-    return (
-      <Box
-        className="menu flex-row"
-        sx={{
-          height: "30%",
-          color: "white",
-          width: "300px",
-        }}
-      >
-        <ListItemContactComponent></ListItemContactComponent>
-      </Box>
-    );
+  const gotoCart = () => {
+    route.push({
+      pathname: "/cart",
+    });
   };
 
   //export components
@@ -171,7 +134,7 @@ const Header = () => {
     >
       <Logo></Logo>
       <MenuHeader />
-      <Contact></Contact>
+
       <div className="icon-menu">
         <Button
           id="basic-button"
@@ -199,6 +162,9 @@ const Header = () => {
               {item.title}
             </MenuItem>
           ))}
+          <MenuItem>
+            <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
+          </MenuItem>
         </Menu>
       </div>
     </Container>

@@ -11,9 +11,9 @@ import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import {Post, Item} from "../interfaces/response";
+import { Post, Item } from "../interfaces/response";
 import { useEffect, useState } from "react";
-import {URL, POSTS_SERVICE, ITEM_SERVICE} from "../constants"
+import { URL, POSTS_SERVICE, ITEM_SERVICE } from "../constants";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -100,28 +100,28 @@ export default function Home() {
       (err) => {
         console.log(err);
       }
-    );  
+    );
   }, []);
 
   /************************************* FUNCTIONS *******************************/
-  
+
   const redirect = (path: any) => {
     route.push(path);
-  }
+  };
 
   const goToDetailPost = (id: any) => {
     route.push({
       pathname: URL.POSTS_SERVICE + POSTS_SERVICE.DETAIL,
-      search: "?" + new URLSearchParams({id: id}),
-    })
-  }
+      search: "?" + new URLSearchParams({ id: id }),
+    });
+  };
 
   const goToDetailItem = (id: any) => {
     route.push({
       pathname: URL.ITEM_SERVICE + ITEM_SERVICE.DETAIL,
-      search: "?" + new URLSearchParams({id: id}),
-    })
-  }
+      search: "?" + new URLSearchParams({ id: id }),
+    });
+  };
 
   //components
   const ListServices = () => {
@@ -281,34 +281,30 @@ export default function Home() {
 
     const ListPostComponents = (props: any) => {
       const ListPostsContent = listPosts.map((post, index) => {
-          return (
-            <Box
-              onClick={() => goToDetailPost(post.id)}
-              key={index}
-              className="list-posts-detail-element flex-row full-width one-third-col"
-            >
-              <Box className="full-height half-row image-home-page-container">
-                <Image
-                  alt=""
-                  id="image-home-page"
-                  src={post.titleImageUrlStream}
-                  className="image-home-page"
-                ></Image>
-              </Box>
-              <Box className="full-height half-row" sx={{ padding: "10px" }}>
-                <h1 style={{ fontSize: "15px", color: "white" }}>
-                  {post.title}
-                </h1>
-                <p
-                  style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}
-                >
-                  Ngay gio bai viet
-                </p>
-              </Box>
+        return (
+          <Box
+            onClick={() => goToDetailPost(post.id)}
+            key={index}
+            className="list-posts-detail-element flex-row full-width one-third-col"
+          >
+            <Box className="full-height half-row image-home-page-container">
+              <Image
+                alt=""
+                id="image-home-page"
+                src={post.titleImageUrlStream}
+                className="image-home-page"
+              ></Image>
             </Box>
-          )
+            <Box className="full-height half-row" sx={{ padding: "10px" }}>
+              <h1 style={{ fontSize: "15px", color: "white" }}>{post.title}</h1>
+              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
+                Ngay gio bai viet
+              </p>
+            </Box>
+          </Box>
+        );
       });
-      
+
       return (
         <Box className="list-posts-detail">
           <PostTitle name={props.name}></PostTitle>
@@ -316,35 +312,31 @@ export default function Home() {
         </Box>
       );
     };
-    
+
     const ListItemComponents = (props: any) => {
       const ListItemsContent = listItems.map((post, index) => {
-          return (
-            <Box
-              onClick={() => goToDetailItem(post.id)}
-              key={index}
-              className="list-posts-detail-element"
-            >
-              <Box className="full-height half-row image-home-page-container">
-                <Image
-                  alt=""
-                  id="image-home-page-item"
-                  className="image-home-page"
-                  src={post.titleImageUrlStream}
-                ></Image>
-              </Box>
-              <Box className="full-height half-row" sx={{ padding: "10px" }}>
-                <h1 style={{ fontSize: "15px", color: "white" }}>
-                  {post.title}
-                </h1>
-                <p
-                  style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}
-                >
-                  Ngay gio bai viet
-                </p>
-              </Box>
+        return (
+          <Box
+            onClick={() => goToDetailItem(post.id)}
+            key={index}
+            className="list-posts-detail-element"
+          >
+            <Box className="full-height half-row image-home-page-container">
+              <Image
+                alt=""
+                id="image-home-page-item"
+                className="image-home-page"
+                src={post.titleImageUrlStream}
+              ></Image>
             </Box>
-          )
+            <Box className="full-height half-row" sx={{ padding: "10px" }}>
+              <h1 style={{ fontSize: "15px", color: "white" }}>{post.title}</h1>
+              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
+                Ngay gio bai viet
+              </p>
+            </Box>
+          </Box>
+        );
       });
       return (
         <Box className="list-posts-detail flex-col  full-height">
@@ -353,21 +345,21 @@ export default function Home() {
         </Box>
       );
     };
-  return  (
-    <>
-     { listPosts.length >0 &&
-        <Box
-        className="list-posts-content  full-width full-height"
-        sx={{
-          marginTop: "40px",
-        }}
-        >
-          <ListPostComponents name={"Tin tức"}></ListPostComponents>
-          <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
-          <ListPostComponents name={"Lập lá"}></ListPostComponents>
-        </Box>
-      }
-    </>
+    return (
+      <>
+        {listPosts.length > 0 && (
+          <Box
+            className="list-posts-content  full-width full-height"
+            sx={{
+              marginTop: "40px",
+            }}
+          >
+            <ListPostComponents name={"Tin tức"}></ListPostComponents>
+            <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
+            <ListPostComponents name={"Lập lá"}></ListPostComponents>
+          </Box>
+        )}
+      </>
     );
   };
 
@@ -387,7 +379,7 @@ export default function Home() {
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width">
+      <Box className="content " sx={{ width: "100vw" }}>
         <Box
           className=" header-content full-width "
           sx={{

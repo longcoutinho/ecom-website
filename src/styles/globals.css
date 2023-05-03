@@ -5,6 +5,7 @@
 @import './Home.css';
 @import './responsive.css';
 @import './components/header.css';
+@import './components/footer.css';
 @import './pages/lapla.css';
 @import './pages/tintuc.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -231,8 +232,19 @@ body {
   color: white;
   font-size: 40px;
 }
+.cart-shopping_header {
+  background-color: transparent;
+  padding: 10px;
+  padding-right: 50px;
+  border-radius: 100px;
+  color: white;
+  font-size: 32px;
+  @media (max-width: 899px){
+    padding:0;
+  }
+}
 
-.cart-shopping:hover {
+.cart-shopping:hover, .cart-shopping_header:hover {
   cursor: pointer;
 }
 
