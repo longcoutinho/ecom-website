@@ -62,8 +62,8 @@ export default function PostComponent() {
                   ></Image>
                 </Box>
                 <Box
-                  className="full-width half-col flex-col"
-                  sx={{ justifyContent: "space-between" }}
+                  className="full-width full-height half-col flex-col"
+                  sx={{ justifyContent: "space-between", marginLeft:'20px' }}
                 >
                   <h1 style={{ fontSize: "15px", color: "white" }}>
                     {post.title}
@@ -74,16 +74,17 @@ export default function PostComponent() {
                   >
                     {post.content}
                   </p>
-                  <Button
+                  <div style={{display:'flex', justifyContent:'center'}}><Button
                     onClick={() => redirect(post.id)}
                     sx={{
                       color: "white",
                       backgroundColor: "red",
                       borderRadius: "3px",
+                      width:'40%'
                     }}
                   >
                     Xem chi tiết
-                  </Button>
+                  </Button></div>
                 </Box>
               </Grid>
             );
@@ -166,7 +167,7 @@ export default function PostComponent() {
           </Box>
         </Box>
         <Box
-          className="tintuc-content"
+          className="footer-container"
           sx={{
             padding: "0px 300px 0px 300px",
             backgroundImage:

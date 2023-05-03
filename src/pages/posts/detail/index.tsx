@@ -1,19 +1,10 @@
 import { PAGE_TITLE } from "@/constants";
 import Page from "@/layouts";
 import { Box, Button, Input, List } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import TitleContent from "@/components/TitleContent";
-import Image from "@/components/Image";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { type } from "os";
-import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -30,17 +21,6 @@ interface Post {
   author: string;
   type: Number;
   content: any;
-}
-
-interface Course {
-  title: string;
-  studyTime: string;
-  openDate: Date;
-}
-
-interface Service {
-  name: string;
-  image: string;
 }
 
 export default function PostDetail() {
@@ -69,141 +49,6 @@ export default function PostDetail() {
     }
   }, [route.query]);
   //datas
-  const listPaginatorPosts = [
-    "Bài viết 1",
-    "Bài viết 1",
-    "Bài viết 2",
-    "Bài viết 3",
-    "Bài viết 4",
-    "Bài viết 5",
-  ];
-  const listServices: Service[] = [
-    {
-      name: "dịch vụ tư vấn",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "chia sẻ kinh nghiệm",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
-    },
-  ];
-  const listCoursesDetail: Course[] = [
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-  ];
-  const listPoss: Post[] = [
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 1,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 1,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 1,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 2,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 2,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 2,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 3,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      type: 3,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày",
-      author: "longhvh",
-      type: 3,
-      content: "asdasdasdasdasdddddddddddddddddddddd",
-    },
-  ];
-  const listPostType: TypePost[] = [
-    {
-      id: 1,
-      name: "Tin tức",
-    },
-    {
-      id: 2,
-      name: "Kinh Nghiệm",
-    },
-    {
-      id: 3,
-      name: "Dịch vụ tư vấn",
-    },
-  ];
   //components
 
   const DetailPost = () => {

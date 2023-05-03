@@ -106,7 +106,7 @@ export default function ItemComponent() {
             onClick={() => redirect(item.id)}
             className="list-items-detail-element flex-col"
             sx={{
-              padding: "10px 0px 10px 0px",
+              padding: "10px",
               width: "200px",
               height: "300px",
               margin: "10px",
@@ -115,12 +115,11 @@ export default function ItemComponent() {
             }}
           >
             <Box
-              className="full-width half-col flex-col center"
+              className=" half-col flex-col center"
               sx={{ objectFit: "cover" }}
             >
               <Image
                 alt=""
-                id="image-post"
                 src={item.titleImageUrlStream}
               ></Image>
             </Box>
@@ -137,7 +136,7 @@ export default function ItemComponent() {
         );
       });
       return (
-        <Box className="list-posts-detail flex-row full-height">
+        <Box className=" flex-row full-height">
           {ListItemContent}
         </Box>
       );
@@ -187,9 +186,8 @@ export default function ItemComponent() {
           </Box>
         </Box>
         <Box
-          className="focus-content full-width flex-col"
+          className=" footer-container "
           sx={{
-            padding: "0px 100px 0px 100px",
             backgroundImage:
               "linear-gradient(rgba(0, 0, 0, 0.7) 0px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.95) 0%)",
             backgroundClip: "padding-box",
