@@ -333,3 +333,55 @@ body {
 .title-cart-table {
   background-color: gray;
 }
+
+.detail-posts-container {
+  background-color: white;
+  width: 100%;
+  height: auto;
+}
+
+.image-home-page-container {
+  min-width: 250px;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.image-home-page {
+  width: 100%;
+  height: 100%;
+}
+
+.image-home-page-item {
+  width: 100%;
+  height: 100%;
+}
+
+.list-posts-detail-element {
+  padding: 10px 0px 10px 0px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.list-posts-detail-element:hover {
+  cursor: pointer;
+}
+
+.list-posts-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.logo:hover {
+  cursor: pointer;
+}

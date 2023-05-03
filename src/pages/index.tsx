@@ -11,22 +11,13 @@ import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { type } from "os";
-import zIndex from "@mui/material/styles/zIndex";
+import {Post, Item} from "../interfaces/response";
+import { useEffect, useState } from "react";
+import {URL, POSTS_SERVICE, ITEM_SERVICE} from "../constants"
+import axios from "axios";
+import { useRouter } from "next/router";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
-interface TypePost {
-  id: Number;
-  name: string;
-}
-
-interface Post {
-  image: string;
-  title: string;
-  author: string;
-  createTime: Date;
-  type: Number;
-}
 
 interface Course {
   title: string;
@@ -41,14 +32,9 @@ interface Service {
 
 export default function Home() {
   //datas
-  const listPaginatorPosts = [
-    "Bài viết 1",
-    "Bài viết 1",
-    "Bài viết 2",
-    "Bài viết 3",
-    "Bài viết 4",
-    "Bài viết 5",
-  ];
+  const [listPosts, setListPosts] = useState<Post[]>([]);
+  const [listItems, setListItems] = useState<Item[]>([]);
+  const route = useRouter();
   const listServices: Service[] = [
     {
       name: "dịch vụ tư vấn",
@@ -88,94 +74,55 @@ export default function Home() {
       openDate: new Date(),
     },
   ];
-  const listPosts: Post[] = [
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 1,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 1,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 1,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 2,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 2,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 2,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 3,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày xuân",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 3,
-    },
-    {
-      image:
-        "http://hongkyfengshui.vn/vnt_upload/news/12_2022/thumbs/370_crop_DSC09729.jpg",
-      title: "Trà quý cho sức khỏe vàng ngày",
-      author: "longhvh",
-      createTime: new Date(),
-      type: 3,
-    },
-  ];
-  const listPostType: TypePost[] = [
-    {
-      id: 1,
-      name: "Tin tức",
-    },
-    {
-      id: 2,
-      name: "Kinh Nghiệm",
-    },
-    {
-      id: 3,
-      name: "Dịch vụ tư vấn",
-    },
-  ];
+
+  useEffect(() => {
+    //get all posts
+    axios({
+      method: "get",
+      url: URL.BASE_URL + URL.POSTS_SERVICE + POSTS_SERVICE.GET_ALL,
+    }).then(
+      (res) => {
+        setListPosts(res.data.content);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    //get all items
+    axios({
+      method: "get",
+      url: URL.BASE_URL + URL.ITEM_SERVICE + ITEM_SERVICE.GET_ALL,
+    }).then(
+      (res) => {
+        setListItems(res.data.content);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );  
+  }, []);
+
+  /************************************* FUNCTIONS *******************************/
+  
+  const redirect = (path: any) => {
+    route.push(path);
+  }
+
+  const goToDetailPost = (id: any) => {
+    route.push({
+      pathname: URL.POSTS_SERVICE + POSTS_SERVICE.DETAIL,
+      search: "?" + new URLSearchParams({id: id}),
+    })
+  }
+
+  const goToDetailItem = (id: any) => {
+    route.push({
+      pathname: URL.ITEM_SERVICE + ITEM_SERVICE.DETAIL,
+      search: "?" + new URLSearchParams({id: id}),
+    })
+  }
+
   //components
   const ListServices = () => {
     const arr = listServices.map((service, index) => (
@@ -209,6 +156,9 @@ export default function Home() {
           slidesPerView: 3,
         },
         1600: {
+          slidesPerView: 3,
+        },
+        1900: {
           slidesPerView: 4,
         },
       },
@@ -297,7 +247,7 @@ export default function Home() {
         className="list-courses-content"
         sx={{
           width: "100%",
-          marginTop: "10px",
+          margin: "20px 0",
         }}
       >
         <Box
@@ -331,18 +281,18 @@ export default function Home() {
 
     const ListPostComponents = (props: any) => {
       const ListPostsContent = listPosts.map((post, index) => {
-        if (post.type == props.type) {
           return (
             <Box
+              onClick={() => goToDetailPost(post.id)}
               key={index}
               className="list-posts-detail-element flex-row full-width one-third-col"
-              sx={{ padding: "10px 0px 10px 0px", marginTop: "5px" }}
             >
-              <Box className="full-height half-row">
+              <Box className="full-height half-row image-home-page-container">
                 <Image
                   alt=""
-                  id="image-post"
-                  src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"
+                  id="image-home-page"
+                  src={post.titleImageUrlStream}
+                  className="image-home-page"
                 ></Image>
               </Box>
               <Box className="full-height half-row" sx={{ padding: "10px" }}>
@@ -352,40 +302,72 @@ export default function Home() {
                 <p
                   style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}
                 >
-                  {post.createTime.toDateString()}
+                  Ngay gio bai viet
                 </p>
               </Box>
             </Box>
-          );
-        }
+          )
       });
+      
       return (
-        <Box className="list-posts-detail flex-col  full-height">
+        <Box className="list-posts-detail">
           <PostTitle name={props.name}></PostTitle>
           {ListPostsContent}
         </Box>
       );
     };
-
-    const ListPostsContainer = listPostType.map((posttype, index) => {
+    
+    const ListItemComponents = (props: any) => {
+      const ListItemsContent = listItems.map((post, index) => {
+          return (
+            <Box
+              onClick={() => goToDetailItem(post.id)}
+              key={index}
+              className="list-posts-detail-element"
+            >
+              <Box className="full-height half-row image-home-page-container">
+                <Image
+                  alt=""
+                  id="image-home-page-item"
+                  className="image-home-page"
+                  src={post.titleImageUrlStream}
+                ></Image>
+              </Box>
+              <Box className="full-height half-row" sx={{ padding: "10px" }}>
+                <h1 style={{ fontSize: "15px", color: "white" }}>
+                  {post.title}
+                </h1>
+                <p
+                  style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}
+                >
+                  Ngay gio bai viet
+                </p>
+              </Box>
+            </Box>
+          )
+      });
       return (
-        <ListPostComponents
-          key={index}
-          type={posttype.id}
-          name={posttype.name}
-        ></ListPostComponents>
+        <Box className="list-posts-detail flex-col  full-height">
+          <PostTitle name={props.name}></PostTitle>
+          {ListItemsContent}
+        </Box>
       );
-    });
-
-    return (
-      <Box
+    };
+  return  (
+    <>
+     { listPosts.length >0 &&
+        <Box
         className="list-posts-content  full-width full-height"
         sx={{
           marginTop: "40px",
         }}
-      >
-        {ListPostsContainer}
-      </Box>
+        >
+          <ListPostComponents name={"Tin tức"}></ListPostComponents>
+          <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
+          <ListPostComponents name={"Lập lá"}></ListPostComponents>
+        </Box>
+      }
+    </>
     );
   };
 
@@ -402,33 +384,7 @@ export default function Home() {
       </Box>
     );
   };
-  const ListPaginatorPosts = () => {
-    const listPostJSX = listPaginatorPosts.map((post, index) => (
-      <Box
-        key={index}
-        className="list-paginator-posts full-width"
-        sx={{
-          height: "266px",
-          border: "2px solid #8F0101",
-          marginTop: "100px",
-        }}
-      >
-        <p>{post}</p>
-      </Box>
-    ));
-    return (
-      <Box
-        className="wrap-list-paginator-posts full-width flex-col"
-        sx={{
-          height: "auto",
-          marginTop: "100px",
-          borderTop: "2px solid #8F0101",
-        }}
-      >
-        {listPostJSX}
-      </Box>
-    );
-  };
+
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="content full-width">

@@ -9,35 +9,10 @@ import Image from "@/components/Image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { PostData } from "@/_mock/post";
-import { experimentalStyled as styled } from "@mui/material/styles";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
-interface TypePost {
-  id: Number;
-  name: string;
-}
+import {Post} from "../../interfaces/response"
 
-interface Post {
-  image: string;
-  title: string;
-  author: string;
-  type: Number;
-  content: String;
-  id: Number;
-}
-
-interface Course {
-  title: string;
-  studyTime: string;
-  openDate: Date;
-}
-
-interface Service {
-  name: string;
-  image: string;
-}
-
-export default function Post() {
+export default function PostComponent() {
   const [listPosts, setListPost] = useState<Post[]>([]);
   const router = useRouter();
   useEffect(() => {
@@ -54,54 +29,7 @@ export default function Post() {
     );
   }, []);
   //datas
-  const listPaginatorPosts = [
-    "Bài viết 1",
-    "Bài viết 1",
-    "Bài viết 2",
-    "Bài viết 3",
-    "Bài viết 4",
-    "Bài viết 5",
-  ];
-  const listServices: Service[] = [
-    {
-      name: "dịch vụ tư vấn",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "chia sẻ kinh nghiệm",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
-    },
-  ];
-  const listCoursesDetail: Course[] = [
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-    {
-      title: "Phong thủy ứng dụng cho cuộc sống",
-      studyTime: "7:00",
-      openDate: new Date(),
-    },
-  ];
-
+  
   const ListPosts = () => {
     const redirect = (id: any) => {
       router.push({

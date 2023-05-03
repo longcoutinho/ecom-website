@@ -206,44 +206,18 @@ export default function PostDetail() {
   ];
   //components
 
-  const ListPosts = () => {
-    const ListPostComponents = (props: any) => {
-      const ListPostsContent = () => {
-        return (
-          <Box
-            className="list-posts-detail-element flex-col"
-            sx={{
-              padding: "10px 0px 10px 0px",
-              width: "300px",
-              height: "400px",
-              marginTop: "10px",
-            }}
-          >
-            <Box
-              dangerouslySetInnerHTML={{ __html: detailPost?.content }}
-            ></Box>
-          </Box>
-        );
-      };
-      return (
-        <Box className="list-posts-detail flex-col one-third-row full-height">
-          <ListPostsContent></ListPostsContent>
-        </Box>
-      );
-    };
-
+  const DetailPost = () => {
     return (
       <Box
-        className="list-posts-content flex-row full-width full-height"
-        sx={{
-          height: "300px",
-          marginTop: "40px",
-        }}
+        className="detail-posts-container flex-col"
       >
-        <ListPostComponents></ListPostComponents>
+        <Box
+          dangerouslySetInnerHTML={{ __html: detailPost?.content }}
+        ></Box>
       </Box>
     );
-  };
+  }
+
 
   const MenuPostComponent = () => {
     const listMenuItems = [
@@ -315,7 +289,7 @@ export default function PostDetail() {
           }}
         >
           <MenuPostComponent></MenuPostComponent>
-          <ListPosts></ListPosts>
+          <DetailPost></DetailPost>
         </Box>
       </Box>
     </Page>

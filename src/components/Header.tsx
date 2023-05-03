@@ -70,6 +70,7 @@ const Header = () => {
     return (
       <Box className="full-height" sx={{ width: "130px", objectFit: "fill" }}>
         <Image
+          onClick={() => handleGoToPage("/")}
           alt=""
           className="logo"
           src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"

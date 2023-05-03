@@ -136,6 +136,7 @@ export default function Cart() {
             <TableCell >Giá sản phẩm&nbsp;(g)</TableCell>
             <TableCell >Số lượng&nbsp;(g)</TableCell>
             <TableCell >Đơn giá&nbsp;(g)</TableCell>
+            <TableCell >Xóa</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

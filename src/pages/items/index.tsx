@@ -17,7 +17,7 @@ import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
-
+import {Item} from "../../interfaces/response";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>
 interface TypePost {
@@ -25,14 +25,7 @@ interface TypePost {
   name: string,
 }
 
-interface Item {
-  id: number,
-  title: string,
-  price: Number,
-  titleImageUrlStream: string,
-}
-
-export default function Item() {
+export default function ItemComponent() {
   const [listItems, setListItem] = useState<Item[]>([
     ]);
   const [amountCartItem, setAmountCartItem] = useState(0);

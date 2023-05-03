@@ -164,17 +164,21 @@
   } 
 }
 .body-content_home{
-  @media (min-width: 900px) {
-    padding: 0px 200px ;
-    margin-top: -105px;
-  }
-  @media (min-width: 480px) {
-    padding: 0px 50px ;
 
-  }
   @media (min-width: 300px) {
     padding: 0px 10px ;
 
+  }
+  @media (min-width: 480px) {
+    padding: 0px 8% ;
+    
+  }
+  @media (min-width: 900px) {
+    padding: 0px 10% ;
+    margin-top: -105px;
+  }
+  @media (min-width: 1024px) {
+    padding: 0px 15% ;
   }
 }
 .list-courses-content{
@@ -210,3 +214,4 @@ width:33.3%;
   }
 
 }
+
