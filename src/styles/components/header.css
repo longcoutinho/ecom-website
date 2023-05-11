@@ -3,6 +3,7 @@
     display:none;
     @media (min-width: 900px)  {
         display:flex;
+        height:100%;
     }
 }
 .icon-menu{
@@ -10,9 +11,9 @@
     @media (min-width: 900px)  {
         display:none;
     }
-    .css-i4bv87-MuiSvgIcon-root{
-        color:white;
-    }
+}
+.css-i4bv87-MuiSvgIcon-root{
+    color:white;
 }
 .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
     background:rgba(0, 0, 0, 0.6);

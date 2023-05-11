@@ -2,15 +2,14 @@
 .swiper-featured-news {
   width: 100%;
   height: 100%;
-  padding: 10px 50px 10px 50px !important;
 }
 
 .swiper-slide-featured-news {
   background-size: 100%;
   height: 90% !important;
   display: flex !important;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
 }
 
@@ -75,7 +74,7 @@
 
 .logo {
   width: 100%;
-  height: 100px;
+  height: 100%;
   object-fit: fill;
 }
 
@@ -88,8 +87,8 @@
 }
 
 .phong-thuy-image {
-  width: 80%;
-  height: 100%;
+  width: 500px;
+  height: 700px;
   @media (max-width: 899px){
     width:100%;
   }
@@ -120,6 +119,7 @@
 
 .swiper-button-prev, .swiper-button-next {
   color: white;
+  display: none !important;
 }
 
 .swiper-scrollbar-drag {
@@ -128,8 +128,8 @@
 .header-content{
   display:flex;
   align-items: center;
-  height:500px;
-  padding: 0px ;
+  height:700px;
+  padding: 0px 20% 70px 20%;
   @media (max-width: 690px) {
     flex-direction:column;
   }
@@ -137,13 +137,19 @@
     align-items: flex-end;
     height:600px;
     flex-direction:row;
-    padding: 0px 140px 70px 140px ;
-
+    padding: 0px 20% 70px 20% ;
   }
+  
 }
 .banner-left{
-  height:fit-content !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: 50%;
   @media (max-width: 690px) {
+    margin-bottom: 0px;
     align-items:flex-end;
   }
   @media (max-width: 899px){
@@ -164,21 +170,22 @@
   } 
 }
 .body-content_home{
-
+max-width: 1440px;
+margin:0 auto;
   @media (min-width: 300px) {
     padding: 0px 10px ;
 
   }
   @media (min-width: 480px) {
-    padding: 0px 8% ;
+    padding: 0px 50px ;
     
   }
   @media (min-width: 900px) {
-    padding: 0px 10% ;
+    padding: 0px 90px ;
     margin-top: -105px;
   }
   @media (min-width: 1024px) {
-    padding: 0px 15% ;
+    padding: 0px 160px 30px 160px;
   }
 }
 .list-courses-content{
@@ -204,7 +211,7 @@
   }
 
 }
-.list-posts-content{
+.list-posts-content-home-page{
   display:flex;
   flex-direction:column;
   @media (min-width: 1100px) {
@@ -213,5 +220,44 @@ height:300px;
 width:33.3%;
   }
 
+}
+.title-post-home:hover{
+  color:#eb1b24;
+}
+
+.title-list-item-home {
+  color: white;
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.3em;
+  line-height: 1.3em;
+}
+
+.title-list-item-home:hover {
+  color:#eb1b24;
+}
+
+.title-list-posts-element {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 2.4em;
+  line-height: 1.2em;
+}
+
+.title-list-posts-element:hover {
+  color:#eb1b24;
+}
+
+.title-post-home {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.2em;
 }
 

@@ -103,3 +103,9 @@
 .ql-align-justify {
    text-align: justify;
 }  
+img{
+  max-width: 1060px;
+}
+ol, ul{
+  padding-inline-start: 40px;
+}

@@ -18,4 +18,5 @@ export enum ITEM_SERVICE {
   DETAIL = "/detail",
 }
 
-
+const HOME_PAGE_DISPLAY_ITEM = 3;
+export {HOME_PAGE_DISPLAY_ITEM};

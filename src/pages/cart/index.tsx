@@ -11,7 +11,7 @@ import TitleContent from "@/components/TitleContent";
 import Image from "@/components/Image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare, faMinusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { type } from "os";
 import zIndex from "@mui/material/styles/zIndex";
 import { useEffect, useState } from "react";
@@ -24,6 +24,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { DeleteOutline, DeleteForever } from "@mui/icons-material";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 interface TypePost {
@@ -43,6 +44,7 @@ interface Item {
 }
 
 interface ItemToCart {
+  titleImageUrlStream:string,
   itemId: string,
   id: string,
   title: string,
@@ -76,15 +78,19 @@ export default function Cart() {
     setTotalPrice(totalPrice);
   }, []);
 
-  const formatVND = (price: any) => {
-    var len = price.length;
-    var ind = len - 3;
-    while(ind > 0) {
-      price = price.substring(0, ind) + "." + price.substring(ind, len);
-      len++;
-      ind -= 3;
+  const formatVND = (numPrice: number) => {
+    if (numPrice != undefined) {
+      var price = numPrice.toString();
+      var len = price.length;
+      var ind = len - 3;
+      while(ind > 0) {
+        price = price.substring(0, ind) + "." + price.substring(ind, len);
+        len++;
+        ind -= 3;
+      }
+      return price + "đ";
     }
-    return price + " VNĐ";
+    return "0đ";
   }
 
   axios.defaults.baseURL = 'http://10.248.158.167:1112';
@@ -124,85 +130,92 @@ export default function Cart() {
 
   const CartTable = () => {
     return (
-        <div>
-    <p>Giỏ hàng của bạn</p>
+        <div className="cart-table">
+    <h1 className="cart-title">Giỏ hàng của bạn</h1>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="title-cart-table">
-            <TableCell>STT</TableCell>
-            <TableCell>Ảnh sản phẩm</TableCell>
+            <TableCell>Ảnh</TableCell>
             <TableCell>Tên sản phẩm</TableCell>
-            <TableCell >Giá sản phẩm&nbsp;(g)</TableCell>
-            <TableCell >Số lượng&nbsp;(g)</TableCell>
-            <TableCell >Đơn giá&nbsp;(g)</TableCell>
+            <TableCell >Giá sản phẩm</TableCell>
+            <TableCell >Số lượng</TableCell>
+            <TableCell >Thành tiền</TableCell>
             <TableCell >Xóa</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {cart.map((item) => (
+          {cart.map((item, index) => (
             <TableRow
               key={item.title}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
+              <TableCell><Box sx={{height: "100%", width: "100%"}}>
+                <img style={{height: "50px", width: "80%"}} src={item.titleImageUrlStream} />
+                </Box> 
+                </TableCell>
               <TableCell>{item.title}</TableCell>
-              <TableCell >{item.price}</TableCell>
+              <TableCell sx={{color:'#eb1b24'}}>{item.price}</TableCell>
               <TableCell >{item.amount}</TableCell>
-              <TableCell >{item.totalPrice}</TableCell>
+              <TableCell sx={{color:'#eb1b24'}}>{item.totalPrice}</TableCell>
+              <TableCell ><FontAwesomeIcon style={{color: 'black'}} icon={faTrash} id="delete-cart-item"/></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    <h1>Tổng số: {formatVND(totalPrice)}</h1>
+    <h1 className="cart-title" style={{marginTop:'20px'}}>Tổng giá trị đơn hàng:<span style={{color:'#eb1b24', fontSize:'20px'}}> {formatVND(totalPrice)}</span></h1>
     </div>
     )
   }
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="item-detail-content full-width">
+      <Box className="cart-detail-content full-width">
         <Box
           className="cart-content full-width flex-row"
           sx={{
-            padding: "100px 300px 0px 300px",
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 0%)",
-            backgroundClip: "padding-box",
+             padding: "100px 300px 0px 300px",
+
+             backgroundClip: "padding-box",
           }}
         >
           <CartTable></CartTable>
-          <Box>
-            <p>Thông tin đơn hàng</p>
-            <Box>
-              <TextField sx={{width: "100%"}}
+          <Box className="cart-info">
+            <h1 className="cart-title">Thông tin đơn hàng</h1>
+            <Box className="cart-input">
+              <Box className="cart-input_item">
+                <p>Họ và tên</p>
+              <TextField sx={{width: "100%", background:'white'}}
                   id="title-post"
-                  label="Họ và tên"
                   placeholder="Write here"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                       console.log(event.target.value);
                       setFullName(event.target.value);
                   }}
-                  />
-              <TextField sx={{width: "100%"}}
+                  /></Box>
+                  <Box className="cart-input_item">
+                  <p>Số điện thoại</p>
+              <TextField sx={{width: "100%", background:'white'}}
                 id="title-post"
-                label="SỐ điện thoại liên hệ"
                 placeholder="Write here"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   console.log(event.target.value);
                   setPhoneNumber(event.target.value);
                 }}
               />
-              <TextField sx={{width: "100%"}}
+                  </Box>
+               <Box className="cart-input_item">
+               <p>Địa chỉ</p>
+              <TextField sx={{width: "100%", background:'white'}}
                 id="title-post"
-                label="Địa chỉ nhận hàng"
                 placeholder="Write here"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   console.log(event.target.value);
                   setAddress(event.target.value);
                 }}
-              />
-              <Button onClick={() => order()}>Đặt hàng</Button>
+              /></Box>
+              <Button onClick={() => order()} style={{background:'#eb1b24', color:'white', width:'90%'}}>Đặt hàng</Button>
             </Box>
           </Box>
         </Box>

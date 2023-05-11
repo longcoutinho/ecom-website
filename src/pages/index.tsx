@@ -1,6 +1,6 @@
 import { PAGE_TITLE } from "@/constants";
 import Page from "@/layouts";
-import { Box, Button, Input, List } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Navigation, Scrollbar, A11y } from "swiper";
 import Image from "@/components/Image";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { Post, Item } from "../interfaces/response";
@@ -42,19 +41,11 @@ export default function Home() {
     },
     {
       name: "chia sẻ kinh nghiệm",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-Chiase_1.jpg",
     },
     {
       name: "hệ thống đào tạo",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
-    },
-    {
-      name: "hệ thống đào tạo",
-      image: "url(http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png)",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-DaoTao.jpg",
     },
   ];
   const listCoursesDetail: Course[] = [
@@ -82,7 +73,7 @@ export default function Home() {
       url: URL.BASE_URL + URL.POSTS_SERVICE + POSTS_SERVICE.GET_ALL,
     }).then(
       (res) => {
-        setListPosts(res.data.content);
+        setListPosts(res.data.content.slice(0, 3));
       },
       (err) => {
         console.log(err);
@@ -95,7 +86,7 @@ export default function Home() {
       url: URL.BASE_URL + URL.ITEM_SERVICE + ITEM_SERVICE.GET_ALL,
     }).then(
       (res) => {
-        setListItems(res.data.content);
+        setListItems(res.data.content.slice(0, 3));
       },
       (err) => {
         console.log(err);
@@ -124,71 +115,44 @@ export default function Home() {
   };
 
   //components
-  const ListServices = () => {
-    const arr = listServices.map((service, index) => (
-      <Box key={index}>
-        <SwiperSlide key={index} className="swiper-slide-featured-news">
-          <Image
-            src={service.image}
-            className="swiper-service-image"
-            alt=""
-          ></Image>
-          <Link className="swiper-service-link" href="#">
-            {service.name}
-          </Link>
-        </SwiperSlide>
-      </Box>
-    ));
-    const options = {
-      slidesPerView: 1,
-      spaceBetween: 50,
-      breakpoints: {
-        300: {
-          slidesPerView: 1,
-        },
-        690: {
-          slidesPerView: 2,
-        },
-        1100: {
-          slidesPerView: 2,
-        },
-        1300: {
-          slidesPerView: 3,
-        },
-        1600: {
-          slidesPerView: 3,
-        },
-        1900: {
-          slidesPerView: 4,
-        },
-      },
-    };
-    return (
-      <Box
-        className="list-services-content flex-col"
-        sx={{
-          width: "100%",
-          height: "300px",
-          paddingTop: "40px",
-        }}
-      >
-        <Swiper
-          className="swiper-featured-news"
-          // install Swiper modules
-          modules={[Navigation, Scrollbar, A11y]}
-          {...options}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={(swiper: any) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          {arr}
-          ...
-        </Swiper>
-      </Box>
-    );
-  };
+  // const ListServices = () => {
+    
+    
+  //   return (
+  //     <Box
+  //       className="list-services-content flex-col"
+  //       sx={{
+  //         width: "100%",
+  //         height: "300px",
+  //         paddingTop: "40px",
+  //       }}
+  //     >
+  //       <Swiper
+  //         className="swiper-featured-news"
+  //         // install Swiper modules
+  //         modules={[Navigation, Scrollbar, A11y]}
+  //         {...options}
+  //         navigation
+  //         pagination={{ clickable: true }}
+  //         scrollbar={{ draggable: true }}
+  //         onSwiper={(swiper: any) => console.log(swiper)}
+  //         onSlideChange={() => console.log("slide change")}
+  //       >
+  //         {arr}
+  //         ...
+  //       </Swiper>
+  //     </Box>
+  //   );
+  // };
+
+  const timeStampToDate = (timestamp: any) => {
+    var dateFormat = new Date(timestamp);
+    var res = "";
+    res += dateFormat.getDate() + "/";
+    res += dateFormat.getMonth() + 1 + "/";
+    res += dateFormat.getFullYear();
+    return res;
+  }
 
   const ListCourses = () => {
     const ListCoursesDetail = listCoursesDetail.map((course, index) => {
@@ -207,16 +171,17 @@ export default function Home() {
           >
             <Image
               alt=""
-              className="full-height"
+              className="full-height "
               src="http://hongkyfengshui.vn/modules/main/images/main/icon.png"
             />
             <h1
               style={{
-                color: "white",
                 textTransform: "uppercase",
                 fontSize: "17px",
                 marginLeft: "15px",
+                cursor:'pointer'
               }}
+              className="title-post-home"
             >
               {course.title}
             </h1>
@@ -280,7 +245,7 @@ export default function Home() {
     };
 
     const ListPostComponents = (props: any) => {
-      const ListPostsContent = listPosts.map((post, index) => {
+      const ListPostsContent = listPosts.slice(0,4).map((post, index) => {
         return (
           <Box
             onClick={() => goToDetailPost(post.id)}
@@ -288,17 +253,17 @@ export default function Home() {
             className="list-posts-detail-element flex-row full-width one-third-col"
           >
             <Box className="full-height half-row image-home-page-container">
-              <Image
+              <img
                 alt=""
                 id="image-home-page"
                 src={post.titleImageUrlStream}
                 className="image-home-page"
-              ></Image>
+              />
             </Box>
-            <Box className="full-height half-row" sx={{ padding: "10px" }}>
-              <h1 style={{ fontSize: "15px", color: "white" }}>{post.title}</h1>
+            <Box className="full-height half-row" sx={{ padding: "0px 15px 0px 15px"}}>
+              <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
               <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
-                Ngay gio bai viet
+                {timeStampToDate(Date.parse(post.createAt))}
               </p>
             </Box>
           </Box>
@@ -314,28 +279,31 @@ export default function Home() {
     };
 
     const ListItemComponents = (props: any) => {
-      const ListItemsContent = listItems.map((post, index) => {
+      const ListItemsContent = listItems.slice(0,4).map((post, index) => {
         return (
+          <>
           <Box
             onClick={() => goToDetailItem(post.id)}
             key={index}
             className="list-posts-detail-element"
           >
             <Box className="full-height half-row image-home-page-container">
-              <Image
+              <img
                 alt=""
                 id="image-home-page-item"
                 className="image-home-page"
                 src={post.titleImageUrlStream}
-              ></Image>
+              />
             </Box>
             <Box className="full-height half-row" sx={{ padding: "10px" }}>
-              <h1 style={{ fontSize: "15px", color: "white" }}>{post.title}</h1>
+              <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
               <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
                 Ngay gio bai viet
               </p>
             </Box>
           </Box>
+          <Divider/>
+          </>
         );
       });
       return (
@@ -349,7 +317,7 @@ export default function Home() {
       <>
         {listPosts.length > 0 && (
           <Box
-            className="list-posts-content  full-width full-height"
+            className="list-posts-content-home-page full-width full-height"
             sx={{
               marginTop: "40px",
             }}
@@ -363,89 +331,90 @@ export default function Home() {
     );
   };
 
-  const SearchInput = () => {
+  const Intro = () => {
     return (
-      <Box
-        className="search-input full-width center flex-row"
-        sx={{
-          height: "100px",
-        }}
-      >
-        <Input sx={{}}></Input>
-        <Button>Tìm kiếm</Button>
+      <Box className="intro-container">
+        <Box className="intro-content-container">
+          <p className="intro-content-title">
+            Giới thiệu
+          </p>
+          <p className="intro-content-para">
+            Xin chào! Tôi là Kim Ca, tên thật là Lê Thanh Cần, một Phật tử theo Kim Cương Thừa. Một người chuyên nghiên cứu mệnh lý và ứng dụng tiềm năng con người. Tôi đam mê với những bộ môn nghiên cứu Số Mệnh, vậy bản chất Số Mệnh là gì?
+            Số Mệnh chính là sự định vị của con người về giàu nghèo, sang hèn, thọ yểu,  hạnh phúc hay đau khổ. Tại sao có người cuộc đời của họ rất may mắn, tại sao có người cuộc đời của họ dù rất có năng lực và tài trí mà lại chẳng thể có được địa vị cao? Tại sao có người sinh ra đã ngậm “thìa vàng”, còn có người sinh ra đã có nhiều bất hạnh? đó là Số Mệnh vậy.
+          </p>
+          <Button className="intro-content-button">Xem thêm</Button>
+        </Box>
+        <Box className="intro-image-container">
+        </Box>
       </Box>
-    );
-  };
+    )
+  }
+
+  const ListServices = () => {
+    const options = {
+      slidesPerView: 1,
+      spaceBetween: 50,
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+        },
+        690: {
+          slidesPerView: 2,
+        },
+        1100: {
+          slidesPerView: 2,
+        },
+        1300: {
+          slidesPerView: 3,
+        },
+        1600: {
+          slidesPerView: 3,
+        },
+        1900: {
+          slidesPerView: 3,
+        },
+      },
+    };
+
+    const ListServicesSlide = listServices.map((service, index) => (
+      <Box key={index}>
+        <SwiperSlide key={index} className="swiper-slide-featured-news">
+          
+        </SwiperSlide>
+      </Box>
+    ));
+
+    return (
+      <Box className="list-services-container">
+        <Box className="list-services-title-container">
+          <p>Dịch vụ tư vấn</p>
+          <p>Khai phá tiềm năng con người</p>
+        </Box>
+        <Box className="list-services-content-container">
+          <Swiper
+            className="list-services-content-swiper"
+            // install Swiper modules
+            modules={[Navigation, Scrollbar, A11y]}
+            {...options}
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            onSwiper={(swiper: any) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+          >
+            {ListServicesSlide}
+            ...
+          </Swiper>
+        </Box>
+      </Box>
+    )
+  }
 
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content " sx={{ width: "100vw" }}>
-        <Box
-          className=" header-content full-width "
-          sx={{
-            position: "relative",
-
-            backgroundSize: "cover",
-            backgroundImage:
-              'url("http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-1-1360x600_1.jpg")',
-            justifyContent: "flex-end",
-            zIndex: -1,
-          }}
-        >
-          <Box
-            className="banner-left flex-row half-col half-row"
-            sx={{ alignItems: "flex-end", justifyContent: "flex-start" }}
-          >
-            <Image
-              alt=""
-              className="phong-thuy-image"
-              src="https://top10tphcm.com/wp-content/uploads/2020/06/phong-thuy-la-gi-1.jpg"
-            ></Image>
-          </Box>
-          <Box
-            className="flex-col banner-right"
-            sx={{
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-
-              width: "50%",
-              height: "50%",
-            }}
-          >
-            <p
-              className="phong-thuy-text"
-              style={{ fontSize: "50px", color: "white", fontWeight: 1000 }}
-            >
-              <span>Phong thủy</span>
-            </p>
-            <p
-              style={{
-                marginTop: "20px",
-                fontSize: "18px",
-                color: "white",
-                fontWeight: 300,
-              }}
-            >
-              Là một môn học quan trọng trong cuộc sống của người Trung Hoa. Là
-              một môn học quan trọng trong cuộc sống của người Trung Hoa. Là một
-              môn học quan trọng trong cuộc sống của người Trung Hoa. Là một môn
-              học quan trọng trong cuộc sống của người Trung Hoa
-            </p>
-          </Box>
-        </Box>
-        <Box
-          className="body-content_home focus-content full-width flex-col"
-          sx={{
-            padding: "0px 300px 0px 300px",
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.95) 45%, rgba(0, 0, 0, 0.95) 0%)",
-            backgroundClip: "padding-box",
-          }}
-        >
-          <ListServices></ListServices>
-          <ListCourses></ListCourses>
-          <ListPosts></ListPosts>
-        </Box>
+      <Box className="home-page-content " sx={{ width: "100vw" }}>
+        <Intro></Intro>
+        <ListServices></ListServices>
       </Box>
     </Page>
   );

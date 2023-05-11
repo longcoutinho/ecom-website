@@ -3,11 +3,12 @@ import Container from "@mui/system/Container";
 import { Facebook, Google, YouTube } from "@mui/icons-material";
 const Footer = () => {
   return (
-    <Container disableGutters maxWidth={false} className="footer-container">
+    <Container disableGutters maxWidth={false} className="footer-container-page">
+      <Box className="footer-container">
       <Box sx={{ padding: "20px 0" }}>
-        <h2 style={{ color: "#eb1b24" }}>
-          CÔNG TY TNHH TƯ VẤN PHONG THỦY HỒNG KỲ
-        </h2>
+        <h3 style={{ color: "#eb1b24", fontSize:'20px' }}>
+          CÔNG TY TNHH TƯ VẤN PHONG THỦY LONG GIANG
+        </h3>
       </Box>
       <Box className="footer-item">
         <Box className="item1">
@@ -35,16 +36,17 @@ const Footer = () => {
         </Box>
       </Box>
       <Divider className="divider-footer" />
-      <Box sx={{ paddingBottom: "12px" }}>
+      <Box sx={{ paddingBottom: "12px", fontSize:'14px' }}>
         <p style={{ color: "gray" }}>
           Copyright © 2018{" "}
           <span style={{ fontWeight: "bold" }}>
-            TƯ VẤN PHONG THUỶ HỒNG KỲ - HONGKY FENGSHUI
+            TƯ VẤN PHONG THUỶ LONG GIANG - HONGKY FENGSHUI
           </span>
         </p>
         <p style={{ color: "gray" }}>
           Thiết kế web : <span style={{ fontWeight: "bold" }}>TRUST.vn</span>
         </p>
+      </Box>
       </Box>
     </Container>
   );

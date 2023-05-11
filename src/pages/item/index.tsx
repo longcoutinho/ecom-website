@@ -11,13 +11,14 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
-import {Post} from "../../interfaces/response"
+import {Item} from "../../interfaces/response"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar, A11y, Pagination, Autoplay } from "swiper";
 
-export default function PostComponent() {
-  const [listPosts, setListPost] = useState<Post[]>([]);
-  const [listFeaturedPosts, setListFeaturedPosts] = useState<Post[]>([]);
+
+export default function ItemComponent() {
+  const [listPosts, setListPost] = useState<Item[]>([]);
+  const [listFeaturedPosts, setListFeaturedPosts] = useState<Item[]>([]);
   const [pageDefault, setPageDefault] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [title, setTitle] = useState("");
@@ -32,7 +33,7 @@ export default function PostComponent() {
     if (router.query.page !== undefined && router.query.pageSize !== undefined) {
       axios({
         method: "get",
-        url: "http://10.248.158.167:1112/posts",
+        url: "http://10.248.158.167:1112/item",
         params: {
           page: router.query.page,
           pageSize: router.query.pageSize,
@@ -50,7 +51,7 @@ export default function PostComponent() {
       );
       axios({
         method: "get",
-        url: "http://10.248.158.167:1112/posts",
+        url: "http://10.248.158.167:1112/item",
       }).then(
         (res) => {
           setListFeaturedPosts(res.data.content);
@@ -68,7 +69,7 @@ export default function PostComponent() {
     var pageNumber = parseInt(page);
     pageNumber--;
     router.push({
-      pathname: "/posts",
+      pathname: "/item",
       search: "?" + new URLSearchParams({ 
         page: pageNumber.toString(),
         pageSize: pageSize,
@@ -81,7 +82,7 @@ export default function PostComponent() {
     var pageNumber = parseInt(page);
     pageNumber--;
     router.push({
-      pathname: "/posts",
+      pathname: "/item",
       search: "?" + new URLSearchParams({ 
         page: pageNumber.toString(),
         pageSize: pageSize,
@@ -104,6 +105,21 @@ export default function PostComponent() {
     }
   }
 
+  const formatVND = (numPrice: number) => {
+    if (numPrice != undefined) {
+      var price = numPrice.toString();
+      var len = price.length;
+      var ind = len - 3;
+      while(ind > 0) {
+        price = price.substring(0, ind) + "." + price.substring(ind, len);
+        len++;
+        ind -= 3;
+      }
+      return price + "đ";
+    }
+    return "0đ";
+  }
+
   const handleChangeInput = (e: any) => {
     setTitle(e.target.value);
   }
@@ -118,105 +134,9 @@ export default function PostComponent() {
     );
   };
 
-  const ListFeaturedPosts = () => {
-    const options = {
-      slidesPerView: 1,
-      spaceBetween: 50,
-      breakpoints: {
-        300: {
-          slidesPerView: 1,
-        },
-        690: {
-          slidesPerView: 1,
-        },
-        1100: {
-          slidesPerView: 1,
-        },
-        1300: {
-          slidesPerView: 1,
-        },
-        1600: {
-          slidesPerView: 1,
-        },
-        1900: {
-          slidesPerView: 1,
-        },
-      },
-    };
-
-    const ListFeaturedPostsComponent = listFeaturedPosts.slice(0,4).map((featuredPost, index) => (
-      <Box key={index}>
-        <SwiperSlide key={index} className="swiper-slide-featured-posts">
-          <div className="slide-post">
-           <div className="posts-image" style={{cursor:'pointer'}}> 
-           <img
-            src={featuredPost.titleImageUrlStream}
-            className="swiper-slide-featured-posts-image"
-            alt=""
-            
-         /></div>
-          <div className="swiper-slide-featured-posts-content">
-            {/* <p>{featuredPost.title}</p>
-            <p>{featuredPost.introduction}</p> */}
-            <p style={{color:'white',cursor:'pointer'}}>{featuredPost?.title}</p>
-            <p style={{color:'#777777'}}>{featuredPost?.introduction}</p>
-          </div></div>
-        </SwiperSlide>
-      </Box>
-    ));
-    
-    const ListReadMost = listFeaturedPosts.slice(0, 4).map((post, index) => (
-      <Box key={index} className="list-read-most-content">
-        <Box className="rounded-index">
-          <p>{index + 1}</p>
-        </Box>
-        <p onClick={() => redirect(post.id)} className="list-read-most-title" style={{marginLeft: "10px"}}>{post.title}</p>
-      </Box>
-    ));
-
-    return (
-      <Box className="list-posts-featured-container">
-        <Box className="list-posts-featured-wrapper">
-          <Swiper
-            className="list-posts-featured-swiper"
-            // install Swiper modules
-            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            {...options}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            navigation
-            pagination={{ clickable: true }}
-            onSwiper={(swiper: any) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
-          >
-            {ListFeaturedPostsComponent}
-            ...
-          </Swiper>
-        </Box>
-        <Box className="introduction-posts-wrapper">
-          <Box className="list-posts-image-hightlight" sx={{cursor:'pointer'}}>
-                <SearchInput></SearchInput>
-                </Box>
-                <Box
-                  className="list-read-most"
-                >
-                  <Box>
-                    <p style={{textTransform: 'uppercase', fontSize: '16px', fontWeight: '500'}}>Đọc nhiều</p>
-                  </Box>
-                  <Box>
-                    {ListReadMost}
-                  </Box>
-                </Box>
-        </Box>
-      </Box>
-    )
-  }
-
   const redirect = (id: any) => {
     router.push({
-      pathname: "/posts/detail",
+      pathname: "/item/detail",
       search: "?" + new URLSearchParams({ id: id }),
     });
   };
@@ -230,36 +150,36 @@ export default function PostComponent() {
         <Box
           className="list-posts-container"
         >
-          {listPosts.map((post, index) => {
+          {listPosts.map((item, index) => {
             return (
               <Box
-                onClick={() => redirect(post.id)}
+                onClick={() => redirect(item.id)}
                 key={index}
-                className="list-posts-element"
+                className="list-items-element"
               >
-                <Box className="image-and-content-element">
-                  <Box className="list-posts-image">
+                <Box className="image-and-content-element-item">
+                  <Box className="list-items-image">
                     <img
                       alt=""
-                      id="image-post_tintuc"
-                      src={post.titleImageUrlStream}
+                      id="image-post_item"
+                      src={item.titleImageUrlStream}
                     />
                   </Box>
                   <Box
                     className="list-posts-content"
                   >
-                    <h1 style={{ fontSize: "18px", fontWeight: "700px"}} className="title-list-posts-element">
-                      {post.title}
+                    <h1 style={{ fontSize: "20px", fontWeight: "700px"}} className="title-list-item-home">
+                      {item.title}
                     </h1>
                     <p
-                      className="introduction-list-posts-element"
-                      style={{ fontSize: "14px", color: "#777777", marginTop: "20px"}}
+                      className="content-post"
+                      style={{ fontSize: "17px", color: "#777777", marginTop: "0px"}}
                     >
-                      {post.introduction}
+                      {formatVND(item.price)}
                     </p>
                   </Box>
                 </Box>
-                <Button className="btn-details">Xem chi tiết</Button>
+                <Button className="btn-details-post">Xem chi tiết</Button>
               </Box>
             );
           })}
@@ -268,8 +188,12 @@ export default function PostComponent() {
     };
 
     return (
-      <Box
-        className="list-posts-wrapper"
+      <Box className="list-item-content">
+        <Box className="list-item-search-container">
+          <SearchInput></SearchInput>
+        </Box>
+        <Box
+        className="list-items-wrapper"
         sx={{
           padding: "0",
           flexGrow: 1,
@@ -278,6 +202,8 @@ export default function PostComponent() {
         <ListPostComponents />
         <PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>
       </Box>
+      </Box>
+      
     );
   };
 
@@ -337,7 +263,7 @@ export default function PostComponent() {
                   border: "2px solid white",
                 }}
               >
-                Tin tức
+                Sản phẩm
               </span>
             </p>
           </Box>
@@ -350,7 +276,6 @@ export default function PostComponent() {
           
         >
           <MenuPostComponent></MenuPostComponent>
-          <ListFeaturedPosts></ListFeaturedPosts>
           <ListPosts></ListPosts>
         </Box>
         </div>

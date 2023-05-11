@@ -8,11 +8,12 @@ export interface Post {
   type: Number;
   content: String;
   id: Number;
-  createTime: Date;
+  createAt: string;
+  introduction: string;
 }
 export interface Item {
   id: number,
   title: string,
-  price: Number,
+  price: number,
   titleImageUrlStream: string,
 }

@@ -8,6 +8,8 @@ import "swiper/css/scrollbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 interface TypePost {
@@ -56,9 +58,17 @@ export default function PostDetail() {
       <Box
         className="detail-posts-container flex-col"
       >
-        <Box
-          dangerouslySetInnerHTML={{ __html: detailPost?.content }}
-        ></Box>
+        <Box 
+          className="detail-posts-focus-content"
+        >
+          <Box className="detail-posts-focus-title-container">
+            <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
+            <p className="detail-posts-focus-title">23:00 15-9-2022</p>
+          </Box>
+          <Box 
+          className="detail-posts-focus"
+          dangerouslySetInnerHTML={{ __html: detailPost?.content }}></Box>
+        </Box>
       </Box>
     );
   }
@@ -89,53 +99,37 @@ export default function PostDetail() {
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="content full-width">
         <Box
-          className="header-content full-width flex-row"
+          className="detail-posts-header-content full-width flex-row center"
           sx={{
             position: "relative",
             padding: "0px 300px 70px 300px",
-            height: "350px",
+            height: "250px",
             backgroundSize: "cover",
-            backgroundImage:
-              'url("http://hongkyfengshui.vn/vnt_upload/weblink/slide_1.jpg")',
+            backgroundImage: "url(http://hongkyfengshui.vn/vnt_upload/weblink/slide-small.jpg)",
             justifyContent: "flex-end",
             alignItems: "flex-end",
             zIndex: -1,
           }}
         >
           <Box
-            className="flex-col center full-width full-height"
+            className="posts-focus-title"
             sx={{ color: "white" }}
           >
-            <p
-              style={{
-                textTransform: "uppercase",
-                fontSize: "30px",
-                marginTop: "70px",
-              }}
-            >
-              <span
-                style={{
-                  padding: "10px 30px 10px 30px",
-                  border: "2px solid white",
-                }}
-              >
-                Tin tức
-              </span>
-            </p>
+            <p style={{fontSize:'30px'}}>{detailPost?.title}</p>
           </Box>
         </Box>
+        <div className="width-full" style={{background:'#333333'}} >
         <Box
-          className="focus-content full-width flex-col"
-          sx={{
-            padding: "0px 300px 0px 300px",
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.7) 50px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.95) 0%)",
-            backgroundClip: "padding-box",
-          }}
+          className=" footer-container focus-content  flex-col"
+          // sx={{
+          //   backgroundImage:
+          //     "linear-gradient(rgba(0, 0, 0, 0.7) 50px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.95) 0%)",
+          //   backgroundClip: "padding-box",
+          // }}
         >
-          <MenuPostComponent></MenuPostComponent>
           <DetailPost></DetailPost>
         </Box>
+        </div>
       </Box>
     </Page>
   );

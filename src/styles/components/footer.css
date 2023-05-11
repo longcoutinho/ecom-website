@@ -1,24 +1,31 @@
-.footer-container{
-    width:100%;
+.footer-container-page{
+    width: 100vw;
     background:#363636;
+}
+.footer-container{
+    max-width: 1440px;
+margin:0 auto;
     @media (min-width: 300px) {
         padding: 0px 10px ;
     
       }
       @media (min-width: 480px) {
-        padding: 0px 6% ;
+        padding: 0px 50px ;
         
       }
       @media (min-width: 900px) {
-        padding: 0px 8% ;
+        padding: 0px 90px ;
       }
       @media (min-width: 1024px) {
-        padding: 0px 12% ;
+        padding: 0px 160px ;
       }
 }
 .footer-item{
     display:flex;
     flex-direction:row;
+}
+.footer-item p{
+    font-size: 14px;
 }
 .item1{
     width:45%;

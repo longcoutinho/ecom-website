@@ -62,13 +62,13 @@ const Header = () => {
   //components
   const Logo = () => {
     return (
-      <Box className="full-height" sx={{ width: "130px", objectFit: "fill" }}>
-        <Image
+      <Box sx={{ width: "130px", objectFit: "fill" }}>
+        <img
           onClick={() => handleGoToPage("/")}
           alt=""
           className="logo"
           src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"
-        ></Image>
+        />
       </Box>
     );
   };
@@ -98,9 +98,10 @@ const Header = () => {
         sx={{
           width: "100%",
           height: "70%",
+          display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          alignItems: "end",
+          alignItems: "center",
           color: "white",
           backgroundColor: "rgba(0, 0, 0, 0.3)",
         }}
@@ -125,11 +126,12 @@ const Header = () => {
       sx={{
         position: "absolute",
         top: "0px",
-        height: "100px",
+        height: "60px",
         width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        alignItems: "center"
       }}
     >
       <Logo></Logo>
