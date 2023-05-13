@@ -64,8 +64,8 @@ const Header = () => {
           />
         </Box>
         <Box className="logo-para">
-          <p style={{fontSize: "40px", }}>
-            Kim ca
+          <p style={{fontSize: "40px", fontWeight: "700", lineHeight: "1em"}}>
+            Kim Ca
           </p>
           <p>
             Tri thức huyền môn - Đạo giáo
