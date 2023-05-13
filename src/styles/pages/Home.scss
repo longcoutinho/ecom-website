@@ -50,5 +50,35 @@
     .list-services-container {
         width: 100%;
         height: 500px;
+        display: flex;
+        flex-direction: column;
+
+        .list-services-title-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 20%;
+            p {
+                color: black;
+            }
+        }
+
+        .list-services-content-container {
+            height: 80%;
+            width: 100%;
+
+            .list-services-content-swiper {
+                height: 100%;
+                width: 100%;
+                
+                    .swiper-slide-featured-news {
+                        height: 100%;
+                        background-image: url(https://www.kimca.net/wp-content/themes/jnews-child/images/clouds.png);
+                    }
+                
+            }
+        }
+
+        
     }
 }

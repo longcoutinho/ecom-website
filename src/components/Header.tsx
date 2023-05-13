@@ -27,52 +27,44 @@ const Header = () => {
   //data
   const initMenuItem: any = [
     {
-      title: "Tin tức huyền học",
+      title: "Trang chủ",
       redirect_link: PATH_PAGE.tintuc.root,
     },
     {
-      title: "Sản phẩm phong thủy",
+      title: "Kho tàng tri thức",
       redirect_link: PATH_PAGE.user.tab3,
     },
     {
-      title: "Lập lá số phong thủy",
+      title: "Chuyên gia",
       redirect_link: PATH_PAGE.lapla.root,
     },
     {
-      title: "Đặt lịch tư vấn",
+      title: "Dịch vụ tư vấn",
+      redirect_link: PATH_PAGE.user.tab4,
+    },
+    {
+      title: "Khóa học",
+      redirect_link: PATH_PAGE.user.tab4,
+    },
+    {
+      title: "Hỏi đáp",
       redirect_link: PATH_PAGE.user.tab4,
     },
   ];
-  const menuAdmimItem = [
-    {
-      title: "Quản lý tin tức phong thủy",
-      redirect_link: "#",
-    },
-    {
-      title: "Quản lý sản phẩm phong thủy",
-      redirect_link: "#",
-    },
-  ];
-  //init
-  /*
-  const [listMenuItem, setListMenuItem] = useState(
-    admin ? menuAdmimItem : initMenuItem
-  );
-  */
   //components
   const Logo = () => {
     return (
-      <Box sx={{ width: "130px", objectFit: "fill" }}>
-        <Box>
+      <Box className="logo-wrapper">
+        <Box className="logo-container">
           <img
             onClick={() => handleGoToPage("/")}
             alt=""
-            className="logo"
-            src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"
+            id="logo"
+            src="https://www.kimca.net/wp-content/uploads/2022/03/logo.png"
           />
         </Box>
-        <Box>
-          <p>
+        <Box className="logo-para">
+          <p style={{fontSize: "40px", }}>
             Kim ca
           </p>
           <p>
@@ -112,8 +104,6 @@ const Header = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "white",
-          backgroundColor: "rgba(0, 0, 0, 0.3)",
         }}
       >
         {listMenu}
@@ -136,12 +126,13 @@ const Header = () => {
       sx={{
         position: "absolute",
         top: "0px",
-        height: "60px",
+        height: "105px",
         width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        padding: "0px 20% 0px 20%",
       }}
     >
       <Logo></Logo>

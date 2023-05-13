@@ -47,6 +47,10 @@ export default function Home() {
       name: "hệ thống đào tạo",
       image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-DaoTao.jpg",
     },
+    {
+      name: "hệ thống đào tạo",
+      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-DaoTao.jpg",
+    },
   ];
   const listCoursesDetail: Course[] = [
     {
@@ -113,37 +117,6 @@ export default function Home() {
       search: "?" + new URLSearchParams({ id: id }),
     });
   };
-
-  //components
-  // const ListServices = () => {
-    
-    
-  //   return (
-  //     <Box
-  //       className="list-services-content flex-col"
-  //       sx={{
-  //         width: "100%",
-  //         height: "300px",
-  //         paddingTop: "40px",
-  //       }}
-  //     >
-  //       <Swiper
-  //         className="swiper-featured-news"
-  //         // install Swiper modules
-  //         modules={[Navigation, Scrollbar, A11y]}
-  //         {...options}
-  //         navigation
-  //         pagination={{ clickable: true }}
-  //         scrollbar={{ draggable: true }}
-  //         onSwiper={(swiper: any) => console.log(swiper)}
-  //         onSlideChange={() => console.log("slide change")}
-  //       >
-  //         {arr}
-  //         ...
-  //       </Swiper>
-  //     </Box>
-  //   );
-  // };
 
   const timeStampToDate = (timestamp: any) => {
     var dateFormat = new Date(timestamp);
@@ -378,11 +351,9 @@ export default function Home() {
     };
 
     const ListServicesSlide = listServices.map((service, index) => (
-      <Box key={index}>
         <SwiperSlide key={index} className="swiper-slide-featured-news">
-          
+          <p>{index}</p>
         </SwiperSlide>
-      </Box>
     ));
 
     return (

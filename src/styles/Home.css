@@ -4,15 +4,6 @@
   height: 100%;
 }
 
-.swiper-slide-featured-news {
-  background-size: 100%;
-  height: 90% !important;
-  display: flex !important;
-  justify-content: center;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
 .swiper-service-link {
   width: 100%;
   float: bottom;

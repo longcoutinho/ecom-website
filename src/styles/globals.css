@@ -88,7 +88,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: white;
+  color: black;
 }
 
 html,
@@ -869,4 +869,41 @@ h1{    transition: all 0.3s linear;}
 #delete-cart-item:hover {
   color: black;
   cursor: pointer;
+}
+
+
+.logo-wrapper {
+ width: 500px;
+ height: 100%;
+ display: flex;
+ flex-direction: row;
+}
+
+.logo-container {
+  width: 100px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.logo-para {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-para p {
+  color: black;
+}
+
+.menu-item p {
+  color: black;
+  text-transform: uppercase;
 }
