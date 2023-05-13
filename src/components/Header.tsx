@@ -63,12 +63,22 @@ const Header = () => {
   const Logo = () => {
     return (
       <Box sx={{ width: "130px", objectFit: "fill" }}>
-        <img
-          onClick={() => handleGoToPage("/")}
-          alt=""
-          className="logo"
-          src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"
-        />
+        <Box>
+          <img
+            onClick={() => handleGoToPage("/")}
+            alt=""
+            className="logo"
+            src="https://dothethao.net.vn/wp-content/uploads/2020/06/logo-ha-noi-fc.jpg"
+          />
+        </Box>
+        <Box>
+          <p>
+            Kim ca
+          </p>
+          <p>
+            Tri thức huyền môn - Đạo giáo
+          </p>
+        </Box>
       </Box>
     );
   };
