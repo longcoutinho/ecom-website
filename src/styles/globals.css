@@ -88,7 +88,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: black;
 }
 
 html,
@@ -910,4 +909,23 @@ h1{    transition: all 0.3s linear;}
 .menu-item p {
   color: black;
   text-transform: uppercase;
+}
+
+.title-top-home-page {
+  font-size: 18px;
+  color: #f70d28;
+  font-weight: normal;
+}
+
+.title-bottom-home-page {
+  line-height: 1.1em;
+  font-size: 36px;
+  color: #212121;
+  font-weight: normal;
+  font-weight: 700;
+  letter-spacing: -.04em;
+}
+
+.swiper-pagination-bullet {
+  color: black !important;
 }

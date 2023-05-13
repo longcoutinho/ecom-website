@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Navigation, Scrollbar, A11y } from "swiper";
+import { Navigation, Scrollbar, Pagination, A11y } from "swiper";
 import Image from "@/components/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
@@ -25,8 +25,9 @@ interface Course {
 }
 
 interface Service {
-  name: string;
-  image: string;
+  img: string;
+  title: string;
+  content: string;
 }
 
 export default function Home() {
@@ -36,20 +37,24 @@ export default function Home() {
   const route = useRouter();
   const listServices: Service[] = [
     {
-      name: "dịch vụ tư vấn",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/Slide2aa_1.png",
+      img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+      title: "Làm viên chức",
+      content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
     },
     {
-      name: "chia sẻ kinh nghiệm",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-Chiase_1.jpg",
+      img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+      title: "Làm viên chức",
+      content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
     },
     {
-      name: "hệ thống đào tạo",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-DaoTao.jpg",
+      img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+      title: "Làm viên chức",
+      content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
     },
     {
-      name: "hệ thống đào tạo",
-      image: "http://hongkyfengshui.vn/vnt_upload/weblink/HomeSlide-2-380x230-DaoTao.jpg",
+      img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+      title: "Làm viên chức",
+      content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
     },
   ];
   const listCoursesDetail: Course[] = [
@@ -128,82 +133,24 @@ export default function Home() {
   }
 
   const ListCourses = () => {
-    const ListCoursesDetail = listCoursesDetail.map((course, index) => {
-      return (
-        <Box
-          key={index}
-          className="list-courses-detail-element flex-col full-width one-third-col"
-          sx={{
-            backgroundColor: "#333333",
-            padding: "20px",
-          }}
-        >
-          <Box
-            sx={{ height: "20px" }}
-            className="full-width flex-row center-no-dir"
-          >
-            <Image
-              alt=""
-              className="full-height "
-              src="http://hongkyfengshui.vn/modules/main/images/main/icon.png"
-            />
-            <h1
-              style={{
-                textTransform: "uppercase",
-                fontSize: "17px",
-                marginLeft: "15px",
-                cursor:'pointer'
-              }}
-              className="title-post-home"
-            >
-              {course.title}
-            </h1>
-          </Box>
-          <Box
-            sx={{ height: "20px", margin: "10px 0px 0px 40px" }}
-            className="full-width flex-row center-no-dir"
-          >
-            <FontAwesomeIcon style={{ color: "gray" }} icon={faCalendarDays} />
-            <p style={{ color: "gray", fontSize: "12px", marginLeft: "15px" }}>
-              <b>Khai giảng:</b> {course.openDate.toDateString()}
-            </p>
-          </Box>
-          <Box
-            sx={{ height: "20px", margin: "5px 0px 0px 40px" }}
-            className="full-width flex-row center-no-dir"
-          >
-            <FontAwesomeIcon style={{ color: "gray" }} icon={faCalendarDays} />
-            <p style={{ color: "gray", fontSize: "12px", marginLeft: "15px" }}>
-              <b>Thời gian học:</b> {course.studyTime}
-            </p>
-          </Box>
-        </Box>
-      );
-    });
     return (
-      <Box
-        className="list-courses-content"
-        sx={{
-          width: "100%",
-          margin: "20px 0",
-        }}
-      >
-        <Box
-          className="list-courses-introduce full-height "
-          sx={{
-            overflow: "hidden",
-          }}
-        >
-          <Image
-            alt=""
-            src="http://hongkyfengshui.vn/vnt_upload/weblink/Slide2bb_1.png"
-          />
+      <Box className="list-courses-container">
+        <Box className="list-courses-image-container">
+          <img src="https://www.kimca.net/wp-content/uploads/2022/03/Five-Elements.png"/>
         </Box>
-        <Box className="list-cources-detail flex-col full-height ">
-          {ListCoursesDetail}
+        <Box className="list-courses-content-container">
+          <p className="title-top-home-page">Khóa Học</p>
+          <p className="title-bottom-home-page">Tử Vi Chân Nguyên</p>
+          <p style={{marginTop: "30px", textRendering: "optimizeLegibility", color: "#211d1d"}}>Không cần học an sao, lịch pháp, Can Chi, Nạp Âm vì những thứ này đã có các App lập lá số rồi.<br></br>
+            Không cần học lý thuyết dài dòng, rườm rà, phức tạp, xa rời thực tế cuộc sống vì không có tác dụng gì trong luận đoán.<br></br>
+            Kiến thức được hệ thống dễ học, dễ nhớ dựa trên nền tảng Âm Dương Ngũ Hành và các đồ hình theo thế đứng Tử Vi.<br></br>
+            Bài giảng bám sát việc luận đoán thực tế dựa trên chính kinh nghiệm nhiều năm xem Tử Vi của thầy Kim Ca.<br></br>
+            Tài liệu học Tử Vi đầy đủ có file do chính Kim Ca biên soạn dựa trên các sách gốc Tử Vi bằng tiếng Trung thời xưa.<br></br><br></br>
+            Mục tiêu khóa học: Không phân biệt người mới học hay học lâu năm đều có thể theo học. Không phân biệt cơ bản hay nâng cao vì quan trọng nhất vẫn là kết quả luận đoán chính xác.</p>
+          <Button className="intro-content-button">Xem thêm</Button>
         </Box>
       </Box>
-    );
+    )
   };
 
   const ListPosts = () => {
@@ -352,25 +299,31 @@ export default function Home() {
 
     const ListServicesSlide = listServices.map((service, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
-          <p>{index}</p>
+          <Box className="swiper-slide-featured-news-content">
+            <Box className="swiper-slide-featured-news-image">
+              <img id="swiper-slide-image" src={service.img}/>
+            </Box>
+            <p style={{marginTop: "1em", fontWeight: "normal", fontSize: "1.563em"}}>{service.title}</p>
+            <p style={{marginTop: "1em", fontWeight: "normal", lineHeight: "1.5", textAlign: "center"}}>{service.content}</p>
+          </Box>  
+          <Button>Tư Vấn Ngay</Button>
         </SwiperSlide>
     ));
 
     return (
       <Box className="list-services-container">
         <Box className="list-services-title-container">
-          <p>Dịch vụ tư vấn</p>
-          <p>Khai phá tiềm năng con người</p>
+          <p className="title-top-home-page">Dịch Vụ Tư Vấn</p>
+          <p className="title-bottom-home-page">Luận Mệnh Lý Và Khám Phá Tiềm Năng Con Người</p>
         </Box>
         <Box className="list-services-content-container">
           <Swiper
             className="list-services-content-swiper"
             // install Swiper modules
-            modules={[Navigation, Scrollbar, A11y]}
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
             {...options}
             navigation
             pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
             onSwiper={(swiper: any) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
           >
@@ -387,6 +340,8 @@ export default function Home() {
       <Box className="home-page-content " sx={{ width: "100vw" }}>
         <Intro></Intro>
         <ListServices></ListServices>
+        <ListCourses></ListCourses>
+        <ListPosts></ListPosts>
       </Box>
     </Page>
   );

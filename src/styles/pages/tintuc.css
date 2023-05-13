@@ -60,7 +60,10 @@
 .list-posts-image-hightlight{
 }
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
-    left: 75% !important;
+    left: 50% !important;
+    margin-top: 20px;
+    color: #333333 !important;
+    font-size: 20px;
 }
 .swiper-pagination{
     text-align: left !important;
