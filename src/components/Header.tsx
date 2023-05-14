@@ -9,6 +9,8 @@ import React from "react";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const route = useRouter();
@@ -64,10 +66,10 @@ const Header = () => {
           />
         </Box>
         <Box className="logo-para">
-          <p style={{fontSize: "40px", fontWeight: "700", lineHeight: "1em"}}>
+          <p className="logo-title">
             Kim Ca
           </p>
-          <p>
+          <p className="mobile-view">
             Tri thức huyền môn - Đạo giáo
           </p>
         </Box>
@@ -80,11 +82,8 @@ const Header = () => {
         key={index}
         className="menu-item"
         sx={{
-          width: "20%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          height: "20%",
+          display: "inline-block",
           fontWeight: 700,
           margin: "0px 10px 0px 10px",
         }}
@@ -96,7 +95,7 @@ const Header = () => {
     ));
     return (
       <Box
-        className="big-menu"
+        className="big-menu mobile-view"
         sx={{
           width: "100%",
           height: "70%",
@@ -120,24 +119,10 @@ const Header = () => {
   //export components
   return (
     <Container
+      className="header-container"
       disableGutters
       maxWidth={false}
-      className="flex-row "
-      sx={{
-        position: "absolute",
-        top: "0px",
-        height: "105px",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "0px 20% 0px 20%",
-      }}
     >
-      <Logo></Logo>
-      <MenuHeader />
-
       <div className="icon-menu">
         <Button
           id="basic-button"
@@ -170,6 +155,9 @@ const Header = () => {
           </MenuItem>
         </Menu>
       </div>
+      <Logo></Logo>
+      <MenuHeader />
+      <FontAwesomeIcon className="search-mobile-icon" icon={faSearch}></FontAwesomeIcon>        
     </Container>
   );
 };

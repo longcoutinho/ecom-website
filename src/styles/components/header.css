@@ -1,4 +1,4 @@
-@import '../responsive.css';
+
 .big-menu{
     display:none;
     @media (min-width: 900px)  {
@@ -13,9 +13,10 @@
     }
 }
 .css-i4bv87-MuiSvgIcon-root{
-    color:white;
+    color:black;
 }
 .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper{
-    background:rgba(0, 0, 0, 0.6);
-    color:white
+    background:rgba(0, 0, 0, 0.8);
+    color:white;
+    min-width: 200px;
 }

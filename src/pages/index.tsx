@@ -156,23 +156,22 @@ export default function Home() {
   const ListPosts = () => {
     const PostTitle = (props: any) => {
       return (
-        <Box className="flex-row">
-          <p style={{ fontSize: "20px" }} className="list-posts-title">
-            <span>{props.name}</span>
-          </p>
+        <Box className="list-services-title-container flex-col center">
+          <p className="title-top-home-page">Tin Tức</p>
+          <p className="title-bottom-home-page">Bài Viết Nổi Bật</p>
         </Box>
       );
     };
 
     const ListPostComponents = (props: any) => {
-      const ListPostsContent = listPosts.slice(0,4).map((post, index) => {
+      const ListPostsContent = listPosts.slice(0,1).map((post, index) => {
         return (
           <Box
             onClick={() => goToDetailPost(post.id)}
             key={index}
-            className="list-posts-detail-element flex-row full-width one-third-col"
+            className="list-posts-detail-element full-width one-third-col"
           >
-            <Box className="full-height half-row image-home-page-container">
+            <Box className="full-width image-home-page-container">
               <img
                 alt=""
                 id="image-home-page"
@@ -180,11 +179,12 @@ export default function Home() {
                 className="image-home-page"
               />
             </Box>
-            <Box className="full-height half-row" sx={{ padding: "0px 15px 0px 15px"}}>
+            <Box className="list-post-detail-element-para full-height half-row">
               <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
               <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
                 {timeStampToDate(Date.parse(post.createAt))}
               </p>
+              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>{post.introduction}</p>
             </Box>
           </Box>
         );
@@ -192,22 +192,21 @@ export default function Home() {
 
       return (
         <Box className="list-posts-detail">
-          <PostTitle name={props.name}></PostTitle>
           {ListPostsContent}
         </Box>
       );
     };
 
     const ListItemComponents = (props: any) => {
-      const ListItemsContent = listItems.slice(0,4).map((post, index) => {
+      const ListItemsContent = listPosts.map((post, index) => {
         return (
           <>
           <Box
             onClick={() => goToDetailItem(post.id)}
             key={index}
-            className="list-posts-detail-element"
+            className="list-posts-detail-element-2"
           >
-            <Box className="full-height half-row image-home-page-container">
+            <Box className="full-height" sx={{width: "30%"}}>
               <img
                 alt=""
                 id="image-home-page-item"
@@ -215,7 +214,7 @@ export default function Home() {
                 src={post.titleImageUrlStream}
               />
             </Box>
-            <Box className="full-height half-row" sx={{ padding: "10px" }}>
+            <Box className="full-height half-row" sx={{ padding: "10px"}}>
               <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
               <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
                 Ngay gio bai viet
@@ -227,24 +226,53 @@ export default function Home() {
         );
       });
       return (
-        <Box className="list-posts-detail flex-col  full-height">
-          <PostTitle name={props.name}></PostTitle>
+        <Box className="list-posts-detail flex-col full-height">
           {ListItemsContent}
         </Box>
       );
     };
+
+    const ListDetailPostComponents = (props: any) => {
+      const ListPostsContent = listPosts.map((post, index) => {
+        return (
+          <Box
+            onClick={() => goToDetailPost(post.id)}
+            key={index}
+            className="list-posts-detail-element-3 full-width one-third-col"
+          >
+            <Box className="">
+              <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
+            </Box>
+            <Box className="full-height half-row" sx={{ padding: "0px 15px 0px 15px"}}>
+              <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
+              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
+                {timeStampToDate(Date.parse(post.createAt))}
+              </p>
+              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>{post.introduction}</p>
+            </Box>
+          </Box>
+        );
+      });
+
+      return (
+        <Box className="list-posts-detail">
+          {ListPostsContent}
+        </Box>
+      );
+    };
+
     return (
       <>
         {listPosts.length > 0 && (
-          <Box
-            className="list-posts-content-home-page full-width full-height"
-            sx={{
-              marginTop: "40px",
-            }}
+          
+          <Box className="list-posts-home-page-container"
           >
-            <ListPostComponents name={"Tin tức"}></ListPostComponents>
-            <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
-            <ListPostComponents name={"Lập lá"}></ListPostComponents>
+            <PostTitle></PostTitle>
+            <Box className="list-posts-home-page-content-container">
+              <ListPostComponents name={"Tin tức"}></ListPostComponents>
+              <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
+              <ListDetailPostComponents name={"Lập lá"}></ListDetailPostComponents>
+            </Box>
           </Box>
         )}
       </>
@@ -328,7 +356,7 @@ export default function Home() {
             onSlideChange={() => console.log("slide change")}
           >
             {ListServicesSlide}
-            ...
+            
           </Swiper>
         </Box>
       </Box>
