@@ -28,6 +28,9 @@
         height: fit-content;
         display: flex;
         flex-direction: row;
+        @media (min-width: 1024px) {
+            margin-top: 50px;
+        }
         @include mobile-large{
             flex-direction: column;
         }
@@ -73,6 +76,8 @@
             height: 100%;
             width: 50%;
             margin-left: 30px;
+            border-radius: 15px;
+            overflow: hidden;
             @include mobile-large{
                 width: 100%;
                 padding: 20px;
@@ -130,6 +135,8 @@
                                 flex-direction: column;
                                 align-items: center;
                                 padding: 30px 60px 0px 60px;
+                                border-radius: 15px;
+                                overflow: hidden;
                                 background-image: url(https://www.kimca.net/wp-content/themes/jnews-child/images/clouds.png);
                                 @media (max-width: 500px) {
                                     padding: 20px;
@@ -138,8 +145,7 @@
                             .swiper-slide-featured-news-image {
                                 width: 100%;
                                 height: 60%;
-                                overflow: hidden;
-                                background-color: green;
+                                
                                 
                                 #swiper-slide-image {
                                     width: 100%;
@@ -190,6 +196,8 @@
             justify-content: center;
             overflow: hidden;
             padding: 0;
+            border-radius: 15px;
+            overflow: hidden;
             @include mobile-large{
                 width: 100%;
             }
@@ -240,12 +248,13 @@
         display: flex;
         flex-direction: column;
         @media (min-width: 1300px) {
-            margin-top: 50px;
+            margin-top: 0px;
         }
 
         .list-posts-home-page-content-container {
             display: flex;
             flex-direction: row;
+            height: 800px;
             @media (max-width: 500px) {
                 flex-direction: column;
             }

@@ -375,18 +375,11 @@ body {
   transition-duration: 1s;
 }
 
-
-.image-home-page {
+#image-home-page {
   width: 100%;
   height: 100%;
-}
-
-#image-home-page {
-  height: 200px;
-  width: 100%;
   object-fit: cover;
 }
-
 
 #image-home-page-item {
   height: 100px;
@@ -395,24 +388,25 @@ body {
 }
 
 .list-posts-detail-element {
+  position: relative;
   padding: 10px 0px 10px 0px;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .list-posts-detail-element-2 {
-  padding: 10px 0px 10px 0px;
-  margin-top: 5px;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100px;
   overflow: hidden;
+}
+
+.list-posts-detail-element-2:not(:first-child) {
+  margin-top: 5px;
 }
 
 .list-posts-detail-element-3 {
@@ -428,13 +422,6 @@ body {
 
 .list-posts-detail-element:hover {
   cursor: pointer;
-}
-
-.list-posts-detail {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
 }
 
 .logo:hover {
@@ -1025,5 +1012,68 @@ h1{    transition: all 0.3s linear;}
 }
 
 .list-post-detail-element-para {
+  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 20px 15px 0px 15px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.first-posts-home-page {
+  position: relative;
+  height: 55%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.second-and-third-posts-home-page {
+  margin-top: 25px;
+  height: 45%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.first-posts-home-page-image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.list-posts-detail {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-posts-detail-2 {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.list-posts-detail-2 {
+  margin-left: 25px;
+}
+
+.mini-first-posts-home-page {
+  width: 100%;
+  height: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.underline-title {
+  border-image: linear-gradient(to right, red 15%, rgb(223, 222, 222) 0%) 2;
 }

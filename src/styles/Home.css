@@ -43,10 +43,6 @@
   font-weight: 700;
 }
 
-.list-posts-detail:not(:last-child) {
-  padding-right: 10px;
-}
-
 #image-post {
   height: 90%;
   width: 90%;
@@ -233,7 +229,6 @@ width:33.3%;
 }
 
 .title-post-home {
-  display: block;/* or inline-block */
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
