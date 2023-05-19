@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import './editor.css';
 @import './Home.css';
-@import './components/header.css';
 @import './components/footer.css';
 @import './pages/lapla.css';
 @import './pages/tintuc.css';
@@ -966,29 +965,6 @@ h1{    transition: all 0.3s linear;}
 .mobile-view {
   @media (max-width: 480px) {
     display: none;
-  }
-}
-
-.header-container {
-  height: 90px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  @media (min-width: 300px) {
-    width: 100%;
-    padding: 0px 6px;
-    height: 50px;
-    background: #dddddd; 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  @media (min-width: 1300px) {
-    padding: 0px 20% 0px 20%;
-    height: 100px;
   }
 }
 

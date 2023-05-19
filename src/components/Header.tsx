@@ -10,7 +10,7 @@ import DehazeIcon from "@mui/icons-material/Dehaze";
 import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const route = useRouter();
@@ -37,11 +37,11 @@ const Header = () => {
       redirect_link: PATH_PAGE.user.tab3,
     },
     {
-      title: "Chuyên gia",
+      title: "Vật phẩm",
       redirect_link: PATH_PAGE.lapla.root,
     },
     {
-      title: "Dịch vụ tư vấn",
+      title: "Lập lá số",
       redirect_link: PATH_PAGE.user.tab4,
     },
     {
@@ -49,33 +49,15 @@ const Header = () => {
       redirect_link: PATH_PAGE.user.tab4,
     },
     {
-      title: "Hỏi đáp",
+      title: "Dịch vụ",
+      redirect_link: PATH_PAGE.user.tab4,
+    },
+    {
+      title: "Liên hệ",
       redirect_link: PATH_PAGE.user.tab4,
     },
   ];
   //components
-  const Logo = () => {
-    return (
-      <Box className="logo-wrapper">
-        <Box className="logo-container">
-          <img
-            onClick={() => handleGoToPage("/")}
-            alt=""
-            id="logo"
-            src="https://www.kimca.net/wp-content/uploads/2022/03/logo.png"
-          />
-        </Box>
-        <Box className="logo-para">
-          <p className="logo-title">
-            Kim Ca
-          </p>
-          <p className="mobile-view">
-            Tri thức huyền môn - Đạo giáo
-          </p>
-        </Box>
-      </Box>
-    );
-  };
   const MenuHeader = () => {
     const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
       <Box
@@ -106,7 +88,6 @@ const Header = () => {
         }}
       >
         {listMenu}
-        <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
       </Box>
     );
   };
@@ -116,14 +97,66 @@ const Header = () => {
     });
   };
 
+  const IntroductionHeader = () => {
+    const Logo = () => {
+      return (
+        <Box className="logo-wrapper">
+          <Box className="logo-container">
+            <img
+              onClick={() => handleGoToPage("/")}
+              alt=""
+              id="logo"
+              src="https://www.kimca.net/wp-content/uploads/2022/03/logo.png"
+            />
+          </Box>
+          <Box className="logo-para">
+            <p className="logo-title">Kim Ca</p>
+            <p className="mobile-view">Tri thức huyền môn - Đạo giáo</p>
+          </Box>
+        </Box>
+      );
+    };
+
+    const Search = () => {
+      return <Box>
+        <input placeholder="Bạn muốn tìm kiếm gì"></input>
+        <Button>Tìm kiếm</Button>
+      </Box>;
+    };
+
+    const PhoneService = () => {
+      return <Box>
+        <p>Tư vấn dịch vụ</p>
+        <Box>
+          <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+          <p>0972158989</p>
+        </Box>
+      </Box>;
+    };
+
+    const Cart = () => {
+      return <Box>
+        <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
+        <p>Giỏ hàng</p>
+      </Box>;
+    };
+
+    return (
+      <Box className="introduction-header-container">
+        <Logo></Logo>
+        <Search></Search>
+        <PhoneService></PhoneService>
+        <Cart></Cart>
+      </Box>
+    );
+  };
+
   //export components
   return (
-    <Container
-      className="header-container"
-      disableGutters
-      maxWidth={false}
-    >
-      <div className="icon-menu">
+    <Container className="header-container" disableGutters maxWidth={false}>
+      <IntroductionHeader></IntroductionHeader>
+      <MenuHeader></MenuHeader>
+      {/* <div className="icon-menu">
         <Button
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
@@ -151,13 +184,13 @@ const Header = () => {
             </MenuItem>
           ))}
           <MenuItem>
-            <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
+            
           </MenuItem>
         </Menu>
       </div>
       <Logo></Logo>
       <MenuHeader />
-      <FontAwesomeIcon className="search-mobile-icon" icon={faSearch}></FontAwesomeIcon>        
+      <FontAwesomeIcon className="search-mobile-icon" icon={faSearch}></FontAwesomeIcon>         */}
     </Container>
   );
 };
