@@ -32,8 +32,77 @@ interface Service {
 
 export default function Home() {
   //datas
-  const [listPosts, setListPosts] = useState<Post[]>([]);
-  const [listPriorityPosts, setListPriorityPosts] = useState<Post[]>([]);
+  const [listPosts, setListPosts] = useState<Post[]>([{
+    titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+    title: "Bai viet 1",
+    author: "Kim Ca",
+    type: 1,
+    content: "abc",
+    id: 1,
+    createAt: "abc",
+    introduction: "abc",
+  },
+  {
+    titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+    title: "Bai viet 1",
+    author: "Kim Ca",
+    type: 1,
+    content: "abc",
+    id: 1,
+    createAt: "abc",
+    introduction: "abc",
+  },
+  {
+    titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+    title: "Bai viet 1",
+    author: "Kim Ca",
+    type: 1,
+    content: "abc",
+    id: 1,
+    createAt: "abc",
+    introduction: "abc",
+  },{
+    titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+    title: "Bai viet 1",
+    author: "Kim Ca",
+    type: 1,
+    content: "abc",
+    id: 1,
+    createAt: "abc",
+    introduction: "abc",
+  }]);
+  const [listPriorityPosts, setListPriorityPosts] = useState<Post[]>([
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "abc",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "abc",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "abc",
+    }
+  ]);
   const route = useRouter();
   const listServices: Service[] = [
     {
@@ -283,21 +352,26 @@ export default function Home() {
 
   const Intro = () => {
     return (
-      <Box className="intro-container">
-        <Box className="intro-content-container">
-          <p className="intro-content-title">
-            Giới thiệu
-          </p>
-          <p className="intro-content-para">
-            Xin chào! Tôi là Kim Ca, tên thật là Lê Thanh Cần, một Phật tử theo Kim Cương Thừa. Một người chuyên nghiên cứu mệnh lý và ứng dụng tiềm năng con người. Tôi đam mê với những bộ môn nghiên cứu Số Mệnh, vậy bản chất Số Mệnh là gì?<br></br><br></br>
-            Số Mệnh chính là sự định vị của con người về giàu nghèo, sang hèn, thọ yểu,  hạnh phúc hay đau khổ. Tại sao có người cuộc đời của họ rất may mắn, tại sao có người cuộc đời của họ dù rất có năng lực và tài trí mà lại chẳng thể có được địa vị cao? Tại sao có người sinh ra đã ngậm “thìa vàng”, còn có người sinh ra đã có nhiều bất hạnh? đó là Số Mệnh vậy.
-          </p>
-          <Button className="intro-content-button">Xem thêm</Button>
+      <Box className="intro-home-page-wrapper">
+        <Box className="intro-container">
+          <Box className="intro-image-container">
+            <img src="https://www.kimca.net/wp-content/uploads/2021/07/vanmenh-500x300.jpg"/>
+          </Box>
+          <Box className="intro-content-container">
+            <p className="intro-content-title">
+              Giới thiệu
+            </p>
+            <p className="intro-content-para">
+              Xin chào! Tôi là Kim Ca, tên thật là Lê Thanh Cần, một Phật tử theo Kim Cương Thừa. Một người chuyên nghiên cứu mệnh lý và ứng dụng tiềm năng con người. Tôi đam mê với những bộ môn nghiên cứu Số Mệnh, vậy bản chất Số Mệnh là gì?<br></br><br></br>
+              Số Mệnh chính là sự định vị của con người về giàu nghèo, sang hèn, thọ yểu,  hạnh phúc hay đau khổ. Tại sao có người cuộc đời của họ rất may mắn, tại sao có người cuộc đời của họ dù rất có năng lực và tài trí mà lại chẳng thể có được địa vị cao? Tại sao có người sinh ra đã ngậm “thìa vàng”, còn có người sinh ra đã có nhiều bất hạnh? đó là Số Mệnh vậy.
+            </p>
+            <Button className="intro-content-button">Xem thêm</Button>
+          </Box>
+          
         </Box>
-        <Box className="intro-image-container">
-          <img src="https://www.kimca.net/wp-content/uploads/2021/07/vanmenh-500x300.jpg"/>
-        </Box>
+        <ListServices></ListServices>
       </Box>
+      
     )
   }
 
@@ -370,9 +444,7 @@ export default function Home() {
       <Box className="home-page-content " sx={{ width: "100vw" }}>
         <ListPosts></ListPosts>
         <Intro></Intro>
-        <ListServices></ListServices>
         <ListCourses></ListCourses>
-        
       </Box>
     </Page>
   );

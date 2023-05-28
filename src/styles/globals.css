@@ -237,12 +237,9 @@ body {
   font-size: 40px;
 }
 .cart-shopping_header {
-  background-color: transparent;
   padding: 10px;
-  padding-right: 50px;
   border-radius: 100px;
   color: white;
-  font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -867,8 +864,8 @@ h1{    transition: all 0.3s linear;}
 }
 
 #cart-shopping-iconn {
-  font-size: 20px;
-  color: black;
+  font-size: 40px;
+  color: white;
 }
 
 #delete-cart-item {
@@ -880,33 +877,6 @@ h1{    transition: all 0.3s linear;}
   cursor: pointer;
 }
 
-
-.logo-wrapper {
- height: 55px;
- display: flex;
- flex-direction: row;
- justify-content: flex-start;
- align-items: center;
- @media (min-width: 1300px) {
-  width: 410px;
- }
-}
-
-.logo-container {
-  width: 20px;
-  height: 20px;
-  @media (min-width: 1300px) {
-    width: 60px;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    overflow: hidden;
-  }
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-}
 
 #logo {
   width: 55px;

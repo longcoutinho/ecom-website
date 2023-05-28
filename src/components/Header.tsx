@@ -118,24 +118,24 @@ const Header = () => {
     };
 
     const Search = () => {
-      return <Box>
-        <input placeholder="Bạn muốn tìm kiếm gì"></input>
-        <Button>Tìm kiếm</Button>
+      return <Box className="search-wrapper">
+        <input className="search-input" placeholder="Bạn muốn tìm kiếm gì"></input>
+        <Button className="search-button">Tìm kiếm</Button>
       </Box>;
     };
 
     const PhoneService = () => {
-      return <Box>
+      return <Box className="phone-service-wrapper">
         <p>Tư vấn dịch vụ</p>
-        <Box>
-          <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+        <Box className="phone-service-content">
+          <FontAwesomeIcon className="phone-icon" icon={faPhone}></FontAwesomeIcon>
           <p>0972158989</p>
         </Box>
       </Box>;
     };
 
     const Cart = () => {
-      return <Box>
+      return <Box className="cart-wrapper">
         <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
         <p>Giỏ hàng</p>
       </Box>;
