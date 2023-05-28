@@ -204,27 +204,6 @@ export default function Home() {
     return res;
   }
 
-  const ListCourses = () => {
-    return (
-      <Box className="list-courses-container">
-        <Box className="list-courses-image-container">
-          <img src="https://www.kimca.net/wp-content/uploads/2022/03/Five-Elements.png"/>
-        </Box>
-        <Box className="list-courses-content-container">
-          <p className="title-top-home-page">Khóa Học</p>
-          <p className="title-bottom-home-page">Tử Vi Chân Nguyên</p>
-          <p style={{marginTop: "30px", textRendering: "optimizeLegibility", color: "#211d1d"}}>Không cần học an sao, lịch pháp, Can Chi, Nạp Âm vì những thứ này đã có các App lập lá số rồi.<br></br>
-            Không cần học lý thuyết dài dòng, rườm rà, phức tạp, xa rời thực tế cuộc sống vì không có tác dụng gì trong luận đoán.<br></br>
-            Kiến thức được hệ thống dễ học, dễ nhớ dựa trên nền tảng Âm Dương Ngũ Hành và các đồ hình theo thế đứng Tử Vi.<br></br>
-            Bài giảng bám sát việc luận đoán thực tế dựa trên chính kinh nghiệm nhiều năm xem Tử Vi của thầy Kim Ca.<br></br>
-            Tài liệu học Tử Vi đầy đủ có file do chính Kim Ca biên soạn dựa trên các sách gốc Tử Vi bằng tiếng Trung thời xưa.<br></br><br></br>
-            Mục tiêu khóa học: Không phân biệt người mới học hay học lâu năm đều có thể theo học. Không phân biệt cơ bản hay nâng cao vì quan trọng nhất vẫn là kết quả luận đoán chính xác.</p>
-          <Button className="intro-content-button">Xem thêm</Button>
-        </Box>
-      </Box>
-    )
-  };
-
   const ListPosts = () => {
     const PostTitle = (props: any) => {
       return (
@@ -375,6 +354,36 @@ export default function Home() {
     )
   }
 
+  const IntroCourses = () => {
+    return (
+      <Box className="intro-courses-wrapper">
+        <Box className="intro-courses-container">
+          <Box className="intro-content-container">
+            <p className="intro-content-title">
+              KHÓA HỌC: TỬ VI CHÂN NGUYÊN
+            </p>
+            <p className="intro-content-para">
+            Không cần học an sao, lịch pháp, Can Chi, Nạp Âm vì những thứ này đã có các App lập lá số rồi.<br></br>
+            Không cần học lý thuyết dài dòng, rườm rà, phức tạp, xa rời thực tế cuộc sống vì không có tác dụng gì trong
+            luận đoán.<br></br>
+            Kiến thức được hệ thống dễ học, dễ nhớ dựa trên nền tảng Âm Dương Ngũ Hành và các đồ hình theo thế
+            đứng Tử Vi.<br></br>
+            Bài giảng bám sát việc luận đoán thực tế dựa trên chính kinh nghiệm nhiều năm xem Tử Vi của thầy Kim Ca.<br></br>
+            Tài liệu học Tử Vi đầy đủ có file do chính Kim Ca biên soạn dựa trên các sách gốc Tử Vi bằng tiếng Trung
+            thời xưa.
+            </p>
+            <Button className="intro-content-button">Xem thêm</Button>
+          </Box>
+          <Box className="intro-image-container">
+            <img src="https://www.kimca.net/wp-content/uploads/2021/07/vanmenh-500x300.jpg"/>
+          </Box>
+        </Box>
+        <ListCourses></ListCourses>
+      </Box>
+      
+    )
+  }
+
   const ListServices = () => {
     const options = {
       slidesPerView: 1,
@@ -390,13 +399,13 @@ export default function Home() {
           slidesPerView: 2,
         },
         1300: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
         1600: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
         1900: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
       },
     };
@@ -409,16 +418,17 @@ export default function Home() {
             </Box>
             <p style={{marginTop: "1em", fontWeight: "normal", fontSize: "1.563em"}}>{service.title}</p>
             <p style={{marginTop: "1em", fontWeight: "normal", lineHeight: "1.5", textAlign: "center"}}>{service.content}</p>
+            <Button>Tư Vấn Ngay</Button>
           </Box>  
-          <Button>Tư Vấn Ngay</Button>
+          
         </SwiperSlide>
     ));
 
     return (
       <Box className="list-services-container">
         <Box className="list-services-title-container">
-          <p className="title-top-home-page">Dịch Vụ Tư Vấn</p>
-          <p className="title-bottom-home-page">Luận Mệnh Lý Và Khám Phá Tiềm Năng Con Người</p>
+          <p className="title-top-home-page">DỊCH VỤ TƯ VẤN:</p>
+          <p style={{marginLeft: '10px'}}>Luận Mệnh Lý Và Khám Phá Tiềm Năng Con Người</p>
         </Box>
         <Box className="list-services-content-container">
           <Swiper
@@ -439,12 +449,167 @@ export default function Home() {
     )
   }
 
+  const ListCourses = () => {
+    const options = {
+      slidesPerView: 1,
+      spaceBetween: 50,
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+        },
+        690: {
+          slidesPerView: 2,
+        },
+        1100: {
+          slidesPerView: 2,
+        },
+        1300: {
+          slidesPerView: 4,
+        },
+        1600: {
+          slidesPerView: 4,
+        },
+        1900: {
+          slidesPerView: 4,
+        },
+      },
+    };
+
+    const ListServicesSlide = listServices.map((service, index) => (
+        <SwiperSlide key={index} className="swiper-slide-featured-news">
+          <Box className="swiper-slide-featured-news-content">
+            <Box className="swiper-slide-featured-news-image">
+              <img id="swiper-slide-image" src={service.img}/>
+            </Box>
+            <p style={{marginTop: "1em", fontWeight: "normal", fontSize: "1.563em"}}>{service.title}</p>
+            <p style={{marginTop: "1em", fontWeight: "normal", lineHeight: "1.5", textAlign: "center"}}>{service.content}</p>
+            <Button>Xem Ngay</Button>
+          </Box>  
+          
+        </SwiperSlide>
+    ));
+
+    return (
+      <Box className="list-services-container">
+        <Box className="list-services-title-container">
+          <p className="title-top-home-page">HÌNH ẢNH CÂU LẠC BỘ/ KHÓA HỌC TỬ VI CHÂN NGUYÊN</p>
+          <p style={{marginLeft: '10px'}}></p>
+        </Box>
+        <Box className="list-services-content-container">
+          <Swiper
+            className="list-services-content-swiper"
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            {...options}
+            navigation
+            pagination={{ clickable: true }}
+            onSwiper={(swiper: any) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+          >
+            {ListServicesSlide}
+            
+          </Swiper>
+        </Box>
+      </Box>
+    )
+  }
+
+  const ListItems = () => {
+    const options = {
+      slidesPerView: 1,
+      spaceBetween: 50,
+      breakpoints: {
+        300: {
+          slidesPerView: 1,
+        },
+        690: {
+          slidesPerView: 2,
+        },
+        1100: {
+          slidesPerView: 2,
+        },
+        1300: {
+          slidesPerView: 4,
+        },
+        1600: {
+          slidesPerView: 4,
+        },
+        1900: {
+          slidesPerView: 4,
+        },
+      },
+    };
+
+    const ListServicesSlide = listServices.map((service, index) => (
+        <SwiperSlide key={index} className="swiper-slide-featured-news">
+          <Box className="swiper-slide-featured-news-content">
+            <Box className="swiper-slide-featured-news-image">
+              <img id="swiper-slide-image" src={service.img}/>
+            </Box>
+            <p style={{marginTop: "1em", fontWeight: "normal", fontSize: "1.563em"}}>{service.title}</p>
+            <p style={{marginTop: "1em", fontWeight: "normal", lineHeight: "1.5", textAlign: "center"}}>{service.content}</p>
+            <Button>Xem Ngay</Button>
+          </Box>  
+          
+        </SwiperSlide>
+    ));
+
+    return (
+      <Box className="list-services-container">
+        <Box className="list-services-content-container">
+          <Swiper
+            className="list-services-content-swiper"
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            {...options}
+            navigation
+            pagination={{ clickable: true }}
+            onSwiper={(swiper: any) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+          >
+            {ListServicesSlide}
+            
+          </Swiper>
+        </Box>
+      </Box>
+    )
+  }
+
+  const IntroItems = () => {
+    return (
+      <Box className="list-items-wrapper">
+        <Box className="list-items-title-container">
+          <p>Vật phẩm &quot;Hot&quot; chiêu tài</p>
+        </Box>
+        <Box className="list-items-content-container">
+          <ListItems></ListItems>
+        </Box>
+      </Box>  
+    )
+  }
+
+  const Register = () => {
+    return (
+      <Box>
+        <Box>
+          <p>Đăng ký tư vấn</p>
+          <input type="text" placeholder="Họ và tên"></input>
+          <input type="text" placeholder="Số điện thoại"></input>
+          <input type="text" placeholder="Địa chỉ"></input>
+          <Button>Đăng ký</Button>
+        </Box>
+      </Box>
+    )
+  }
+
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="home-page-content " sx={{ width: "100vw" }}>
         <ListPosts></ListPosts>
         <Intro></Intro>
-        <ListCourses></ListCourses>
+        <IntroCourses></IntroCourses>
+        <IntroItems></IntroItems>
+        <Register></Register>
       </Box>
     </Page>
   );

@@ -1,4 +1,6 @@
 @import '../responsive.scss';
+$base-color: rgb(0,32,96);
+
 
 .home-page-content {
     width: 100%;
@@ -25,16 +27,13 @@
   }
     .intro-home-page-wrapper {
         width: 100%;
-        height: 500px;
         display: flex;
         flex-direction: column;
         .intro-container {
             width: 100%;
-            height: 60%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
             border: 2px solid blue;
             padding: 15px;
             @media (min-width: 1024px) {
@@ -116,23 +115,29 @@
 
     .list-services-container {
         width: 100%;
-        height: 600px;
         display: flex;
         flex-direction: column;
-        margin-top: 30px;
         .list-services-title-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             width: 100%;
-            height: 20%;
-            align-items: center;
-            justify-content: center;
+            padding: 10px;
+            
+            .title-top-home-page {
+                border-bottom: 2px solid $base-color;
+            }
+
+            p {
+                color: $base-color;
+                font-weight: 700;
+                font-size: 25px;
+                
+            }
         }
 
         .list-services-content-container {
             height: 80%;
             width: 100%;
-
             .list-services-content-swiper {
                 height: 100%;
                 width: 100%;
@@ -153,7 +158,7 @@
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
-                                padding: 30px 60px 0px 60px;
+                                padding: 20px 20px 0px 20px;
                                 border-radius: 15px;
                                 overflow: hidden;
                                 background-image: url(https://www.kimca.net/wp-content/themes/jnews-child/images/clouds.png);
@@ -164,11 +169,12 @@
                             .swiper-slide-featured-news-image {
                                 width: 100%;
                                 height: 60%;
-                                
+                                border-radius: 20px;
+                                overflow: hidden;
                                 
                                 #swiper-slide-image {
                                     width: 100%;
-                                    height: 250px;
+                                    height: 200px;
                                     object-fit: cover;
                                 }
 
@@ -195,70 +201,94 @@
         
     }
 
-    .list-courses-container {
-        height: fit-content;
+    .intro-courses-wrapper {
         width: 100%;
         display: flex;
-        flex-direction: row;
-        margin-top: 50px;
-        @include mobile-large{
-            flex-direction: column;
-        }
-        @include mobile{
-            flex-direction: column;
-        }
-        .list-courses-image-container {
-            width: 50%;
-            height: 100%;
+        flex-direction: column;
+        .intro-courses-container {
+            width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 0;
-            border-radius: 15px;
-            overflow: hidden;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 2px solid blue;
+            padding: 15px;
+            @media (min-width: 1024px) {
+                margin-top: 50px;
+            }
             @include mobile-large{
-                width: 100%;
+                flex-direction: column;
             }
             @include mobile{
-                width: 100%;
+                flex-direction: column;
             }
-            img {
-                width: 100%;
-                height: 500px;
-                object-fit: cover;
-                @media (max-width: 500px) {
-                    height: 300px;
+            .intro-content-container {
+                margin-left: 30px;
+                height: 100%;
+                width: 75%;
+                display: flex;
+                flex-direction: column;
+                @include mobile-large{
+                    width: 100%;
+                }
+                @include mobile{
+                    width: 100%;
+                }
+                .intro-content-title {
+                    font-weight:normal;
+                    color:#f70d28;
+                    font-size: 20px;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                }
+
+                .intro-content-para {
+                    margin-top: 25px;
+                    color: blue;
+                    vertical-align: baseline;
+                    font-size: 14px;
+                    text-rendering: optimizeLegibility;
+                    font-weight: 500;
+                    font-style: italic;
+                }
+
+                .intro-content-button {
+                    margin: 0 auto;
+                    margin-top: 20px;
+                    width: 100px;
+                    height: 45px;
+                    border: 2px solid #08c;
+                    border-radius: 2em;
+                    text-transform: none;
+                }
+            }
+
+            .intro-image-container {
+                height: 250px;
+                width: 250px;
+                border-radius: 30px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include mobile-large{
+                    width: 100%;
+                    padding: 20px;
+                }            
+                @include mobile{
+                    width: 100%;
+                    margin: 0;
+                    margin-top: 0px;
+                    padding: 20px;
+                }            
+                img {
+                    width: 100%;
+                    height: 500px;
                     object-fit: cover;
                 }
             }
         }
 
-        .list-courses-content-container {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            
-            padding: 30px;
-            @include mobile-large{
-                width: 100%;
-                padding: 30px 0;
-            }
-            @include mobile{
-                padding: 30px 0;
-                width: 100%;
-            }
-            button {
-                margin-top: 20px;
-                width: 100px;
-                height: 45px;
-                border: 2px solid #08c;
-                border-radius: 2em;
-                text-transform: none;
-            }
-        }
+
 
     }
     .list-posts-home-page-container {
