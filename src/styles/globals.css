@@ -893,11 +893,6 @@ h1{    transition: all 0.3s linear;}
   color: black;
 }
 
-.menu-item p {
-  color: black;
-  text-transform: uppercase;
-}
-
 .title-top-home-page {
   font-size: 18px;
   color: #f70d28;
@@ -906,25 +901,6 @@ h1{    transition: all 0.3s linear;}
     font-size: 18px;
     color: #f70d28;
     font-weight: normal;
-  }
-}
-
-.title-bottom-home-page {
-  line-height: 1.1em;
-  font-size: 20px;
-  color: #212121;
-  font-weight: normal;
-  font-weight: 700;
-  letter-spacing: -.04em;
-  text-align: center;
-  @media (min-width: 1300px) {
-    line-height: 1.1em;
-    font-size: 36px;
-    color: #212121;
-    font-weight: normal;
-    font-weight: 700;
-    letter-spacing: -.04em;
-    text-align: center;
   }
 }
 
@@ -957,39 +933,12 @@ h1{    transition: all 0.3s linear;}
   }
 }
 
-.list-post-detail-element-para {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 20px 15px 0px 15px;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.first-posts-home-page {
-  position: relative;
-  height: 55%;
-  width: 100%;
-  overflow: hidden;
-}
-
 .second-and-third-posts-home-page {
   margin-top: 25px;
   height: 45%;
   width: 100%;
   display: flex;
   flex-direction: row;
-}
-
-.first-posts-home-page-image-wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 .list-posts-detail {
@@ -1000,26 +949,9 @@ h1{    transition: all 0.3s linear;}
   flex-direction: column;
 }
 
-.list-posts-detail-2 {
-  position: relative;
-  width: 30%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.list-posts-detail-2 {
-  margin-left: 25px;
-}
-
 .mini-first-posts-home-page {
   width: 100%;
   height: 70%;
   border-radius: 10px;
   overflow: hidden;
-}
-
-.underline-title {
-  border-image: linear-gradient(to right, red 15%, rgb(223, 222, 222) 0%) 2;
 }

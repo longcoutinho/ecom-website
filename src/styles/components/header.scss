@@ -1,8 +1,15 @@
+$base-color: rgb(0,32,96);
 .big-menu{
+  background-color: #F2F2F2;
+  padding: 10px;
     display:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 5px rgb(122, 122, 122);
     @media (min-width: 900px)  {
         display:flex;
-        height:50%;
         width: 100%;
     }
 }
@@ -34,8 +41,6 @@
   }
   @media (min-width: 1100px) {
     padding: 0px 20% 0px 20%;
-    height: 100px;
-    height: 200px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -43,7 +48,7 @@
   }
   .introduction-header-container {
     width: 100%;
-    height: 50%;
+    padding: 20px 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -53,7 +58,7 @@
       margin-left: 50px;
       width: auto;
       height: 80px;
-      background-color: gray;
+      background-color: #DDDDDD;
       padding: 2px;
       border-radius: 10px;
       display: flex;
@@ -92,28 +97,40 @@
         padding-left: 10px;
       }
       .search-button {
-        background-color: gray;
+        background-color: #E9EAEC;
         width: 100px;
         height: 100%;
-        margin-left: -10px;
+        margin-left: -15px;
+        border-radius: 10px;
+        color: #6B5A59;
+        text-transform: none;
+        font-size: 15px;
+        font-weight: 700;
       }
     }
     .phone-service-wrapper {
       background: transparent;
       display: flex;
       flex-direction: column;
-      border-radius: 30px;
-      padding: 15px;
+      border-radius: 50px;
+      padding: 10px 30px;
       p {
         color: white;
+        font-size: 20px;
       }
-      border: 2px solid gray;
+      border: 2px solid white;
       .phone-service-content {
         display: flex;
         flex-direction: row;
         align-items: center;
         .phone-icon {
-          color: white
+          color: white;
+          font-size: 25px;
+        }
+        p {
+          margin-left: 10px;
+          font-weight: 700;
+          font-size: 25px;
         }
       }
     }
@@ -127,4 +144,26 @@
     }
     
   }
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow:  -5px 0px rgb(233, 232, 232);
+  margin: 0px;
+}
+
+.menu-item:not(:first-child) {
+  margin-left: 10px;
+}
+
+.menu-item p {
+  text-align: center;
+  color: $base-color;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
 }

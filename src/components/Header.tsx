@@ -78,14 +78,6 @@ const Header = () => {
     return (
       <Box
         className="big-menu mobile-view"
-        sx={{
-          width: "100%",
-          height: "70%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
       >
         {listMenu}
       </Box>
@@ -119,14 +111,14 @@ const Header = () => {
 
     const Search = () => {
       return <Box className="search-wrapper">
-        <input className="search-input" placeholder="Bạn muốn tìm kiếm gì"></input>
+        <input className="search-input" placeholder="Bạn muốn tư vấn gì"></input>
         <Button className="search-button">Tìm kiếm</Button>
       </Box>;
     };
 
     const PhoneService = () => {
       return <Box className="phone-service-wrapper">
-        <p>Tư vấn dịch vụ</p>
+        <p>Tư vấn dịch vụ:</p>
         <Box className="phone-service-content">
           <FontAwesomeIcon className="phone-icon" icon={faPhone}></FontAwesomeIcon>
           <p>0972158989</p>
@@ -137,7 +129,7 @@ const Header = () => {
     const Cart = () => {
       return <Box className="cart-wrapper">
         <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
-        <p>Giỏ hàng</p>
+        <p style={{fontWeight: '700', fontSize: '17px'}}>Giỏ hàng</p>
       </Box>;
     };
 

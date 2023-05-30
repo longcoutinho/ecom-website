@@ -40,7 +40,7 @@ export default function Home() {
     content: "abc",
     id: 1,
     createAt: "abc",
-    introduction: "abc",
+    introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
   },
   {
     titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
@@ -68,7 +68,7 @@ export default function Home() {
     type: 1,
     content: "abc",
     id: 1,
-    createAt: "abc",
+    createAt: new Date().toDateString(),
     introduction: "abc",
   }]);
   const [listPriorityPosts, setListPriorityPosts] = useState<Post[]>([
@@ -79,8 +79,8 @@ export default function Home() {
       type: 1,
       content: "abc",
       id: 1,
-      createAt: "abc",
-      introduction: "abc",
+      createAt: new Date().toDateString(),
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
     },
     {
       titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
@@ -225,11 +225,12 @@ export default function Home() {
                     src={listPriorityPosts[0].titleImageUrlStream}
                     className="image-home-page" />
                 </Box>
-                  <Box className="list-post-detail-element-para full-height half-row">
-                    <Box sx={{}}>
-                      <h1 style={{ fontSize: "25px", color: "white", display: "inline-block", backgroundColor: "black", padding: "10px 10px"}} className="title-post-home">{listPriorityPosts[0].title}</h1>
+                  <Box className="list-post-detail-element-para">
+                    <Box className="title-post-home-wrapper">
+                      <h1 className="title-post-home">{listPriorityPosts[0].title}</h1>
                     </Box>
-                    <Box>
+                    <Box className="content-post-home-wrapper">
+                      <p>{listPriorityPosts[0].introduction}</p>
                       <p style={{ fontSize: "13px", color: "white", marginTop: "5px", marginBottom: "30px" }}>
                         {timeStampToDate(Date.parse(listPriorityPosts[0].createAt))}
                       </p>
@@ -301,8 +302,7 @@ export default function Home() {
       return (
         <Box className="list-posts-detail-2">
           <Box sx={{height: "10%", width: "100%"}}>
-            <p style={{fontSize: "20px", fontWeight: "700", margin: 0,
-    padding: 0}}>Bài viết nổi bật</p>
+            <p>Bài viết nổi bật</p>
             <Box sx={{borderTop: "2px solid black", marginTop: "10px"}} className="underline-title"></Box>
           </Box>
           <Box sx={{height: "90%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
