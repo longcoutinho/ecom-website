@@ -540,7 +540,7 @@ export default function Home() {
       },
     };
 
-    const ListServicesSlide = listServices.map((service, index) => (
+    const ListItemsSlide = listServices.map((service, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
           <Box className="swiper-slide-featured-news-content">
             <Box className="swiper-slide-featured-news-image">
@@ -555,10 +555,10 @@ export default function Home() {
     ));
 
     return (
-      <Box className="list-services-container">
-        <Box className="list-services-content-container">
+      <Box className="list-items-container">
+        <Box className="list-items-content-swiper-container">
           <Swiper
-            className="list-services-content-swiper"
+            className="list-items-content-swiper"
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             {...options}
@@ -567,7 +567,7 @@ export default function Home() {
             onSwiper={(swiper: any) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
           >
-            {ListServicesSlide}
+            {ListItemsSlide}
             
           </Swiper>
         </Box>
@@ -577,12 +577,14 @@ export default function Home() {
 
   const IntroItems = () => {
     return (
-      <Box className="list-items-wrapper">
-        <Box className="list-items-title-container">
-          <p>Vật phẩm &quot;Hot&quot; chiêu tài</p>
-        </Box>
-        <Box className="list-items-content-container">
-          <ListItems></ListItems>
+      <Box className="intro-items-wrapper">
+        <Box className="intro-items-container">
+          <Box className="list-items-title-container">
+            <p>Vật phẩm &quot;Hot&quot; chiêu tài</p>
+          </Box>
+          <Box className="list-items-content-container">
+            <ListItems></ListItems>
+          </Box>
         </Box>
       </Box>  
     )

@@ -742,12 +742,6 @@ h1{    transition: all 0.3s linear;}
   padding: 10px;
 }
 
-.list-items-wrapper {
-  margin-left: 0px;
-  width: 80%;
-  margin-left: 30px;
-}
-
 .btn-details-post {
   margin-top: 10px;
   width: 50%;
