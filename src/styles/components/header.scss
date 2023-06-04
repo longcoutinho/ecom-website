@@ -53,7 +53,7 @@ $base-color: rgba(0, 32, 96, 0.336);
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-image: url(https://images.pexels.com/photos/262325/pexels-photo-262325.jpeg?cs=srgb&dl=pexels-pixabay-262325.jpg&fm=jpg);
+    background-color: $base-color;
     .logo-wrapper {
       margin-left: 50px;
       width: auto;

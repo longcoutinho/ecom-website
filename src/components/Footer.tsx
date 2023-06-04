@@ -6,7 +6,7 @@ const Footer = () => {
     <Container disableGutters maxWidth={false} className="footer-container-page">
       <Box className="footer-container">
       <Box sx={{ padding: "20px 0" }}>
-        <h3 style={{ color: "#eb1b24", fontSize:'20px' }}>
+        <h3 style={{ color: "white", fontSize:'20px' }}>
           CÔNG TY TNHH TƯ VẤN PHONG THỦY LONG GIANG
         </h3>
       </Box>

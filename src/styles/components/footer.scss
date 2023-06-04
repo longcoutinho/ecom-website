@@ -1,23 +1,26 @@
-.footer-container-page{
+$base-color: rgb(0,32,96);
+.footer-container-page {
     width: 100vw;
-    background: #e5e5e5;
-}
-.footer-container{
-margin:0 auto;
     @media (min-width: 300px) {
         padding: 0px 30px ;
-    
-      }
-      @media (min-width: 480px) {
+
+    }
+    @media (min-width: 480px) {
         padding: 0px 50px ;
-        
-      }
-      @media (min-width: 900px) {
+
+    }
+    @media (min-width: 900px) {
         padding: 0px 90px ;
-      }
-      @media (min-width: 1024px) {
+    }
+    @media (min-width: 1024px) {
         padding: 0px 20% 0px 20%;
-      }
+    }
+}
+.footer-container{
+    padding: 0 20px;
+    background-color: $base-color;
+margin:0 auto;
+
 }
 .footer-item{
     display:flex;
@@ -57,7 +60,7 @@ margin:0 auto;
 }
 .primary-text{
     font-weight:600;
-    color:black;
+    color: $base-color;
 }
 .sub-text{
     color:gray;
