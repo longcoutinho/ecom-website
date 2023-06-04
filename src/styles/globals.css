@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import './editor.css';
 @import './Home.css';
-@import './components/footer.css';
 @import './pages/lapla.css';
 @import './pages/tintuc.css';
 @import './pages/cart.css';

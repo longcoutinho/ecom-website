@@ -637,7 +637,7 @@ export default function Home() {
             <input type="text" placeholder="Họ và tên"></input>
             <input type="text" placeholder="Số điện thoại"></input>
             <input type="text" placeholder="Địa chỉ"></input>
-            <Button>Đăng ký</Button>
+            <button>Đăng ký</button>
           </Box>
         </Box>
       </Box>
