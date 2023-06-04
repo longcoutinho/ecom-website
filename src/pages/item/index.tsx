@@ -1,21 +1,42 @@
-import { PAGE_TITLE } from "@/constants";
+import { PAGE_TITLE, listItems, listMenuItem } from "@/constants";
 import Page from "@/layouts";
-import { Box, Button, Input, Paper } from "@mui/material";
-import PaginationMui from '@mui/material/Pagination';
+import { Box, Button, Divider, Tab, Tabs } from "@mui/material";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import Image from "@/components/Image";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
-import {Item} from "../../interfaces/response"
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Scrollbar, A11y, Pagination, Autoplay } from "swiper";
+import { Item } from "../../interfaces/response";
+import React from "react";
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+function a11yProps(index: number) {
+  return {
+    id: `vertical-tab-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
+  };
+}
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
 
-
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
 export default function ItemComponent() {
   const [listPosts, setListPost] = useState<Item[]>([]);
   const [listFeaturedPosts, setListFeaturedPosts] = useState<Item[]>([]);
@@ -27,10 +48,13 @@ export default function ItemComponent() {
 
   const focusInput = () => {
     textInput.current.focus();
-  }
+  };
 
   useEffect(() => {
-    if (router.query.page !== undefined && router.query.pageSize !== undefined) {
+    if (
+      router.query.page !== undefined &&
+      router.query.pageSize !== undefined
+    ) {
       axios({
         method: "get",
         url: "http://10.248.158.167:1112/item",
@@ -64,17 +88,19 @@ export default function ItemComponent() {
   }, [router.query]);
 
   //datas
-  
+
   const redirectPagination = (page: string, pageSize: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
     router.push({
       pathname: "/item",
-      search: "?" + new URLSearchParams({ 
-        page: pageNumber.toString(),
-        pageSize: pageSize,
-        title: title
-       }),
+      search:
+        "?" +
+        new URLSearchParams({
+          page: pageNumber.toString(),
+          pageSize: pageSize,
+          title: title,
+        }),
     });
   };
 
@@ -83,53 +109,61 @@ export default function ItemComponent() {
     pageNumber--;
     router.push({
       pathname: "/item",
-      search: "?" + new URLSearchParams({ 
-        page: pageNumber.toString(),
-        pageSize: pageSize,
-        title: title,
-       }),
+      search:
+        "?" +
+        new URLSearchParams({
+          page: pageNumber.toString(),
+          pageSize: pageSize,
+          title: title,
+        }),
     });
-  }
+  };
 
   const paginationChange = (e: any) => {
     redirectPagination(e, 9);
-  }
+  };
 
   const searchPosts = (event: any) => {
-    if (event.key == 'Enter') {
+    if (event.key == "Enter") {
       console.log(event.key);
       console.log(event.target.value);
-      
-        setTitle(event.target.value);
-        redirectSearchInput("1", 9, event.target.value)
+
+      setTitle(event.target.value);
+      redirectSearchInput("1", 9, event.target.value);
     }
-  }
+  };
 
   const formatVND = (numPrice: number) => {
     if (numPrice != undefined) {
       var price = numPrice.toString();
       var len = price.length;
       var ind = len - 3;
-      while(ind > 0) {
+      while (ind > 0) {
         price = price.substring(0, ind) + "." + price.substring(ind, len);
         len++;
         ind -= 3;
       }
-      return price + "đ";
+      return price + " VND";
     }
     return "0đ";
-  }
+  };
 
   const handleChangeInput = (e: any) => {
     setTitle(e.target.value);
-  }
+  };
 
   const SearchInput = () => {
     return (
-      <Box
-        className="search-input full-width center flex-row"
-      >
-        <input autoFocus value={title} onChange={handleChangeInput} className="list-posts-input-content" onKeyDown={searchPosts} placeholder="Nội dung tìm kiếm" ref={textInput}/>
+      <Box className="search-input full-width center flex-row">
+        <input
+          autoFocus
+          value={title}
+          onChange={handleChangeInput}
+          className="list-posts-input-content"
+          onKeyDown={searchPosts}
+          placeholder="Nội dung tìm kiếm"
+          ref={textInput}
+        />
       </Box>
     );
   };
@@ -140,17 +174,11 @@ export default function ItemComponent() {
       search: "?" + new URLSearchParams({ id: id }),
     });
   };
-
-
   const ListPosts = () => {
-    
-
     const ListPostComponents = (props: any) => {
       return (
-        <Box
-          className="list-posts-container"
-        >
-          {listPosts.map((item, index) => {
+        <Box className="list-posts-container">
+          {listItems.map((item, index) => {
             return (
               <Box
                 onClick={() => redirect(item.id)}
@@ -165,45 +193,76 @@ export default function ItemComponent() {
                       src={item.titleImageUrlStream}
                     />
                   </Box>
-                  <Box
-                    className="list-posts-content"
-                  >
-                    <h1 style={{ fontSize: "20px", fontWeight: "700px"}} className="title-list-item-home">
+                  <Box className="list-posts-content">
+                    <h1
+                      style={{
+                        fontSize: "20px",
+                        fontWeight: "700px",
+                        color: "blue",
+                      }}
+                      className="title-list-item-home"
+                    >
                       {item.title}
                     </h1>
+                    <Divider />
                     <p
                       className="content-post"
-                      style={{ fontSize: "17px", color: "#777777", marginTop: "0px"}}
+                      style={{
+                        fontSize: "18px",
+                        color: "#f70d28",
+                        margin: "8px 0",
+                        width: "100%",
+                      }}
                     >
                       {formatVND(item.price)}
                     </p>
+                    <div className="item-desciption">
+                      <p>Mô tả:</p>
+                      <p>{item.introduction}</p>
+                    </div>
                   </Box>
                 </Box>
-                <Button className="btn-details-post">Xem chi tiết</Button>
+                <Button className="btn-details-post">Đặt mua</Button>
               </Box>
             );
           })}
         </Box>
       );
     };
+    const [value, setValue] = React.useState(0);
 
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+      setValue(newValue);
+    };
     return (
       <Box className="list-item-content">
         <Box className="list-item-search-container">
-          <SearchInput></SearchInput>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            visibleScrollbar={false}
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
+            sx={{ borderRight: 1, borderColor: "divider" }}
+          >
+            {listMenuItem.map((item, index) => (
+              <Tab key={index} label={item} {...a11yProps(index)} />
+            ))}
+          </Tabs>
         </Box>
         <Box
-        className="list-items-wrapper"
-        sx={{
-          padding: "0",
-          flexGrow: 1,
-        }}
-      >
-        <ListPostComponents />
-        <PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>
+          className="list-items-wrapper"
+          sx={{
+            padding: "0",
+            flexGrow: 1,
+          }}
+        >
+          <TabPanel value={value} index={0}>
+            <ListPostComponents />
+          </TabPanel>
+        </Box>
       </Box>
-      </Box>
-      
     );
   };
 
@@ -223,62 +282,20 @@ export default function ItemComponent() {
       );
     });
     return (
-      <Box sx={{ height: "50px", paddingTop:'30px' }} className="flex-row full-width center">
+      <Box
+        sx={{ height: "50px", paddingTop: "30px" }}
+        className="flex-row full-width center"
+      >
         {ListMenuPostComponent}
       </Box>
     );
   };
   return (
-    <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width">
-        <Box
-          className="header-content full-width flex-row"
-          sx={{
-            position: "relative",
-            padding: "0px 200px 70px 200px",
-            height: "350px",
-            backgroundSize: "cover",
-            backgroundImage:
-              'url("http://hongkyfengshui.vn/vnt_upload/weblink/slide_1.jpg")',
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            zIndex: -1,
-          }}
-        >
-          <Box
-            className="flex-col center full-width full-height"
-            sx={{ color: "white" }}
-          >
-            <p
-              style={{
-                textTransform: "uppercase",
-                fontSize: "30px",
-                marginTop: "70px",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "30px",
-                  padding: "10px 30px 10px 30px",
-                  border: "2px solid white",
-                }}
-              >
-                Sản phẩm
-              </span>
-            </p>
-          </Box>
-        </Box>
-        <div className="width-full" style={{backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.1) , rgba(0, 0, 0, 0.7) 60px, rgba(0, 0, 0, 0.99) 107px)  ",
-            backgroundClip: "padding-box",}}>
-        <Box
-          className="body-content_home"
-          
-        >
-          <MenuPostComponent></MenuPostComponent>
+    <Page title={PAGE_TITLE.HOME} menuIndex={1}>
+      <Box className="home-page-content " sx={{ width: "100vw" }}>
+        <Box className="body-content_home">
           <ListPosts></ListPosts>
         </Box>
-        </div>
       </Box>
     </Page>
   );
