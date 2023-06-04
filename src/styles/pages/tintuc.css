@@ -14,6 +14,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    background:white;
+    padding: 0.4em 1.2em;
+    border-radius:24px;
+    border: 3px solid #f70d28;
+    font-weight:700;
 
     @supports (-webkit-line-clamp: 5) {
       overflow: hidden;
@@ -23,6 +28,9 @@
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
     }
+}
+.item-desciption{
+    width:100%;
 }
 .content-post-hightlight{
     @supports (-webkit-line-clamp: 3) {

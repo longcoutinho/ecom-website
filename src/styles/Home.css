@@ -146,9 +146,8 @@
   } 
 }
 .body-content_home{
-max-width: 1440px;
-margin:0 auto;
-  @media (min-width: 300px) {
+width:100%;
+  /* @media (min-width: 300px) {
     padding: 0px 300px ;
 
   }
@@ -162,7 +161,7 @@ margin:0 auto;
   }
   @media (min-width: 1024px) {
     padding: 0px 160px 30px 160px;
-  }
+  } */
 }
 .list-courses-content{
   display:flex;
@@ -202,7 +201,7 @@ width:33.3%;
 }
 
 .title-list-item-home {
-  color: white;
+  /* color: white; */
   display: block;/* or inline-block */
   text-overflow: ellipsis;
   word-wrap: break-word;

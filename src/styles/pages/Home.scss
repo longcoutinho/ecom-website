@@ -23,7 +23,7 @@ $base-color: rgb(0,32,96);
     margin-top: 70px;
   }
   @media (min-width: 1024px) {
-    padding: 0px 20% 50px 20%;
+    padding: 0px 14% 50px 14%;
   }
     .intro-home-page-wrapper {
         padding: 0px 20px;
@@ -35,7 +35,7 @@ $base-color: rgb(0,32,96);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            border: 2px solid blue;
+            border: 2px solid var(--item-blue);
             padding: 15px;
             @media (min-width: 1024px) {
                 margin-top: 50px;
@@ -68,7 +68,7 @@ $base-color: rgb(0,32,96);
 
                 .intro-content-para {
                     margin-top: 25px;
-                    color: blue;
+                    color: var(--item-blue);
                     vertical-align: baseline;
                     font-size: 14px;
                     text-rendering: optimizeLegibility;
@@ -218,7 +218,7 @@ $base-color: rgb(0,32,96);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            border: 2px solid blue;
+            border: 2px solid var(--item-blue);
             padding: 15px;
             @media (min-width: 1024px) {
                 margin-top: 50px;
@@ -251,7 +251,7 @@ $base-color: rgb(0,32,96);
 
                 .intro-content-para {
                     margin-top: 25px;
-                    color: blue;
+                    color: var(--item-blue);
                     vertical-align: baseline;
                     font-size: 14px;
                     text-rendering: optimizeLegibility;
