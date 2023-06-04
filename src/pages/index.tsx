@@ -1,4 +1,5 @@
 import { PAGE_TITLE } from "@/constants";
+import "@/constants/FnCommon";
 import Page from "@/layouts";
 import { Box, Button, Divider } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +16,7 @@ import { useEffect, useState } from "react";
 import { URL, POSTS_SERVICE, ITEM_SERVICE } from "../constants";
 import axios from "axios";
 import { useRouter } from "next/router";
+import {formatVND} from "@/constants/FnCommon";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
@@ -71,6 +73,35 @@ export default function Home() {
     createAt: new Date().toDateString(),
     introduction: "abc",
   }]);
+
+  const [listItems, setListItems] = useState<Item[]>([{
+    titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+    title: "Cá chép hóa rồng",
+    id: 1,
+    price: 3500000,
+    introduction: "abc",
+  },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      id: 1,
+      price: 3500000,
+      introduction: "abc",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      id: 1,
+      price: 3500000,
+      introduction: "abc",
+    },{
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      id: 1,
+      price: 3500000,
+      introduction: "abc",
+    }]);
+
   const [listPriorityPosts, setListPriorityPosts] = useState<Post[]>([
     {
       titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
@@ -517,7 +548,7 @@ export default function Home() {
   const ListItems = () => {
     const options = {
       slidesPerView: 1,
-      spaceBetween: 50,
+      spaceBetween: 20,
       breakpoints: {
         300: {
           slidesPerView: 1,
@@ -540,15 +571,20 @@ export default function Home() {
       },
     };
 
-    const ListItemsSlide = listServices.map((service, index) => (
+    const ListItemsSlide = listItems.map((item, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
-          <Box className="swiper-slide-featured-news-content">
+          <Box className="swiper-slide-featured-news-content-items">
             <Box className="swiper-slide-featured-news-image">
-              <img id="swiper-slide-image" src={service.img}/>
+              <img id="swiper-slide-image" src={item.titleImageUrlStream}/>
             </Box>
-            <p style={{marginTop: "1em", fontWeight: "normal", fontSize: "1.563em"}}>{service.title}</p>
-            <p style={{marginTop: "1em", fontWeight: "normal", lineHeight: "1.5", textAlign: "center"}}>{service.content}</p>
-            <Button>Xem Ngay</Button>
+            <p className="swiper-slide-items-name">{item.title}</p>
+            <Box className="swiper-slide-items-price-wrapper">
+              <p>{formatVND(item.price)}</p>
+            </Box>
+            <Box className="swiper-slide-items-introduction-wrapper">
+              <p>Mô tả:<br></br> {item.introduction}</p>
+            </Box>
+            <Button>Đặt mua</Button>
           </Box>  
           
         </SwiperSlide>
@@ -592,13 +628,17 @@ export default function Home() {
 
   const Register = () => {
     return (
-      <Box>
-        <Box>
-          <p>Đăng ký tư vấn</p>
-          <input type="text" placeholder="Họ và tên"></input>
-          <input type="text" placeholder="Số điện thoại"></input>
-          <input type="text" placeholder="Địa chỉ"></input>
-          <Button>Đăng ký</Button>
+      <Box className="register-home-page-wrapper">
+        <Box className="form-register-wrapper">
+          <Box className="form-register-title-container">
+            <p>Đăng ký tư vấn</p>
+          </Box>
+          <Box className="form-register-content-container">
+            <input type="text" placeholder="Họ và tên"></input>
+            <input type="text" placeholder="Số điện thoại"></input>
+            <input type="text" placeholder="Địa chỉ"></input>
+            <Button>Đăng ký</Button>
+          </Box>
         </Box>
       </Box>
     )

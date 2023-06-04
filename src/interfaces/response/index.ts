@@ -16,4 +16,5 @@ export interface Item {
   title: string,
   price: number,
   titleImageUrlStream: string,
+  introduction: string,
 }
