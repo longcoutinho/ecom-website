@@ -18,3 +18,10 @@ export interface Item {
   titleImageUrlStream: string,
   introduction: string,
 }
+
+export interface Course {
+  title: string,
+  teacher: string,
+  titleImageUrlStream: string,
+  videoTime: number,
+}

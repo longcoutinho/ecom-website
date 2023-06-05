@@ -12,6 +12,9 @@ export const PATH_PAGE = {
     tab2: path(ROOTS_PAGE, "posts?page=0&pageSize=9"),
     tab3: path(ROOTS_PAGE, "item?page=0&pageSize=9"),
     tab4: path(ROOTS_PAGE, "lapla"),
+    tab5: path(ROOTS_PAGE, "course"),
+    tab6: path(ROOTS_PAGE, "lapla"),
+    tab7: path(ROOTS_PAGE, "lapla"),
   },
   tintuc: {
     root: path(ROOTS_PAGE, "posts?page=0&pageSize=9"),

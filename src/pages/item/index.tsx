@@ -5,12 +5,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import "@/constants/FnCommon"
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 import { Item } from "../../interfaces/response";
 import React from "react";
+import {formatVND} from "@/constants/FnCommon";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -133,21 +135,6 @@ export default function ItemComponent() {
     }
   };
 
-  const formatVND = (numPrice: number) => {
-    if (numPrice != undefined) {
-      var price = numPrice.toString();
-      var len = price.length;
-      var ind = len - 3;
-      while (ind > 0) {
-        price = price.substring(0, ind) + "." + price.substring(ind, len);
-        len++;
-        ind -= 3;
-      }
-      return price + " VND";
-    }
-    return "0đ";
-  };
-
   const handleChangeInput = (e: any) => {
     setTitle(e.target.value);
   };
@@ -174,10 +161,10 @@ export default function ItemComponent() {
       search: "?" + new URLSearchParams({ id: id }),
     });
   };
-  const ListPosts = () => {
-    const ListPostComponents = (props: any) => {
+  const ListItems = () => {
+    const ListItemComponents = (props: any) => {
       return (
-        <Box className="list-posts-container">
+        <Box className="list-items-item-page-container">
           {listItems.map((item, index) => {
             return (
               <Box
@@ -196,9 +183,10 @@ export default function ItemComponent() {
                   <Box className="list-posts-content">
                     <h1
                       style={{
-                        fontSize: "20px",
+                        fontSize: "17px",
                         fontWeight: "700px",
-                        color: "blue",
+                        color: "rgb(0,32,96)",
+                        textTransform: "uppercase",
                       }}
                       className="title-list-item-home"
                     >
@@ -234,33 +222,31 @@ export default function ItemComponent() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     };
+
+    const ListMenuItemComponent = () => {
+      const menu = listMenuItem.map((items, index) => {
+        return (
+            <Box className="list-items-search-container-elements" key={index}>{items}</Box>
+        )
+      });
+      return (
+          <Box className="list-items-search-container-content">
+            {menu}
+          </Box>
+      )
+    }
     return (
-      <Box className="list-item-content">
-        <Box className="list-item-search-container">
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            visibleScrollbar={false}
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
-            sx={{ borderRight: 1, borderColor: "divider" }}
-          >
-            {listMenuItem.map((item, index) => (
-              <Tab key={index} label={item} {...a11yProps(index)} />
-            ))}
-          </Tabs>
+      <Box className="list-items-content">
+        <Box className="list-items-search-container">
+          <Box className="list-items-search-container-title">
+            <p>Vật phẩm phong thủy</p>
+          </Box>
+          <ListMenuItemComponent></ListMenuItemComponent>
         </Box>
         <Box
-          className="list-items-wrapper"
-          sx={{
-            padding: "0",
-            flexGrow: 1,
-          }}
+          className="list-items-item-page-wrapper"
         >
-          <TabPanel value={value} index={0}>
-            <ListPostComponents />
-          </TabPanel>
+            <ListItemComponents />
         </Box>
       </Box>
     );
@@ -292,9 +278,9 @@ export default function ItemComponent() {
   };
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={1}>
-      <Box className="home-page-content " sx={{ width: "100vw" }}>
+      <Box className="home-page-content" sx={{ width: "100vw" }}>
         <Box className="body-content_home">
-          <ListPosts></ListPosts>
+          <ListItems></ListItems>
         </Box>
       </Box>
     </Page>

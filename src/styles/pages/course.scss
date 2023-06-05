@@ -1,0 +1,93 @@
+$base-color: rgb(0,32,96);
+.list-courses-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10px;
+  .list-courses-search-container {
+    border-radius: 15px;
+    overflow: hidden;
+    .list-items-search-container-title {
+      text-align: center;
+      background-color: #002060;
+      padding: 10px;
+      p {
+        color: white;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+    }
+    .list-items-search-container-content {
+      padding: 5px;
+      background-color: #D9D9D9;
+      .list-items-search-container-elements {
+        color: $base-color;
+        padding: 10px;
+        background-color: #D9D9D9;
+        border: 1px solid white;
+        font-weight: 800;
+      }
+    }
+  }
+  .list-courses-course-page-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    .list-course-item-page-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      .big-course-wrapper {
+        width: 50%;
+        height: 300px;
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Nizza-C%C3%B4te_d%27Azur.jpg/800px-Nizza-C%C3%B4te_d%27Azur.jpg);
+        border-radius: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        .big-course-title-wrapper {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          .big-course-title {
+            color: white;
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 20px;
+          }
+          .big-course-introduction {
+            background-color: rgb(0, 0, 0, 0.2);
+            color: $base-color;
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+          }
+        }
+        .big-course-register-button {
+          width: 30%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          button {
+            margin-bottom: 20px;
+            width: fit-content;
+            padding: 10px;
+            border-radius: 50px;
+            border: none;
+            color: $base-color;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

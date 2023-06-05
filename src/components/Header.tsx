@@ -30,15 +30,15 @@ const Header = () => {
   const initMenuItem: any = [
     {
       title: "Trang chủ",
-      redirect_link: PATH_PAGE.tintuc.root,
+      redirect_link: PATH_PAGE.user.tab1,
     },
     {
       title: "Kho tàng tri thức",
-      redirect_link: PATH_PAGE.user.tab3,
+      redirect_link: PATH_PAGE.user.tab2,
     },
     {
       title: "Vật phẩm",
-      redirect_link: PATH_PAGE.lapla.root,
+      redirect_link: PATH_PAGE.user.tab3,
     },
     {
       title: "Lập lá số",
@@ -46,15 +46,15 @@ const Header = () => {
     },
     {
       title: "Khóa học",
-      redirect_link: PATH_PAGE.user.tab4,
+      redirect_link: PATH_PAGE.user.tab5,
     },
     {
       title: "Dịch vụ",
-      redirect_link: PATH_PAGE.user.tab4,
+      redirect_link: PATH_PAGE.user.tab6,
     },
     {
       title: "Liên hệ",
-      redirect_link: PATH_PAGE.user.tab4,
+      redirect_link: PATH_PAGE.user.tab7,
     },
   ];
   //components
