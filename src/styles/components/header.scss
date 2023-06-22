@@ -95,6 +95,7 @@ $base-color: rgba(0, 32, 96);
       align-items: center;
       .search-input {
         padding-left: 10px;
+        color: $base-color;
       }
       .search-button {
         background-color: #E9EAEC;
@@ -154,13 +155,53 @@ $base-color: rgba(0, 32, 96);
   padding: 10px;
   box-shadow:  -5px 0px rgb(233, 232, 232);
   margin: 0px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  .menu-element {
+    display: inline-block;
+    .drop-down-menu {
+      margin-top: 10px;
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 10;
+      color: $base-color;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+      p {
+        display: block;
+        text-transform: uppercase;
+        border-bottom: 2px solid $base-color;
+        padding: 10px;
+      }
+      p:hover {
+        cursor: pointer;
+      }
+    }
+    a {
+      color: $base-color;
+      font-weight: 800;
+    }
+    .arrow-icon {
+      margin-left: 10px;
+      font-size: 20px;
+      color: $base-color;
+    }
+    .arrow-icon:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .menu-item:not(:first-child) {
   margin-left: 10px;
 }
 
-.menu-item p {
+.menu-item a {
   text-align: center;
   color: $base-color;
   font-weight: 700;

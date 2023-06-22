@@ -1,6 +1,6 @@
 import { Box, Button, MenuItem, Menu } from "@mui/material";
 import Container from "@mui/system/Container";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Image from "./Image";
 import { IMenuItem } from "@/interfaces";
 import { PATH_PAGE } from "@/routes/path";
@@ -11,9 +11,32 @@ import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const Header = () => {
   const route = useRouter();
+  const [listPostsMenu, setListPostsMenu] = useState([
+    {
+      id: "1",
+      name: "Lý số 1",
+    }
+  ])
+  const [dropDownState, setDropDownState] = useState("none");
+  useEffect(() => {
+      axios({
+        method: "get",
+        url: "http://10.248.158.167:1112/type/posts",
+      }).then(
+          (res) => {
+            setListPostsMenu(res.data);
+          },
+          (err) => {
+            console.log(err);
+          }
+      );
+    console.log(listPostsMenu);
+  },[]);
   const [search, setSearch] = useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -31,34 +54,78 @@ const Header = () => {
     {
       title: "Trang chủ",
       redirect_link: PATH_PAGE.user.tab1,
+      drop_down: false,
     },
     {
       title: "Kho tàng tri thức",
       redirect_link: PATH_PAGE.user.tab2,
+      drop_down: true,
     },
     {
       title: "Vật phẩm",
       redirect_link: PATH_PAGE.user.tab3,
+      drop_down: false,
     },
     {
       title: "Lập lá số",
       redirect_link: PATH_PAGE.user.tab4,
+      drop_down: false,
     },
     {
       title: "Khóa học",
       redirect_link: PATH_PAGE.user.tab5,
+      drop_down: false,
     },
     {
       title: "Dịch vụ",
       redirect_link: PATH_PAGE.user.tab6,
+      drop_down: false,
     },
     {
       title: "Liên hệ",
       redirect_link: PATH_PAGE.user.tab7,
+      drop_down: false,
     },
   ];
+
+  const redirect = (nameType: any) => {
+    route.push({
+      pathname: "/posts",
+      search: "?" + new URLSearchParams({
+        type: nameType,
+        page: "0",
+        pageSize: "9",
+      }),
+    });
+  }
+
   //components
   const MenuHeader = () => {
+    const ListPostsMenu = listPostsMenu?.map((element, ind) => {
+      return (<p onClick={() => redirect(element.name)}>{element.name}</p>);
+    });
+
+    const MenuDropDown = (props: any) => {
+      if (props.show) return (
+          <Box className="drop-down-menu" style={{display: dropDownState}}>
+            {ListPostsMenu}
+          </Box>
+      )
+      else return null;
+    }
+
+    const enableDropDown = () => {
+      setDropDownState( (dropDownState == "block") ? "none" : "block");
+    }
+
+    const ArrowDownIcon = (props: any) => {
+      if (props.show) return (
+          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faArrowDown}></FontAwesomeIcon>
+      )
+      else return null;
+    }
+
+    // @ts-ignore
     const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
       <Box
         key={index}
@@ -70,9 +137,11 @@ const Header = () => {
           margin: "0px 10px 0px 10px",
         }}
       >
-        <Link href={menuItem.redirect_link}>
-          <p>{menuItem.title}</p>
-        </Link>
+          <Box className="menu-element">
+            <Link href={menuItem.redirect_link}>{menuItem.title}</Link>
+            <ArrowDownIcon show={menuItem.drop_down}></ArrowDownIcon>
+            <MenuDropDown show={menuItem?.drop_down}></MenuDropDown>
+          </Box>
       </Box>
     ));
     return (

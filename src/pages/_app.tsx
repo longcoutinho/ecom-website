@@ -6,6 +6,8 @@ import "@/styles/Home.posts.css"
 import "@/styles/pages/Home.scss"
 import "@/styles/pages/item.scss"
 import "@/styles/pages/course.scss"
+import "@/styles/pages/posts.scss"
+import "@/styles/pages/posts-detail.scss"
 import "@/styles/responsive.scss"
 import type { AppProps } from "next/app";
 export default function App({ Component, pageProps }: AppProps) {

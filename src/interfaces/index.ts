@@ -2,6 +2,7 @@ export interface IHeader {
   menuIndex: number;
 }
 export interface IMenuItem {
+  drop_down: boolean;
   title: string;
   redirect_link: any;
 }

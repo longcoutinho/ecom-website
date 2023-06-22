@@ -1,0 +1,22 @@
+$base-color: rgb(0,32,96);
+.post-detail-content-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20% 0 20%;
+  background-color: #f9f9f9;
+  .posts-detail-title {
+    color: $base-color;
+  }
+  .post-detail-content {
+
+    .detail-posts-focus-content {
+      padding: 20px;
+      .detail-posts-focus {
+        color: $base-color;
+        line-height: 20px;
+      }
+    }
+  }
+}

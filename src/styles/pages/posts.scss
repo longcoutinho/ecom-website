@@ -1,0 +1,159 @@
+$base-color: rgb(0,32,96);
+.post_content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20% 0 20%;
+  background: #f9f9f9;
+  .post-page-content-container {
+    padding: 10px 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    .post-page-title-wrapper {
+      color: $base-color;
+      text-transform: uppercase;
+      font-weight: 900;
+      border-left: 10px solid $base-color;
+      padding-left: 10px;
+    }
+    .post-page-content-wrapper {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .list-posts-page-featured-container {
+        margin-top: 5px;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 300px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .list-posts-page-featured-wrapper {
+          height: 100%;
+          width: 100%;
+          .swiper-slide-featured-posts {
+            width: 100%;
+            background-color: green;
+            .slide-post{
+              width: 100%;
+              height: 100%;
+              .posts-image {
+                /* height: 100%; */
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: -1;
+                .swiper-slide-featured-posts-image {
+                  height: 300px;
+                  width: 100%;
+                  object-fit: cover;
+                }
+              }
+              .swiper-slide-featured-posts-content {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                .post-page-para-tilte {
+                  border-radius: 2px;
+                  width: fit-content;
+                  background-color: white;
+                  color: $base-color;
+                  text-transform: uppercase;
+                  padding: 5px 20px;
+                  font-weight: 900;
+                }
+                .post-page-para-intro {
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+      }
+      .list-posts-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .list-posts-container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .list-posts-element {
+            width: 32%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .post-page-ad-wrapper {
+      margin-left: 20px;
+      width: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .post-page-register-wrapper {
+        width: 100%;
+        .post-page-register-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 10px;
+          border-radius: 10px;
+          padding: 10px 10px;
+          width: 100%;
+          background-color: #F2F2F2;
+          .post-page-input-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            p {
+              color: $base-color;
+              font-weight: 800;
+            }
+            input {
+              background-color: white;
+              color: $base-color;
+              height: 30px;
+            }
+          }
+          button {
+            margin-top: 40px;
+            background-color: #FF0000;
+            border: 2px solid white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+          }
+
+          button:hover {
+            cursor: pointer;
+          }
+          .post-page-input-wrapper:not(:first-child) {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+.post-page-title {
+  color: $base-color;
+  width: 100%;
+  border-bottom: 2px solid $base-color;
+  text-transform: uppercase;
+  font-weight: 900;
+}

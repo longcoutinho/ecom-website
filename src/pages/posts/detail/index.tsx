@@ -55,21 +55,13 @@ export default function PostDetail() {
 
   const DetailPost = () => {
     return (
-      <Box
-        className="detail-posts-container flex-col"
-      >
-        <Box 
+        <Box
           className="detail-posts-focus-content"
         >
-          <Box className="detail-posts-focus-title-container">
-            <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
-            <p className="detail-posts-focus-title">23:00 15-9-2022</p>
-          </Box>
           <Box 
           className="detail-posts-focus"
           dangerouslySetInnerHTML={{ __html: detailPost?.content }}></Box>
         </Box>
-      </Box>
     );
   }
 
@@ -97,39 +89,19 @@ export default function PostDetail() {
   };
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width">
+      <Box className="post-detail-content-wrapper">
         <Box
-          className="detail-posts-header-content full-width flex-row center"
-          sx={{
-            position: "relative",
-            padding: "0px 300px 70px 300px",
-            height: "250px",
-            backgroundSize: "cover",
-            backgroundImage: "url(http://hongkyfengshui.vn/vnt_upload/weblink/slide-small.jpg)",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            zIndex: -1,
-          }}
+            className="posts-detail-title"
         >
-          <Box
-            className="posts-focus-title"
-            sx={{ color: "white" }}
-          >
-            <p style={{fontSize:'30px'}}>{detailPost?.title}</p>
+          <p style={{fontSize:'30px'}}>{detailPost?.title}</p>
+          <Box className="detail-posts-focus-title-container">
+            <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
+            <p className="detail-posts-focus-title">23:00 15-9-2022</p>
           </Box>
         </Box>
-        <div className="width-full" style={{background:'#333333'}} >
-        <Box
-          className=" footer-container focus-content  flex-col"
-          // sx={{
-          //   backgroundImage:
-          //     "linear-gradient(rgba(0, 0, 0, 0.7) 50px, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.95) 0%)",
-          //   backgroundClip: "padding-box",
-          // }}
-        >
+        <Box className="post-detail-content">
           <DetailPost></DetailPost>
         </Box>
-        </div>
       </Box>
     </Page>
   );

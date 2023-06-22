@@ -311,19 +311,24 @@ export default function Home() {
             key={index}
             className="list-posts-detail-element-2"
           >
-            <Box className="full-height half-row flex-col" sx={{ padding: "10px", justifyContent: "center"}}>
-              <h1 style={{ fontSize: "15px" }} className="title-post-home">{post.title}</h1>
-              <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
-                Ngay gio bai viet
-              </p>
+            <Box>
+              <p>{post.type?.toString()}</p>
             </Box>
-            <Box className="full-height" sx={{width: "30%", borderRadius: "50%", overflow: "hidden"}}>
-              <img
-                alt=""
-                id="image-home-page-item"
-                className="image-home-page"
-                src={post.titleImageUrlStream}
-              />
+            <Box>
+              <Box className="full-height half-row flex-col" sx={{ padding: "10px", justifyContent: "center"}}>
+                <h1 style={{ fontSize: "15px", textTransform: "uppercase"}} className="title-post-home">{post.title}</h1>
+                <p style={{ fontSize: "15px", color: "gray", marginTop: "5px" }}>
+                  {post.createAt}
+                </p>
+              </Box>
+              <Box className="full-height" sx={{width: "30%", borderRadius: "50%", overflow: "hidden"}}>
+                <img
+                    alt=""
+                    id="image-home-page-item"
+                    className="image-home-page"
+                    src={post.titleImageUrlStream}
+                />
+              </Box>
             </Box>
           </Box>
           <Divider/>
@@ -334,7 +339,7 @@ export default function Home() {
         <Box className="list-posts-detail-2">
           <Box sx={{height: "10%", width: "100%"}}>
             <p>Bài viết nổi bật</p>
-            <Box sx={{borderTop: "2px solid black", marginTop: "10px"}} className="underline-title"></Box>
+            <Box sx={{borderTop: "5px solid black", marginTop: "10px"}} className="underline-title"></Box>
           </Box>
           <Box sx={{height: "90%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
             {ListItemsContent}

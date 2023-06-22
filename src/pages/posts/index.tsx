@@ -17,11 +17,63 @@ import { Navigation, Scrollbar, A11y, Pagination, Autoplay } from "swiper";
 
 export default function PostComponent() {
   const [listPosts, setListPost] = useState<Post[]>([]);
-  const [listFeaturedPosts, setListFeaturedPosts] = useState<Post[]>([]);
+  const [listFeaturedPosts, setListFeaturedPosts] = useState<Post[]>([
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
+    },
+    {
+      titleImageUrlStream: "https://images.pexels.com/photos/1486861/pexels-photo-1486861.jpeg?cs=srgb&dl=pexels-engin-akyurt-1486861.jpg&fm=jpg",
+      title: "Bai viet 1",
+      author: "Kim Ca",
+      type: 1,
+      content: "abc",
+      id: 1,
+      createAt: "abc",
+      introduction: "Nếu bạn muốn được Tư vấn hoặc tham gia khóa học xem Số Mệnh bằng các",
+    },
+  ]);
   const [pageDefault, setPageDefault] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [title, setTitle] = useState("");
-  const router = useRouter();
+  const [postsType, setPostsType] = useState<string>("");
+  const {push, query} = useRouter();
   const textInput = useRef<any>();
 
   const focusInput = () => {
@@ -29,14 +81,18 @@ export default function PostComponent() {
   }
 
   useEffect(() => {
-    if (router.query.page !== undefined && router.query.pageSize !== undefined) {
+    if (query.type !== undefined) {
+      // @ts-ignore
+      setPostsType(query.type);
+    }
+    if (query.page !== undefined && query.pageSize !== undefined) {
       axios({
         method: "get",
         url: "http://10.248.158.167:1112/posts",
         params: {
-          page: router.query.page,
-          pageSize: router.query.pageSize,
-          title: router.query.title,
+          page: query.page,
+          pageSize: query.pageSize,
+          title: query.title,
         },
       }).then(
         (res) => {
@@ -60,14 +116,14 @@ export default function PostComponent() {
         }
       );
     }
-  }, [router.query]);
+  }, [query]);
 
   //datas
   
   const redirectPagination = (page: string, pageSize: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
-    router.push({
+    push({
       pathname: "/posts",
       search: "?" + new URLSearchParams({ 
         page: pageNumber.toString(),
@@ -80,7 +136,7 @@ export default function PostComponent() {
   const redirectSearchInput = (page: string, pageSize: any, title: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
-    router.push({
+    push({
       pathname: "/posts",
       search: "?" + new URLSearchParams({ 
         page: pageNumber.toString(),
@@ -148,18 +204,17 @@ export default function PostComponent() {
       <Box key={index}>
         <SwiperSlide key={index} className="swiper-slide-featured-posts">
           <div className="slide-post">
-           <div className="posts-image" style={{cursor:'pointer'}}> 
-           <img
-            src={featuredPost.titleImageUrlStream}
-            className="swiper-slide-featured-posts-image"
-            alt=""
+           <div className="posts-image" style={{cursor:'pointer'}}>
+             <img
+              src={featuredPost.titleImageUrlStream}
+              className="swiper-slide-featured-posts-image"
+              alt=""
             
          /></div>
           <div className="swiper-slide-featured-posts-content">
-            {/* <p>{featuredPost.title}</p>
-            <p>{featuredPost.introduction}</p> */}
-            <p style={{color:'white',cursor:'pointer'}}>{featuredPost?.title}</p>
-            <p style={{color:'#777777'}}>{featuredPost?.introduction}</p>
+            <p className="post-page-para-tilte">{featuredPost?.title}</p>
+            <p className="post-page-para-intro">{featuredPost?.introduction}</p>
+            <p className="post-page-create-at">{featuredPost?.createAt}</p>
           </div></div>
         </SwiperSlide>
       </Box>
@@ -175,8 +230,8 @@ export default function PostComponent() {
     ));
 
     return (
-      <Box className="list-posts-featured-container">
-        <Box className="list-posts-featured-wrapper">
+      <Box className="list-posts-page-featured-container">
+        <Box className="list-posts-page-featured-wrapper">
           <Swiper
             className="list-posts-featured-swiper"
             // install Swiper modules
@@ -195,27 +250,12 @@ export default function PostComponent() {
             ...
           </Swiper>
         </Box>
-        <Box className="introduction-posts-wrapper">
-          <Box className="list-posts-image-hightlight" sx={{cursor:'pointer'}}>
-                <SearchInput></SearchInput>
-                </Box>
-                <Box
-                  className="list-read-most"
-                >
-                  <Box>
-                    <p style={{textTransform: 'uppercase', fontSize: '16px', fontWeight: '500'}}>Đọc nhiều</p>
-                  </Box>
-                  <Box>
-                    {ListReadMost}
-                  </Box>
-                </Box>
-        </Box>
       </Box>
     )
   }
 
   const redirect = (id: any) => {
-    router.push({
+    push({
       pathname: "/posts/detail",
       search: "?" + new URLSearchParams({ id: id }),
     });
@@ -223,14 +263,12 @@ export default function PostComponent() {
 
 
   const ListPosts = () => {
-    
-
     const ListPostComponents = (props: any) => {
       return (
         <Box
           className="list-posts-container"
         >
-          {listPosts.map((post, index) => {
+          {listPosts.slice(0,3).map((post, index) => {
             return (
               <Box
                 onClick={() => redirect(post.id)}
@@ -248,18 +286,18 @@ export default function PostComponent() {
                   <Box
                     className="list-posts-content"
                   >
-                    <h1 style={{ fontSize: "18px", fontWeight: "700px"}} className="title-list-posts-element">
+                    <h1 style={{ fontSize: "18px", fontWeight: "700px", color: "red"}} className="title-list-posts-element">
                       {post.title}
                     </h1>
                     <p
                       className="introduction-list-posts-element"
-                      style={{ fontSize: "14px", color: "#777777", marginTop: "20px"}}
+                      style={{ fontSize: "14px", color: "red", marginTop: "20px"}}
                     >
                       {post.introduction}
                     </p>
+                    <p>{post.createAt}</p>
                   </Box>
                 </Box>
-                <Button className="btn-details">Xem chi tiết</Button>
               </Box>
             );
           })}
@@ -276,7 +314,7 @@ export default function PostComponent() {
         }}
       >
         <ListPostComponents />
-        <PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>
+        {/*<PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>*/}
       </Box>
     );
   };
@@ -302,58 +340,54 @@ export default function PostComponent() {
       </Box>
     );
   };
-  return (
-    <Page title={PAGE_TITLE.HOME} menuIndex={0}>
-      <Box className="content full-width">
-        <Box
-          className="header-content full-width flex-row"
-          sx={{
-            position: "relative",
-            padding: "0px 200px 70px 200px",
-            height: "350px",
-            backgroundSize: "cover",
-            backgroundImage:
-              'url("http://hongkyfengshui.vn/vnt_upload/weblink/slide_1.jpg")',
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            zIndex: -1,
-          }}
-        >
-          <Box
-            className="flex-col center full-width full-height"
-            sx={{ color: "white" }}
-          >
-            <p
-              style={{
-                textTransform: "uppercase",
-                fontSize: "30px",
-                marginTop: "70px",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "30px",
-                  padding: "10px 30px 10px 30px",
-                  border: "2px solid white",
-                }}
-              >
-                Tin tức
-              </span>
-            </p>
+
+  const Title = () => {
+    return (
+        <Box className="post-page-title-wrapper">
+          <p>{postsType}</p>
+        </Box>
+    )
+  }
+
+  const Post = () => {
+    return (
+        <Box className="post-page-content-container">
+          <Box className="post-page-content-wrapper">
+            <Title></Title>
+            <ListFeaturedPosts></ListFeaturedPosts>
+            <ListPosts></ListPosts>
+          </Box>
+          <Box className="post-page-ad-wrapper">
+            <Box className="post-page-register-wrapper">
+              <Box className="post-page-title">
+                <p>Đăng ký xem tử vi</p>
+              </Box>
+              <Box className="post-page-register-content">
+                <Box className="post-page-input-wrapper">
+                  <p>Họ và tên</p>
+                  <input type="text"></input>
+                </Box>
+                <Box className="post-page-input-wrapper">
+                  <p>Số điện thoại</p>
+                  <input type="text"></input>
+                </Box>
+                <button>Đăng ký</button></Box>
+            </Box>
+            <Box>
+              <Box className="post-page-title">
+                <p>Bài viết liên quan</p>
+              </Box>
+              <Box></Box>
+            </Box>
           </Box>
         </Box>
-        <div className="width-full" style={{backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.1) , rgba(0, 0, 0, 0.7) 60px, rgba(0, 0, 0, 0.99) 107px)  ",
-            backgroundClip: "padding-box",}}>
-        <Box
-          className="body-content_home"
-          
-        >
-          <MenuPostComponent></MenuPostComponent>
-          <ListFeaturedPosts></ListFeaturedPosts>
-          <ListPosts></ListPosts>
-        </Box>
-        </div>
+    );
+  }
+
+  return (
+    <Page title={PAGE_TITLE.HOME} menuIndex={0}>
+      <Box className="post_content">
+        <Post></Post>
       </Box>
     </Page>
   );
