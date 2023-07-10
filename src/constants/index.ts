@@ -1,20 +1,42 @@
 import {Course} from "@/interfaces/response";
 
+export enum Backend {
+  // URL = 'https://fengshui.ntg55.click'
+  URL = 'http://10.248.158.167:1112'
+}
 export enum PAGE_TITLE {
   PREFIX = "Phong Thuy | ",
   HOME = "Home",
   LAPLA = "Lap la so phong thuy",
 }
+
+export const HomePage = {
+  numFeaturedPost: 5,
+  numPost: 3,
+}
+
+export const ServiceType = {
+  POSTS: 0,
+  ITEM: 1,
+}
+
 export enum URL {
-  BASE_URL = "http://10.248.158.167:1112",
+  BASE_URL = "",
   POSTS_SERVICE = "/posts",
   ITEM_SERVICE = "/item",
 }
-export enum POSTS_SERVICE {
-  GET_ALL = "",
+export enum PostsService {
+  getPost = "/posts",
   SAVE = "",
   DETAIL = "/detail",
 }
+
+export enum TypeService {
+  getType = "/type/",
+  SAVE = "",
+  DETAIL = "/detail",
+}
+
 export enum ITEM_SERVICE {
   GET_ALL = "",
   DETAIL = "/detail",
@@ -84,17 +106,33 @@ export const listCourse : Course[] = [
   },
 ];
 
-export const listMenuItem = [
-  "ĐỒ PHONG THỦY VIP",
-  "TƯỢNG PHẬT",
-  "LINH VẬT",
-  "TRANG SỨC",
-  "VẬT PHẨM",
-];
 export const listMenuCourse = [
   "KHÓA HỌC MIỄN PHÍ",
   "TỬ VI CƠ BẢN",
   "TỬ VI NÂNG CAO",
   "TỬ VI THỰC CHIẾN",
   "KHÓA HỌC KHÁC",
+];
+
+export const listServicesTitle = [
+  {
+    img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+    title: "Làm viên chức",
+    content: "Bạn muốn biết hôn nhân mình ra sao?"
+  },
+  {
+    img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+    title: "Tình duyên",
+    content: "Bạn muốn biết hôn nhân mình ra sao?"
+  },
+  {
+    img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+    title: "Làm kinh doanh",
+    content: "Bạn muốn biết hôn nhân mình ra sao?"
+  },
+  {
+    img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
+    title: "Làm viên chức",
+    content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
+  },
 ];

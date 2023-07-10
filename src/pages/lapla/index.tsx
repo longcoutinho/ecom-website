@@ -29,6 +29,9 @@ const TINTUC = [
 ];
 export default function LapLa() {
   const route = useRouter();
+  const redirect = (path: any) => {
+    route.push(path);
+  }
   const SearchInput = () => {
     return (
       <Box
@@ -44,76 +47,40 @@ export default function LapLa() {
   };
   return (
     <Page title={PAGE_TITLE.LAPLA} menuIndex={2}>
-      <Box className="lapla">
-        <Box className="lap-la-tab">
-          <Grid
-            container
-            rowSpacing={6}
-            columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-              paddingTop: "50px",
-            }}
-          >
-            {TITLE_TAB.map((tab, index) => (
-              <Grid
-                key={index}
-                item
-                xs={6}
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
-                <Item
-                  onClick={() => route.push(tab.url)}
-                  sx={{
-                    width: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {tab.title}
-                </Item>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <Box className="lap-la-info">
-          <h2>Tìm hiểu thêm về phong thủy, lý số</h2>
-          <Grid
-            container
-            rowSpacing={6}
-            columnSpacing={{ xs: 2, sm: 2, md: 3 }}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-              paddingTop: "50px",
-            }}
-          >
-            {TINTUC.map((item, index) => (
-              <Grid
-                key={index}
-                item
-                xs={4}
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
-                <Item
-                  sx={{
-                    width: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {item}
-                </Item>
-              </Grid>
-            ))}
-          </Grid>
+      <Box className="lapla-container">
+        <Box className="lapla-wrapper">
+          <Box className="lapla-content">
+            <Box className="lapla-title">
+              <p className="lapla-bigtitle">Lập lá số tại tử vi chân nguyên</p>
+              <p className="lapla-smalltitle">Slogan: Do better, be better!</p>
+            </Box>
+            <Box className="lapla-type-container">
+              <Box className="lapla-type-content">
+                <Box className="lapla-img">
+                  <img src="https://media.istockphoto.com/id/1145618475/photo/villefranche-on-sea-in-evening.jpg?s=612x612&w=0&k=20&c=vQGj6uK7UUVt0vQhZc9yhRO_oYBEf8IeeDxGyJKbLKI=" />
+                </Box>
+                <Box onClick={() => redirect("/lapla/quedich")} className="lapla-para">
+                  <p>Quẻ dịch</p>
+                </Box>
+              </Box>
+              <Box className="lapla-type-content-1">
+                <Box className="lapla-img">
+                  <img src="https://media.istockphoto.com/id/1145618475/photo/villefranche-on-sea-in-evening.jpg?s=612x612&w=0&k=20&c=vQGj6uK7UUVt0vQhZc9yhRO_oYBEf8IeeDxGyJKbLKI=" />
+                </Box>
+                <Box onClick={() => redirect("/lapla/tuvi")} className="lapla-para">
+                  <p>Lập lá số tử vi</p>
+                </Box>
+              </Box>
+              <Box className="lapla-type-content">
+                <Box className="lapla-img">
+                  <img src="https://media.istockphoto.com/id/1145618475/photo/villefranche-on-sea-in-evening.jpg?s=612x612&w=0&k=20&c=vQGj6uK7UUVt0vQhZc9yhRO_oYBEf8IeeDxGyJKbLKI=" />
+                </Box>
+                <Box onClick={() => redirect("/lapla/tutru")} className="lapla-para">
+                  <p>Tứ trụ</p>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Page>

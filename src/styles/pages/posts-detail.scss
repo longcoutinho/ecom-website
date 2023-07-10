@@ -2,20 +2,156 @@ $base-color: rgb(0,32,96);
 .post-detail-content-wrapper {
   width: 100%;
   height: auto;
-  display: flex;
-  flex-direction: column;
   padding: 0 20% 0 20%;
   background-color: #f9f9f9;
-  .posts-detail-title {
-    color: $base-color;
+  .post-detail-title-wrapper {
+    padding: 10px 20px;
+    .posts-detail-title {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: $base-color;
+    }
   }
-  .post-detail-content {
 
-    .detail-posts-focus-content {
-      padding: 20px;
-      .detail-posts-focus {
+  .post-detail-content-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 20px;
+    .post-detail-content-content {
+      width: 75%;
+      .detail-posts-focus-title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         color: $base-color;
-        line-height: 20px;
+      }
+      .post-detail-content {
+        .detail-posts-focus-content {
+          margin-top: 10px;
+          .detail-posts-focus {
+            color: $base-color;
+            line-height: 20px;
+            img {
+              max-width: 100%;
+            }
+            p {
+              display: block;
+              margin-block-start: 1em;
+              margin-block-end: 1em;
+            }
+          }
+        }
+      }
+    }
+    .post-page-ad-wrapper {
+      margin-left: 20px;
+      width: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .post-page-register-wrapper {
+        width: 100%;
+        .post-page-register-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 10px;
+          border-radius: 10px;
+          padding: 10px 10px;
+          width: 100%;
+          background-color: #F2F2F2;
+          .post-page-input-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            p {
+              color: $base-color;
+              font-weight: 800;
+            }
+            input {
+              background-color: white;
+              color: $base-color;
+              height: 30px;
+              border: 1px solid $base-color;
+              padding: 0 5px;
+              outline: none;
+            }
+          }
+          button {
+            margin-top: 40px;
+            background-color: #FF0000;
+            border: 2px solid white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+          }
+
+          button:hover {
+            cursor: pointer;
+          }
+          .post-page-input-wrapper:not(:first-child) {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+#title-post {
+  height: 10px !important;
+  box-shadow: inset 5px 5px #999999;
+  border: 2px solid $base-color;
+  border-radius: 10px;
+}
+
+.related-post-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .related-post-element:hover {
+    cursor: pointer;
+  }
+  .related-post-element {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    margin-top: 20px;
+    .related-post-image {
+      width: 40%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 70px;
+        object-fit: cover;
+      }
+    }
+    .related-post-content {
+      width: 60%;
+      height: 100%;
+      padding: 5px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        color: $base-color;
+      }
+      p:last-child {
+        font-size: 13px;
+        font-style: italic;
+      }
+      p:first-child {
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 2.4em;
+        line-height: 1.2em;
+        font-weight: 700;
+        font-size: 15px;
       }
     }
   }

@@ -1,3 +1,4 @@
+@import '../responsive.scss';
 $base-color: rgba(0, 32, 96);
 .big-menu{
   background-color: #F2F2F2;
@@ -29,15 +30,13 @@ $base-color: rgba(0, 32, 96);
 }
 
 .header-container {
-  @media (max-width: 500px) {
+  @media (max-width: $xs) {
     width: 100%;
     padding: 0px 6px;
     height: 50px;
     background: #dddddd; 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
   }
   @media (min-width: 1100px) {
     padding: 0px 20% 0px 20%;
@@ -48,25 +47,26 @@ $base-color: rgba(0, 32, 96);
   }
   .introduction-header-container {
     width: 100%;
-    padding: 20px 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: $base-color;
+    padding: 20px 50px;
     .logo-wrapper {
-      margin-left: 50px;
       width: auto;
-      height: 80px;
       background-color: #DDDDDD;
-      padding: 2px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 30px;
       display: flex;
       flex-direction: row;
       align-items: center;
       .logo-container {
         width: 20%;
         height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
         @media (min-width: 1300px) {
           width: 50px;
           height: 50px;
@@ -76,9 +76,11 @@ $base-color: rgba(0, 32, 96);
           justify-content: center;
           border-radius: 10px;
         }
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
+        #logo {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
       }
       .logo-para {
         height: 60px;
@@ -87,15 +89,28 @@ $base-color: rgba(0, 32, 96);
         flex-direction: column;
       }
     }
+    .logo-wrapper:hover {
+      cursor: pointer;
+    }
     .search-wrapper {
       position: relative;
       height: 40px;
       display: flex;
       flex-direction: row;
       align-items: center;
+      @media(max-width: $xs) {
+        display: none;
+      }
       .search-input {
-        padding-left: 10px;
-        color: $base-color;
+        width: 300px;
+        height: 100%;
+        padding-left: 30px;
+        color: #595959;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid white;
+        box-shadow: inset 5px 5px #999999;
+        font-size: 20px;
       }
       .search-button {
         background-color: #E9EAEC;
@@ -105,8 +120,9 @@ $base-color: rgba(0, 32, 96);
         border-radius: 10px;
         color: #6B5A59;
         text-transform: none;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 700;
+        //box-shadow: inset 5px -20px #999999;
       }
     }
     .phone-service-wrapper {
@@ -115,6 +131,9 @@ $base-color: rgba(0, 32, 96);
       flex-direction: column;
       border-radius: 50px;
       padding: 10px 30px;
+      @media(max-width: $xs) {
+        display: none;
+      }
       p {
         color: white;
         font-size: 20px;
@@ -136,11 +155,15 @@ $base-color: rgba(0, 32, 96);
       }
     }
     .cart-wrapper {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       p {
         color: white;
+      }
+      @media(max-width: $xs) {
+        display: none;
       }
     }
     
@@ -172,11 +195,13 @@ $base-color: rgba(0, 32, 96);
       -webkit-user-select: none; /* Safari */
       -ms-user-select: none; /* IE 10 and IE 11 */
       user-select: none; /* Standard syntax */
+      p:not(:last-child) {
+        border-bottom: 2px solid $base-color;
+      }
       p {
+        padding: 10px;
         display: block;
         text-transform: uppercase;
-        border-bottom: 2px solid $base-color;
-        padding: 10px;
       }
       p:hover {
         cursor: pointer;

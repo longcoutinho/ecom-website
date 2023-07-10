@@ -10,29 +10,7 @@
     grid-gap: 10px 50px;
     grid-template-columns: repeat(auto-fill, 270px);
 }
-.content-post{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    background:white;
-    padding: 0.4em 1.2em;
-    border-radius:24px;
-    border: 3px solid #f70d28;
-    font-weight:700;
 
-    @supports (-webkit-line-clamp: 5) {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: initial;
-      display: -webkit-box;
-      -webkit-line-clamp: 5;
-      -webkit-box-orient: vertical;
-    }
-}
-.item-desciption{
-    color: rgb(0,32,96);
-    width:100%;
-}
 .content-post-hightlight{
     @supports (-webkit-line-clamp: 3) {
         overflow: hidden;

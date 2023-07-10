@@ -5,8 +5,8 @@ export interface Post {
   titleImageUrlStream: string;
   title: string;
   author: string;
-  type: Number;
-  content: String;
+  typeId: Number;
+  content: string;
   id: Number;
   createAt: string;
   introduction: string;
@@ -24,4 +24,32 @@ export interface Course {
   teacher: string,
   titleImageUrlStream: string,
   videoTime: number,
+}
+
+export interface TypePost {
+  id: string,
+  name: string,
+}
+
+export interface Comment {
+  email: string,
+  name: string,
+  content: string,
+}
+
+export interface Service {
+  title: string;
+  content: string;
+  titleImageUrlStream: string;
+  id: string;
+}
+
+export interface ItemToCart {
+  titleImageUrlStream:string,
+  id: string,
+  title: string,
+  price: number,
+  amount: number,
+  totalPrice: number,
+  itemId: string,
 }

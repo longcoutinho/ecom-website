@@ -12,6 +12,7 @@ import {
 import { fData } from "../../utils/formatNumber";
 import Image from "../Image";
 import Iconify from "../Iconify";
+// @ts-ignore
 import { varFade } from "../animate";
 
 const getFileData = (file: any) => {

@@ -1,20 +1,21 @@
-import { Box, Button, MenuItem, Menu } from "@mui/material";
+import { Box, Button, Input } from "@mui/material";
 import Container from "@mui/system/Container";
-import {useEffect, useState} from "react";
-import Image from "./Image";
+import {useEffect, useRef, useState} from "react";
 import { IMenuItem } from "@/interfaces";
 import { PATH_PAGE } from "@/routes/path";
 import Link from "next/link";
 import React from "react";
-import DehazeIcon from "@mui/icons-material/Dehaze";
 import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import {useSelector} from "react-redux";
+import {useDispatch } from "react-redux";
+import { getNumberItemInCart} from "@/constants/FnCommon";
 
-const Header = () => {
+const Header = (props: any) => {
   const route = useRouter();
   const [listPostsMenu, setListPostsMenu] = useState([
     {
@@ -23,19 +24,41 @@ const Header = () => {
     }
   ])
   const [dropDownState, setDropDownState] = useState("none");
+  const [cartAmount, setCartAmount] = useState<number>();
+  const searchRef = useRef<any>(null);
+
+  const counter = useSelector((state: any) => state.counter);
+  const assign = (number: any) => {
+    return {
+      type: "ASSIGN",
+      payload: number,
+    }
+  }
+  const dispatch = useDispatch();
   useEffect(() => {
-      axios({
-        method: "get",
-        url: "http://10.248.158.167:1112/type/posts",
-      }).then(
-          (res) => {
-            setListPostsMenu(res.data);
-          },
-          (err) => {
-            console.log(err);
-          }
-      );
-    console.log(listPostsMenu);
+    console.log("long kk");
+    dispatch(assign(getNumberItemInCart()));
+    setDropDownState("none");
+    axios({
+      method: "get",
+      url: "http://10.248.158.167:1112/type/0",
+    }).then(
+        (res) => {
+          setListPostsMenu(res.data);
+        },
+        (err) => {
+          console.log(err);
+        }
+    );
+    var cart: any = window.localStorage.getItem('cart');
+    var newCart = [];
+    if (cart != null) {
+      newCart = JSON.parse(window.localStorage.getItem("cart") || "");
+    }
+    var totalPrice = 0;
+    for(var i = 0; i < newCart.length; i++)
+      totalPrice += newCart[i].totalPrice;
+    setCartAmount(newCart.length);
   },[]);
   const [search, setSearch] = useState("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -49,6 +72,23 @@ const Header = () => {
   const handleGoToPage = (path: any) => {
     route.push(path);
   };
+  const handleSearch = (title: string) => {
+    // @ts-ignore
+    route.push({
+      pathname: "/search",
+      search: "?" + new URLSearchParams({
+        title: title,
+        page: "0",
+        pageSize: "9",
+      }),
+    });
+  }
+
+  const handleSearchInput = (e: any) => {
+    searchRef.current.value = e;
+    // setSearchInput(e);
+  }
+
   //data
   const initMenuItem: any = [
     {
@@ -89,6 +129,7 @@ const Header = () => {
   ];
 
   const redirect = (nameType: any) => {
+    setDropDownState("none");
     route.push({
       pathname: "/posts",
       search: "?" + new URLSearchParams({
@@ -101,8 +142,9 @@ const Header = () => {
 
   //components
   const MenuHeader = () => {
-    const ListPostsMenu = listPostsMenu?.map((element, ind) => {
-      return (<p onClick={() => redirect(element.name)}>{element.name}</p>);
+    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
+      // eslint-disable-next-line react/jsx-key
+      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
     });
 
     const MenuDropDown = (props: any) => {
@@ -120,7 +162,7 @@ const Header = () => {
 
     const ArrowDownIcon = (props: any) => {
       if (props.show) return (
-          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faArrowDown}></FontAwesomeIcon>
+          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faCaretDown}></FontAwesomeIcon>
       )
       else return null;
     }
@@ -161,10 +203,9 @@ const Header = () => {
   const IntroductionHeader = () => {
     const Logo = () => {
       return (
-        <Box className="logo-wrapper">
+        <Box onClick={() => handleGoToPage("/")} className="logo-wrapper">
           <Box className="logo-container">
             <img
-              onClick={() => handleGoToPage("/")}
               alt=""
               id="logo"
               src="https://www.kimca.net/wp-content/uploads/2022/03/logo.png"
@@ -179,9 +220,10 @@ const Header = () => {
     };
 
     const Search = () => {
+      // @ts-ignore
       return <Box className="search-wrapper">
-        <input className="search-input" placeholder="Bạn muốn tư vấn gì"></input>
-        <Button className="search-button">Tìm kiếm</Button>
+        <input ref={searchRef} onChange={(e) => handleSearchInput(e.target.value) } className="search-input" placeholder="Bạn muốn tư vấn gì?"></input>
+        <Button onClick={() => handleSearch(searchRef.current.value)} className="search-button">Tìm kiếm</Button>
       </Box>;
     };
 
@@ -199,6 +241,9 @@ const Header = () => {
       return <Box className="cart-wrapper">
         <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
         <p style={{fontWeight: '700', fontSize: '17px'}}>Giỏ hàng</p>
+        <Box className="cart-amount">
+          <p>{counter}</p>
+        </Box>
       </Box>;
     };
 
@@ -217,41 +262,6 @@ const Header = () => {
     <Container className="header-container" disableGutters maxWidth={false}>
       <IntroductionHeader></IntroductionHeader>
       <MenuHeader></MenuHeader>
-      {/* <div className="icon-menu">
-        <Button
-          id="basic-button"
-          aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-        >
-          <DehazeIcon />
-        </Button>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          {initMenuItem.map((item: any, index: number) => (
-            <MenuItem
-              key={index}
-              onClick={() => handleGoToPage(item.redirect_link)}
-            >
-              {item.title}
-            </MenuItem>
-          ))}
-          <MenuItem>
-            
-          </MenuItem>
-        </Menu>
-      </div>
-      <Logo></Logo>
-      <MenuHeader />
-      <FontAwesomeIcon className="search-mobile-icon" icon={faSearch}></FontAwesomeIcon>         */}
     </Container>
   );
 };

@@ -1,34 +1,55 @@
 import { PAGE_TITLE } from "@/constants";
 import Page from "@/layouts";
-import { Box, Button, Input, List } from "@mui/material";
+import {Box, Divider, TextField, Button, Fade, Alert} from "@mui/material";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-<link rel="preconnect" href="https://fonts.gstatic.com"></link>;
-interface TypePost {
-  id: Number;
-  name: string;
-}
+import { Post, TypePost, Comment} from "../../../interfaces/response";
+import Link from "next/link";
 
-interface Post {
-  image: string;
-  title: string;
-  author: string;
-  type: Number;
-  content: any;
-}
+<link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
 export default function PostDetail() {
   const [detailPost, setListPost] = useState<Post>();
-  const route = useRouter();
+  const [listTypePost, setListTypePost] = useState<TypePost[]>([
+  ]);
+  const [listComment, setListComment] = useState<Comment[]>([
+      {
+          email: "kk",
+          name: "Long Han",
+          content: "Bài viết rất hay!",
+      },
+      ]
+  );
+  const [nameComment, setNameComment] = useState("");
+  const [emailComment, setEmailComment] = useState("");
+  const [contentComment, setContentComment] = useState("");
+  const [listRelatedPost, setListRelatedPost] = useState<Post[]>([]);
+  const [alertVisibility, setAlertVisibility] = useState(false);
+
+    const route = useRouter();
+
   useEffect(() => {
+      getComment();
+    axios({
+      method: "get",
+      url: "http://10.248.158.167:1112/type/0",
+    }).then(
+        (res) => {
+          console.log(res.data);
+          setListTypePost(res.data);
+        },
+        (err) => {
+          console.log(err);
+        }
+    );
     if (route.query.id !== undefined) {
       const URL = "http://10.248.158.167:1112/posts/" + route.query.id;
       console.log(route.query.id);
@@ -43,6 +64,7 @@ export default function PostDetail() {
           const newArr = res.data as Post;
           console.log(res.data);
           setListPost(newArr);
+          getRelatedPost(newArr.typeId);
         },
         (err) => {
           console.log(err);
@@ -53,55 +75,237 @@ export default function PostDetail() {
   //datas
   //components
 
+
+    const getRelatedPost = (typeId: any) => {
+        axios({
+            method: "get",
+            url: "http://10.248.158.167:1112/posts",
+            params: {
+                typeId: typeId,
+            }
+        }).then(
+            (res) => {
+                console.log(res.data);
+                setListRelatedPost(res.data.content);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
+
+  const findTypePostName = (id: any) => {
+    for(let i = 0; i < listTypePost.length; i++) {
+      if (id === listTypePost[i].id) return listTypePost[i].name;
+    }
+    return "kk";
+  }
+
+  const getComment = () => {
+      axios({
+          method: "get",
+          url: "http://10.248.158.167:1112/comment/0",
+      }).then(
+          (res) => {
+              console.log(res.data);
+              setListComment(res.data.content);
+          },
+          (err) => {
+              console.log(err);
+          }
+      );
+  }
+
+  const createComment = () => {
+      axios({
+          method: "post",
+          url: "http://10.248.158.167:1112/comment",
+          data: {
+              name: nameComment,
+              email: emailComment,
+              content: contentComment,
+              serviceId: 0,
+          }
+      }).then(
+          (res) => {
+              console.log(res.data);
+              getComment();
+          },
+          (err) => {
+              console.log(err);
+          }
+      );
+  }
+
+    const redirect = (id: any) => {
+        route.push({
+            pathname: "/posts/detail",
+            search: "?" + new URLSearchParams({ id: id }),
+        });
+    };
+
   const DetailPost = () => {
     return (
         <Box
           className="detail-posts-focus-content"
         >
-          <Box 
-          className="detail-posts-focus"
-          dangerouslySetInnerHTML={{ __html: detailPost?.content }}></Box>
+          <div className="detail-posts-focus"
+          dangerouslySetInnerHTML={{ __html: detailPost?.content?detailPost.content:"" }}></div>
         </Box>
     );
   }
 
+  const Directory = () => {
+    const PostTypeDirectory = () => {
+        const link = "/posts?type=" + findTypePostName(detailPost?.typeId) + "&page=0&pageSize=9";
+        return (
+            <Box sx={{display: "flex", flexDirection: "row"}}>
+              <p className="directiory-icon"> {' >> '} </p>
+              <a style={{textTransform: "capitalize"}} href={link}>{findTypePostName(detailPost?.typeId)}</a>
+              <p className="directiory-icon"> {' >> '} </p>
+                <a style={{textTransform: "capitalize"}} href="#">{detailPost?.title}</a>
+            </Box>
+        )
+    }
+    return (<Box className="directory-wrapper">
+      <a href="./">Trang chủ</a>
+      <p className="directiory-icon"> {'>>'} </p>
+      <Link href="/posts?page=0&pageSize=9">Kho tàng tri thức</Link>
+      <PostTypeDirectory></PostTypeDirectory>
+    </Box>)
+  }
 
-  const MenuPostComponent = () => {
-    const listMenuItems = [
-      "Tin phong thủy",
-      "Vật phẩm phong thủy",
-      "Sự kiện",
-      "Ứng dụng vạn sự kỳ thư",
-      "Tin trà",
-    ];
-    const ListMenuPostComponent = listMenuItems.map((item, index) => {
+    const AlertComponent = () => {
+        return(
+            <Box sx={{position: "absolute", top: "0px", right: "0px"}}>
+                <Fade
+                    in={alertVisibility} //Write the needed condition here to make it appear
+                    timeout={{ enter: 1000, exit: 1000 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                    addEndListener={() => {
+                        setTimeout(() => {
+                            setAlertVisibility(false)
+                        }, 2000);
+                    }}
+                >
+                    <Alert severity="success" variant="standard" className="alert">
+                        {/*<AlertTitle>Success</AlertTitle>*/}
+                        Đã thêm vật phẩm vào giỏ hàng
+                    </Alert>
+                </Fade>
+            </Box>
+        )
+    }
+
+  const RelatedPost = () => {
       return (
-        <Box sx={{ marginLeft: "20px" }} key={index}>
-          <p style={{ color: "gray", textTransform: "uppercase" }}>{item}</p>
-        </Box>
-      );
-    });
-    return (
-      <Box sx={{ height: "50px" }} className="flex-row full-width center">
-        {ListMenuPostComponent}
-      </Box>
-    );
-  };
+          <Box className="related-post-container">
+              {
+                  listRelatedPost.slice(0, 15).map((relatedPost, index) => (
+                      <Box key={index} onClick={() => redirect(relatedPost.id)} className="related-post-element">
+                          <Box className="related-post-image">
+                              <img src={relatedPost.titleImageUrlStream} />
+                          </Box>
+                          <Box className="related-post-content">
+                              <p>{relatedPost.title}</p>
+                              <p>{relatedPost.createAt}</p>
+                          </Box>
+                      </Box>
+                  ))
+              }
+          </Box>
+      )
+  }
+
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="post-detail-content-wrapper">
-        <Box
-            className="posts-detail-title"
-        >
-          <p style={{fontSize:'30px'}}>{detailPost?.title}</p>
-          <Box className="detail-posts-focus-title-container">
-            <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
-            <p className="detail-posts-focus-title">23:00 15-9-2022</p>
+          <Box className="post-detail-title-wrapper">
+              <Directory></Directory>
+              <Box
+                  className="posts-detail-title"
+              >
+                  <p style={{fontSize:'30px', textTransform: "uppercase", fontWeight: "900"}}>{detailPost?.title}</p>
+              </Box>
+              <Divider />
+          </Box>
+        <Box className="post-detail-content-container">
+            <Box className="post-detail-content-content">
+                <Box className="detail-posts-focus-title-container">
+                    <FontAwesomeIcon icon={faCalendarDays}></FontAwesomeIcon>
+                    <p className="detail-posts-focus-title">23:00 15-9-2022</p>
+                </Box>
+                <Box className="post-detail-content">
+                    <DetailPost></DetailPost>
+                </Box>
+                <Box>
+                    <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700"}}>Bình luận</p>
+                    <Box sx={{marginTop: "10px"}}>
+                        {listComment.map((comment, ind) => (
+                            <Box key={ind} sx={{display: "flex", flexDirection: "column", backgroundColor: "#F2F2F2", borderRadius: "20px",
+                                padding: "10px 20px"}}>
+                                <p style={{color: "rgb(0,32,96)", fontSize: "15px", fontWeight: "700"}}>{comment.name}</p>
+                                <p style={{color: "rgb(0,32,96)", fontSize: "10px", fontWeight: "500"}}>{comment.content}</p>
+                            </Box>
+                        ))}
+                    </Box>
+                    <Divider sx={{marginTop: "20px", backgroundColor: "rgb(0,32,96)"}}/>
+                    <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700", marginTop: "20px"}}>Tham gia bình luận!</p>
+                    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <Box sx={{display: "flex", flexDirection: "row", width: "100%"}}>
+                            <TextField sx={{width: "50%", marginTop: "20px"}}
+                                       id="title-post"
+                                       label="Tên Nickname"
+                                       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                           console.log(event.target.value);
+                                           setNameComment(event.target.value);
+                                       }}
+                            />
+                            <TextField sx={{width: "50%", marginTop: "20px"}}
+                                       id="title-post"
+                                       label="Email(Không bắt buộc)"
+                                       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                           console.log(event.target.value);
+                                           setEmailComment(event.target.value);
+                                       }}
+                            />
+                        </Box>
+                        <TextField sx={{width: "100%", marginTop: "20px"}}
+                                   id="title-post"
+                                   label="Bình luận"
+                                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                       console.log(event.target.value);
+                                       setContentComment(event.target.value);
+                                   }}
+                        />
+                        <button style={{marginBottom:"20px", marginTop: "20px", padding: "10px 20px", borderRadius: "20px", backgroundColor: "red"}} onClick={() => createComment()}>Bình luận</button>
+                    </Box>
+                </Box>
+            </Box>
+          <Box className="post-page-ad-wrapper">
+              <Box className="post-page-register-wrapper">
+                  <Box className="post-page-title">
+                      <p>Đăng ký xem tử vi</p>
+                  </Box>
+                  <Box className="post-page-register-content">
+                      <Box className="post-page-input-wrapper">
+                          <p>Họ và tên</p>
+                          <input type="text"></input>
+                      </Box>
+                      <Box className="post-page-input-wrapper">
+                          <p>Số điện thoại</p>
+                          <input type="text"></input>
+                      </Box>
+                      <button>Đăng ký</button></Box>
+              </Box>
+              <Box>
+                  <Box className="post-page-title">
+                      <p>Bài viết liên quan</p>
+                  </Box>
+                  <RelatedPost></RelatedPost>
+              </Box>
           </Box>
         </Box>
-        <Box className="post-detail-content">
-          <DetailPost></DetailPost>
-        </Box>
+          <AlertComponent></AlertComponent>
       </Box>
     </Page>
   );

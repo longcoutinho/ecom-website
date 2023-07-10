@@ -3,20 +3,24 @@ import Head from "next/head";
 import Header from "@/components/Header";
 import { PAGE_TITLE } from "@/constants";
 import Footer from "@/components/Footer";
-import { IPageProps } from "@/interfaces";
 
-const Page = (props: IPageProps) => {
-  const { children, title, admin, menuIndex } = props;
+
+
+const Page = (props: any) => {
+  const { children, title, admin, menuIndex, cartAmount: number } = props;
+  console.log("k");
+
+
 
   return (
-    <div>
-      <Head>
-        <title>{PAGE_TITLE.PREFIX + title}</title>
-      </Head>
-      <Header />
-      {children}
-      <Footer />
-    </div>
+          <div>
+              <Head>
+                  <title>{PAGE_TITLE.PREFIX + title}</title>
+              </Head>
+              <Header/>
+              {children}
+              <Footer />
+          </div>
   );
 };
 

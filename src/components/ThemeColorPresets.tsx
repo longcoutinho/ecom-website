@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { alpha, ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+// @ts-ignore
 import useSettings from '../hooks/useSettings';
+// @ts-ignore
 import componentsOverride from '../theme/overrides';
 
 export default function ThemeColorPresets({ children }: any) {

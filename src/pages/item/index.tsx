@@ -1,4 +1,4 @@
-import { PAGE_TITLE, listItems, listMenuItem } from "@/constants";
+import { PAGE_TITLE, listItems } from "@/constants";
 import Page from "@/layouts";
 import { Box, Button, Divider, Tab, Tabs } from "@mui/material";
 import "swiper/css";
@@ -9,10 +9,12 @@ import "@/constants/FnCommon"
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import {TypePost} from "@/interfaces/response";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 import { Item } from "../../interfaces/response";
 import React from "react";
 import {formatVND} from "@/constants/FnCommon";
+import Link from "next/link";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -46,13 +48,13 @@ export default function ItemComponent() {
   const [pageCount, setPageCount] = useState(0);
   const [title, setTitle] = useState("");
   const router = useRouter();
+  const {push, query} = useRouter();
   const textInput = useRef<any>();
-
-  const focusInput = () => {
-    textInput.current.focus();
-  };
+  const [listMenuItem, setListMenuItem] = useState<TypePost[]>([]);
+  const [itemsType, setItemsType] = useState("");
 
   useEffect(() => {
+    if (router.query.type !== undefined) setItemsType(router?.query?.type[0]);
     if (
       router.query.page !== undefined &&
       router.query.pageSize !== undefined
@@ -86,6 +88,17 @@ export default function ItemComponent() {
           console.log(err);
         }
       );
+      axios({
+        method: "get",
+        url: "http://10.248.158.167:1112/type/1",
+      }).then(
+          (res) => {
+            setListMenuItem(res.data);
+          },
+          (err) => {
+            console.log(err);
+          }
+      );
     }
   }, [router.query]);
 
@@ -115,7 +128,7 @@ export default function ItemComponent() {
         "?" +
         new URLSearchParams({
           page: pageNumber.toString(),
-          pageSize: pageSize,
+          pageSize: "9",
           title: title,
         }),
     });
@@ -141,7 +154,7 @@ export default function ItemComponent() {
 
   const SearchInput = () => {
     return (
-      <Box className="search-input full-width center flex-row">
+      <Box className="posts-search-input full-width center flex-row">
         <input
           autoFocus
           value={title}
@@ -155,17 +168,70 @@ export default function ItemComponent() {
     );
   };
 
+  const Directory = () => {
+    const PostTypeDirectory = () => {
+      if (itemsType === undefined) {
+        return (<Box></Box>)
+      }
+      else {
+        return (
+            <Box sx={{display: "flex", flexDirection: "row"}}>
+              <p className="directiory-icon"> {' >> '} </p>
+              <a style={{textTransform: "capitalize"}} href="#">{itemsType}</a>
+            </Box>
+        )
+      }
+    }
+
+    const SearchDirectiory = () => {
+      if (query.title == undefined) {
+        return (<Box></Box>)
+      }
+      else {
+        return (
+            <Box sx={{display: "flex", flexDirection: "row"}}>
+              <p className="directiory-icon"> {' >> '} </p>
+              <a href="#">Tìm kiếm với từ khóa `&apos;`{query.title}`&apos;`</a>
+            </Box>
+        )
+      }
+    }
+
+    return (<Box className="directory-wrapper">
+      <a href="./">Trang chủ</a>
+      <p className="directiory-icon"> {'>>'} </p>
+      <Link href="/posts?page=0&pageSize=9">Vật phẩm</Link>
+      <PostTypeDirectory></PostTypeDirectory>
+      <SearchDirectiory></SearchDirectiory>
+
+    </Box>)
+  }
+
   const redirect = (id: any) => {
     router.push({
       pathname: "/item/detail",
       search: "?" + new URLSearchParams({ id: id }),
     });
   };
+
+  const redirectSearchItem = (page: string, pageSize: any, type: any) => {
+    let num = Number(page);
+    num--;
+    let builder = new URLSearchParams();
+    builder.set('pageSize', num.toString());
+    builder.set('type', type);
+    builder.set('page', page);
+    router.push({
+      pathname: "/item",
+      search: "?" + builder,
+    });
+  }
+
   const ListItems = () => {
     const ListItemComponents = (props: any) => {
       return (
         <Box className="list-items-item-page-container">
-          {listItems.map((item, index) => {
+          {listPosts.map((item, index) => {
             return (
               <Box
                 onClick={() => redirect(item.id)}
@@ -180,29 +246,17 @@ export default function ItemComponent() {
                       src={item.titleImageUrlStream}
                     />
                   </Box>
-                  <Box className="list-posts-content">
+                  <Box className="list-element-items-content">
                     <h1
-                      style={{
-                        fontSize: "17px",
-                        fontWeight: "700px",
-                        color: "rgb(0,32,96)",
-                        textTransform: "uppercase",
-                      }}
-                      className="title-list-item-home"
+                      className="title-element-list-item-home"
                     >
                       {item.title}
                     </h1>
                     <Divider />
                     <p
                       className="content-post"
-                      style={{
-                        fontSize: "18px",
-                        color: "#f70d28",
-                        margin: "8px 0",
-                        width: "100%",
-                      }}
                     >
-                      {formatVND(item.price)}
+                      {formatVND(item.price, false)}
                     </p>
                     <div className="item-desciption">
                       <p>Mô tả:</p>
@@ -226,7 +280,7 @@ export default function ItemComponent() {
     const ListMenuItemComponent = () => {
       const menu = listMenuItem.map((items, index) => {
         return (
-            <Box className="list-items-search-container-elements" key={index}>{items}</Box>
+            <Box onClick={() => redirectSearchItem("1", 9, items.name)} className="list-items-search-container-elements" key={index}>{items.name}</Box>
         )
       });
       return (
@@ -237,16 +291,22 @@ export default function ItemComponent() {
     }
     return (
       <Box className="list-items-content">
-        <Box className="list-items-search-container">
-          <Box className="list-items-search-container-title">
-            <p>Vật phẩm phong thủy</p>
+        <Directory></Directory>
+        <Box sx={{display: "flex", flexDirection: "row", gap: "20px"}}>
+          <Box sx={{display: "flex", flexDirection: "column", width: "25%"}}>
+            <SearchInput></SearchInput>
+            <Box sx={{marginTop: "10px"}} className="list-items-search-container">
+              <Box className="list-items-search-container-title">
+                <p>Vật phẩm phong thủy</p>
+              </Box>
+              <ListMenuItemComponent></ListMenuItemComponent>
+            </Box>
           </Box>
-          <ListMenuItemComponent></ListMenuItemComponent>
-        </Box>
-        <Box
-          className="list-items-item-page-wrapper"
-        >
+          <Box
+              className="list-items-item-page-wrapper"
+          >
             <ListItemComponents />
+          </Box>
         </Box>
       </Box>
     );

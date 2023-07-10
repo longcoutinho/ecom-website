@@ -30,9 +30,9 @@ const Footer = () => {
           </Box>
         </Box>
         <Box className="item3">
-          <Facebook sx={{ marginRight: "6px", color: "black" }} />
-          <Google sx={{ marginRight: "6px", color: "black" }} />
-          <YouTube sx={{ color: "black" }} />
+          <Facebook sx={{ marginRight: "6px", color: "white" }} />
+          <Google sx={{ marginRight: "6px", color: "white" }} />
+          <YouTube sx={{ color: "white" }} />
         </Box>
       </Box>
       <Divider className="divider-footer" />

@@ -1,0 +1,198 @@
+$base-color: rgb(0,32,96);
+.item-detail-content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20%;
+  background: #f9f9f9;
+  .list-items-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    .content-item {
+      margin-left: 20px;
+      padding: 20px;
+      background-color: $base-color;
+      width: 80%;
+      display: flex;
+      flex-direction: row;
+      .image-item {
+        width: 45%;
+        height: 100%;
+        object-fit: fill;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .info-item {
+        margin-left: 20px;
+        width: 55%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .title-item {
+          color: white;
+          font-size: 35px;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        .introduction-item {
+          margin-top: 5px;
+          font-size: 15px;
+          .introduction-item-title {
+            font-size: 20px;
+          }
+          .introduction-item-content {
+            padding: 10px;
+            border: 2px solid #2F528F;
+            margin-top: 5px;
+          }
+        }
+        .price-item {
+          margin-top: 20px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .price-item-title {
+            font-size: 20px;
+          }
+          .price-item-content {
+            margin-left: 5px;
+            color: #FFFF00;
+            font-size: 25px;
+            font-weight: 700;
+          }
+        }
+        .amount-item {
+          display: flex;
+          flex-direction: row;
+          font-size: 18px;
+          align-items: center;
+          color: white;
+          .amount-title {
+            font-size: 20px;
+          }
+          .amount-container {
+            height: 70%;
+            margin-left: 5px;
+            .amount-number {
+              border: 2px solid gray;
+              height: 100%;
+              width: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .amount-icon {
+              font-size: 30px;
+              height: 100%;
+            }
+          }
+        }
+        .buy-button-container {
+          margin-top: 10px;
+          padding: 0 20px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .buy-now-button {
+            text-transform: none;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            border: 2px solid #FFFF00;
+            font-size: 20px;
+            font-weight: 700;
+          }
+          .buy-now-button:hover {
+            background-color: white;
+            color: red;
+          }
+          .add-to-cart-button {
+            text-transform: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            border: 2px solid #FFFF00;
+            font-size: 20px;
+            font-weight: 700;
+          }
+
+          .add-to-cart-button:hover {
+            background-color: white;
+            color: $base-color;
+          }
+
+        }
+
+      }
+    }
+    .list-item-buy-most {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+  }
+}
+
+.post-page-ad-wrapper {
+  margin-left: 20px;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .post-page-register-wrapper {
+    width: 100%;
+    .post-page-register-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px 10px;
+      width: 100%;
+      background-color: #F2F2F2;
+      .post-page-input-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        p {
+          color: $base-color;
+          font-weight: 800;
+        }
+        input {
+          background-color: white;
+          color: $base-color;
+          height: 30px;
+          border: 1px solid $base-color;
+          padding: 0 5px;
+          outline: none;
+        }
+      }
+      button {
+        margin-top: 40px;
+        background-color: #FF0000;
+        border: 2px solid white;
+        padding: 5px 10px;
+        border-radius: 10px;
+        text-transform: uppercase;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+      .post-page-input-wrapper:not(:first-child) {
+        margin-top: 20px;
+      }
+    }
+  }
+}

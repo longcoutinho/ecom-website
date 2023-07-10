@@ -3,14 +3,15 @@ $base-color: rgb(0,32,96);
       width: 100%;
       height: 100%;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
   justify-content: space-between;
       padding: 0 10px;
     .list-items-search-container {
+        width: 100%;
         border-radius: 15px;
         overflow: hidden;
         .list-items-search-container-title {
-          width: fit-content;
+          width: 100%;
           background-color: #002060;
           padding: 10px;
           p {
@@ -29,17 +30,93 @@ $base-color: rgb(0,32,96);
             border: 1px solid white;
             font-weight: 800;
           }
+          .list-items-search-container-elements:hover {
+            cursor: pointer;
+          }
         }
     }
   .list-items-item-page-wrapper {
-    width: 80%;
+    width: 75%;
     .list-items-item-page-container {
       padding: 20px;
       width: 100%;
       background-color: $base-color;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      gap: 20px;
     }
   }
+}
+
+.list-element-items-content {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  p {
+    color: $base-color;
+    font-size: 10px;
+  }
+  h1 {
+    font-size: 17px;
+    font-weight: 700;
+    color: $base-color;
+    text-transform: uppercase;
+  }
+}
+.item-desciption {
+  margin-top: 5px;
+  p {
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    line-height: 1.2em;
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
+.list-items-image {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  background-color: green;
+  border-radius: 12px;
+}
+
+.list-items-image:hover {
+  transition-duration: 1s;
+}
+
+.image-and-content-element-item {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-post {
+  margin-top: 5px;
+  padding: 5px 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 2px solid #f70d28;
+  color: #f70d28 !important;
+  font-weight: 800 !important;
+  font-size: 20px !important;
+}
+
+.title-element-list-item-home {
+  /* color: white; */
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.3em;
+  line-height: 1.3em;
+  font-weight: 800 !important;
 }

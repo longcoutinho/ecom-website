@@ -1,6 +1,6 @@
 import { Box, Button, Divider } from "@mui/material";
 import Page from "@/layouts";
-import {listCourse, listItems, listMenuCourse, listMenuItem, PAGE_TITLE} from "@/constants";
+import {listCourse, listItems, listMenuCourse, PAGE_TITLE} from "@/constants";
 import {Course} from "@/interfaces/response";
 import React from "react";
 import {formatVND} from "@/constants/FnCommon";
@@ -36,7 +36,6 @@ export default function Courses() {
                 {listCourse.map((course, index) => {
                     return (
                         <Box
-                            onClick={() => redirect(item.id)}
                             key={index}
                             className="list-items-element-course"
                         >

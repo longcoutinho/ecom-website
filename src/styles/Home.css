@@ -219,7 +219,7 @@ width:33.3%;
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-  max-height: 2.4em;
+  max-height: 1.1em;
   line-height: 1.2em;
 }
 
@@ -233,5 +233,18 @@ width:33.3%;
   overflow: hidden;
   max-height: 3.6em;
   line-height: 1.2em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.title-post-home-1 {
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 2.4em;
+  line-height: 1.2em;
+  font-size: 15px !important;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
