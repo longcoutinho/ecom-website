@@ -1,4 +1,4 @@
-import { PAGE_TITLE } from "@/constants";
+import {Backend, PAGE_TITLE} from "@/constants";
 import Page from "@/layouts";
 import {Box, Divider, TextField, Button, Fade, Alert} from "@mui/material";
 import "swiper/css";
@@ -26,7 +26,7 @@ export default function PostDetail() {
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://10.248.158.167:1112/type/0",
+      url: Backend.URL + "/type/0",
     }).then(
         (res) => {
           console.log(res.data);
@@ -37,7 +37,7 @@ export default function PostDetail() {
         }
     );
     if (route.query.id !== undefined) {
-      const URL = "http://10.248.158.167:1112/posts/" + route.query.id;
+      const URL = Backend.URL + "/posts/" + route.query.id;
       console.log(route.query.id);
       axios({
         headers: {
@@ -64,7 +64,7 @@ export default function PostDetail() {
     const getRelatedPost = (typeId: any) => {
         axios({
             method: "get",
-            url: "http://10.248.158.167:1112/posts",
+            url: Backend.URL + "/posts",
             params: {
                 typeId: typeId,
             }
@@ -159,7 +159,7 @@ export default function PostDetail() {
       const getComment = (postId: any) => {
           axios({
               method: "get",
-              url: "http://10.248.158.167:1112/comment/" + postId,
+              url: Backend.URL + "/comment/" + postId,
           }).then(
               (res) => {
                   console.log(res.data);
@@ -174,7 +174,7 @@ export default function PostDetail() {
       const createComment = () => {
           axios({
               method: "post",
-              url: "http://10.248.158.167:1112/comment",
+              url: Backend.URL + "/comment",
               data: {
                   name: nameComment,
                   email: emailComment,

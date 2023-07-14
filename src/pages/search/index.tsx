@@ -1,4 +1,4 @@
-import { PAGE_TITLE } from "@/constants";
+import {Backend, PAGE_TITLE} from "@/constants";
 import Page from "@/layouts";
 import { Box, Button, Input, Paper } from "@mui/material";
 import PaginationMui from '@mui/material/Pagination';
@@ -33,7 +33,7 @@ export default function SearchComponent() {
         setPostsType(query.type);
         axios({
             method: "get",
-            url: "http://10.248.158.167:1112/type/0",
+            url: Backend.URL + "/type/0",
         }).then(
             (res) => {
                 console.log(res.data);
@@ -46,7 +46,7 @@ export default function SearchComponent() {
             if (query.title != undefined && query.page != undefined && query.pageSize != undefined) {
                 axios({
                     method: "get",
-                    url: "http://10.248.158.167:1112/posts",
+                    url: Backend.URL + "/posts",
                     params: {
                         page: query.page,
                         pageSize: query.pageSize,

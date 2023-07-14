@@ -1,4 +1,4 @@
-import {PAGE_TITLE} from "@/constants";
+import {Backend, PAGE_TITLE} from "@/constants";
 import Page from "@/layouts";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -63,7 +63,7 @@ export default function PostDetail() {
   useEffect(() => {
     console.log("kkk");
     if (route.query.id !== undefined) {
-      const URL = "http://10.248.158.167:1112/item/" + route.query.id;
+      const URL = Backend.URL + "/item/" + route.query.id;
       console.log(route.query.id);
       axios({
         headers: {
@@ -86,7 +86,7 @@ export default function PostDetail() {
 
     axios({
       method: "get",
-      url: "http://10.248.158.167:1112/item",
+      url: Backend.URL + "/item",
     }).then(
         (res) => {
           console.log(res.data);

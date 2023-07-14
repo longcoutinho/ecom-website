@@ -1,4 +1,4 @@
-import { PAGE_TITLE, listItems } from "@/constants";
+import {PAGE_TITLE, listItems, Backend} from "@/constants";
 import Page from "@/layouts";
 import { Box, Button, Divider, Tab, Tabs } from "@mui/material";
 import "swiper/css";
@@ -61,7 +61,7 @@ export default function ItemComponent() {
     ) {
       axios({
         method: "get",
-        url: "http://10.248.158.167:1112/item",
+        url: Backend.URL + "/item",
         params: {
           page: router.query.page,
           pageSize: router.query.pageSize,
@@ -79,7 +79,7 @@ export default function ItemComponent() {
       );
       axios({
         method: "get",
-        url: "http://10.248.158.167:1112/item",
+        url: Backend.URL + "/item",
       }).then(
         (res) => {
           setListFeaturedPosts(res.data.content);
@@ -90,7 +90,7 @@ export default function ItemComponent() {
       );
       axios({
         method: "get",
-        url: "http://10.248.158.167:1112/type/1",
+        url: Backend.URL + "/type/1",
       }).then(
           (res) => {
             setListMenuItem(res.data);

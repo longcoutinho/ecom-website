@@ -1,4 +1,4 @@
-import { PAGE_TITLE } from "@/constants";
+import {Backend, PAGE_TITLE} from "@/constants";
 import Page from "@/layouts";
 import {Box, TextField, Button, Fade, Alert} from "@mui/material";
 import "swiper/css";
@@ -50,8 +50,6 @@ export default function Cart() {
     setCart(newCart);
     setTotalPrice(totalPrice);
   }, []);
-
-  axios.defaults.baseURL = 'http://10.248.158.167:1112';
 
   const deleteItem = (ind: number) => {
     let newCart: ItemToCart[] = deleteItemByIndex(ind);
@@ -151,7 +149,7 @@ export default function Cart() {
           'Access-Control-Allow-Origin': '*',
         },
         method: 'post',
-        url: '/order',
+        url: Backend.URL + '/order',
         data: {
           cart: newCart,
           name: fullName,
