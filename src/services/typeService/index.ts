@@ -1,6 +1,7 @@
 import {Backend, TypeService} from "@/constants";
 import {doGetRequest} from "@/constants/FnCommon";
 import {ServiceType} from "@/constants";
+import {TypePost} from "@/interfaces/response";
 
 const getTypesData = async (serviceType: any) => {
     const url = Backend.URL + TypeService.getType + serviceType;
@@ -9,6 +10,5 @@ const getTypesData = async (serviceType: any) => {
 
 export const getTypeofPosts = async () => {
     const requestParams = {}
-    let res = await getTypesData(ServiceType.POSTS);
-    return res;
+    return await getTypesData(ServiceType.POSTS);
 }

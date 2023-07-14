@@ -1,13 +1,13 @@
 import { PAGE_TITLE } from "@/constants";
 import Page from "@/layouts";
-import { Box, TextField, Button } from "@mui/material";
+import {Box, TextField, Button, Fade, Alert} from "@mui/material";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,9 +30,6 @@ interface SendItem {
 export default function Cart() {
   const [cart, setCart] = useState<ItemToCart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
   const assign = (number: any) => {
     return {
       type: "ASSIGN",
@@ -55,39 +52,6 @@ export default function Cart() {
   }, []);
 
   axios.defaults.baseURL = 'http://10.248.158.167:1112';
-  const order = () => {
-    console.log("cart")
-    console.log(cart);
-    var newCart:SendItem[] = [];
-    for(var i = 0; i < cart.length; i++) {
-      newCart[i] = Object.assign({}, cart[i]);
-      newCart[i].itemId = cart[i].id;
-      newCart[i] = (({ itemId, amount }) => ({ itemId, amount }))(newCart[i]);
-    }
-    console.log("send");
-    console.log(newCart);
-    axios({
-      headers: {
-        'Accept': '*/*',
-        'accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      method: 'post',
-      url: '/order',
-      data: {
-        cart: newCart,
-        name: fullName,
-        address: address,
-        phone: phoneNumber,
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-  });
-  }
 
   const deleteItem = (ind: number) => {
     let newCart: ItemToCart[] = deleteItemByIndex(ind);
@@ -139,6 +103,116 @@ export default function Cart() {
     )
   }
 
+  const OrderInfo = () => {
+    // order info
+    const [fullName, setFullName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [address, setAddress] = useState("");
+    // alert status
+    const [alertVisibility, setAlertVisibility] = useState(false);
+    const [alertContent, setAlertContent] = useState("");
+    const [alertType, setAlertType] = useState<any>(""); // 0: success, 1: error
+
+    const AlertComponent = () => {
+      return(
+          <Box sx={{position: "fixed", top: "0px", right: "0px"}}>
+            <Fade
+                in={alertVisibility} //Write the needed condition here to make it appear
+                timeout={{ enter: 1000, exit: 1000 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                addEndListener={() => {
+                  setTimeout(() => {
+                    setAlertVisibility(false)
+                  }, 2000);
+                }}
+            >
+              <Alert severity={alertType} variant="standard" className="alert">
+                {/*<AlertTitle>Success</AlertTitle>*/}
+                {alertContent}
+              </Alert>
+            </Fade>
+          </Box>
+      )
+    }
+
+    const order = () => {
+      let newCart:SendItem[] = [];
+      for(let i = 0; i < cart.length; i++) {
+        newCart[i] = Object.assign({}, cart[i]);
+        newCart[i].itemId = cart[i].id;
+        newCart[i] = (({ itemId, amount }) => ({ itemId, amount }))(newCart[i]);
+      }
+      console.log("send");
+      console.log(newCart);
+      axios({
+        headers: {
+          'Accept': '*/*',
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        method: 'post',
+        url: '/order',
+        data: {
+          cart: newCart,
+          name: fullName,
+          address: address,
+          phone: phoneNumber,
+        }
+      })
+          .then((response) => {
+            setAlertVisibility(true);
+            setAlertType("success");
+            setAlertContent("Đặt hàng thành công!");
+          }, (error) => {
+            setAlertVisibility(true);
+            setAlertType("error");
+            setAlertContent(error.response.data);
+          });
+    }
+
+    return (
+        <Box className="cart-info">
+          <h1 className="cart-title">Thông tin đơn hàng</h1>
+          <Box className="cart-input">
+            <Box className="cart-input_item">
+              <p>Họ và tên</p>
+              <TextField sx={{width: "100%", background:'white'}}
+                         id="title-post"
+                         placeholder="Write here"
+                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                           console.log(event.target.value);
+                           setFullName(event.target.value);
+                         }}
+              /></Box>
+            <Box className="cart-input_item">
+              <p>Số điện thoại</p>
+              <TextField sx={{width: "100%", background:'white'}}
+                         id="title-post"
+                         placeholder="Write here"
+                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                           console.log(event.target.value);
+                           setPhoneNumber(event.target.value);
+                         }}
+              />
+            </Box>
+            <Box className="cart-input_item">
+              <p>Địa chỉ</p>
+              <TextField sx={{width: "100%", background:'white'}}
+                         id="title-post"
+                         placeholder="Write here"
+                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                           console.log(event.target.value);
+                           setAddress(event.target.value);
+                         }}
+              /></Box>
+            <Button onClick={() => order()} style={{background:'#eb1b24', color:'white', width:'90%', padding: "7px 0", borderRadius: "20px", fontSize: "18px", fontWeight: "700"}}>Đặt hàng</Button>
+          </Box>
+          <AlertComponent></AlertComponent>
+        </Box>
+    )
+  }
+
+
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={0}>
       <Box className="cart-detail-content">
@@ -146,43 +220,7 @@ export default function Cart() {
           className="cart-content"
         >
           <CartTable></CartTable>
-          <Box className="cart-info">
-            <h1 className="cart-title">Thông tin đơn hàng</h1>
-            <Box className="cart-input">
-              <Box className="cart-input_item">
-                <p>Họ và tên</p>
-              <TextField sx={{width: "100%", background:'white'}}
-                  id="title-post"
-                  placeholder="Write here"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                      console.log(event.target.value);
-                      setFullName(event.target.value);
-                  }}
-                  /></Box>
-                  <Box className="cart-input_item">
-                  <p>Số điện thoại</p>
-              <TextField sx={{width: "100%", background:'white'}}
-                id="title-post"
-                placeholder="Write here"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  console.log(event.target.value);
-                  setPhoneNumber(event.target.value);
-                }}
-              />
-                  </Box>
-               <Box className="cart-input_item">
-               <p>Địa chỉ</p>
-              <TextField sx={{width: "100%", background:'white'}}
-                id="title-post"
-                placeholder="Write here"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  console.log(event.target.value);
-                  setAddress(event.target.value);
-                }}
-              /></Box>
-              <Button onClick={() => order()} style={{background:'#eb1b24', color:'white', width:'90%', padding: "7px 0", borderRadius: "20px", fontSize: "18px", fontWeight: "700"}}>Đặt hàng</Button>
-            </Box>
-          </Box>
+          <OrderInfo></OrderInfo>
         </Box>
       </Box>
     </Page>

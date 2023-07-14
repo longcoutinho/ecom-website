@@ -20,24 +20,10 @@ export default function PostDetail() {
   const [detailPost, setListPost] = useState<Post>();
   const [listTypePost, setListTypePost] = useState<TypePost[]>([
   ]);
-  const [listComment, setListComment] = useState<Comment[]>([
-      {
-          email: "kk",
-          name: "Long Han",
-          content: "Bài viết rất hay!",
-      },
-      ]
-  );
-  const [nameComment, setNameComment] = useState("");
-  const [emailComment, setEmailComment] = useState("");
-  const [contentComment, setContentComment] = useState("");
   const [listRelatedPost, setListRelatedPost] = useState<Post[]>([]);
-  const [alertVisibility, setAlertVisibility] = useState(false);
-
     const route = useRouter();
 
   useEffect(() => {
-      getComment();
     axios({
       method: "get",
       url: "http://10.248.158.167:1112/type/0",
@@ -75,7 +61,6 @@ export default function PostDetail() {
   //datas
   //components
 
-
     const getRelatedPost = (typeId: any) => {
         axios({
             method: "get",
@@ -99,42 +84,6 @@ export default function PostDetail() {
       if (id === listTypePost[i].id) return listTypePost[i].name;
     }
     return "kk";
-  }
-
-  const getComment = () => {
-      axios({
-          method: "get",
-          url: "http://10.248.158.167:1112/comment/0",
-      }).then(
-          (res) => {
-              console.log(res.data);
-              setListComment(res.data.content);
-          },
-          (err) => {
-              console.log(err);
-          }
-      );
-  }
-
-  const createComment = () => {
-      axios({
-          method: "post",
-          url: "http://10.248.158.167:1112/comment",
-          data: {
-              name: nameComment,
-              email: emailComment,
-              content: contentComment,
-              serviceId: 0,
-          }
-      }).then(
-          (res) => {
-              console.log(res.data);
-              getComment();
-          },
-          (err) => {
-              console.log(err);
-          }
-      );
   }
 
     const redirect = (id: any) => {
@@ -175,27 +124,6 @@ export default function PostDetail() {
     </Box>)
   }
 
-    const AlertComponent = () => {
-        return(
-            <Box sx={{position: "absolute", top: "0px", right: "0px"}}>
-                <Fade
-                    in={alertVisibility} //Write the needed condition here to make it appear
-                    timeout={{ enter: 1000, exit: 1000 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
-                    addEndListener={() => {
-                        setTimeout(() => {
-                            setAlertVisibility(false)
-                        }, 2000);
-                    }}
-                >
-                    <Alert severity="success" variant="standard" className="alert">
-                        {/*<AlertTitle>Success</AlertTitle>*/}
-                        Đã thêm vật phẩm vào giỏ hàng
-                    </Alert>
-                </Fade>
-            </Box>
-        )
-    }
-
   const RelatedPost = () => {
       return (
           <Box className="related-post-container">
@@ -212,6 +140,138 @@ export default function PostDetail() {
                       </Box>
                   ))
               }
+          </Box>
+      )
+  }
+
+  const CommentComponent = () => {
+      // list comment data
+      const [listComment, setListComment] = useState<Comment[]>([]);
+      // input new comment
+      const [nameComment, setNameComment] = useState("");
+      const [emailComment, setEmailComment] = useState("");
+      const [contentComment, setContentComment] = useState("");
+      // alert status
+      const [alertVisibility, setAlertVisibility] = useState(false);
+      const [alertContent, setAlertContent] = useState("");
+      const [alertType, setAlertType] = useState<any>(""); // 0: success, 1: error
+
+      const getComment = (postId: any) => {
+          axios({
+              method: "get",
+              url: "http://10.248.158.167:1112/comment/" + postId,
+          }).then(
+              (res) => {
+                  console.log(res.data);
+                  setListComment(res.data.content);
+              },
+              (err) => {
+                  console.log(err);
+              }
+          );
+      }
+
+      const createComment = () => {
+          axios({
+              method: "post",
+              url: "http://10.248.158.167:1112/comment",
+              data: {
+                  name: nameComment,
+                  email: emailComment,
+                  content: contentComment,
+                  serviceId: route.query.id,
+              }
+          }).then(
+              (res) => {
+                  console.log(res.data);
+                  getComment(route.query.id);
+                  setAlertVisibility(true);
+                  setAlertType("success");
+                  setAlertContent("Thêm bình luận thành công!");
+              },
+              (err) => {
+                  setAlertVisibility(true);
+                  setAlertType("error");
+                  // console.log(err.response.data);
+                  setAlertContent(err.response.data);
+              }
+          );
+      }
+
+      useEffect(() => {
+          getComment(route.query.id);
+      }, []);
+
+      const AlertComponent = () => {
+          return(
+              <Box sx={{position: "fixed", top: "0px", right: "0px"}}>
+                  <Fade
+                      in={alertVisibility} //Write the needed condition here to make it appear
+                      timeout={{ enter: 1000, exit: 1000 }} //Edit these two values to change the duration of transition when the element is getting appeared and disappeard
+                      addEndListener={() => {
+                          setTimeout(() => {
+                              setAlertVisibility(false)
+                          }, 2000);
+                      }}
+                  >
+                      <Alert severity={alertType} variant="standard" className="alert">
+                          {/*<AlertTitle>Success</AlertTitle>*/}
+                          {alertContent}
+                      </Alert>
+                  </Fade>
+              </Box>
+          )
+      }
+
+      return (
+          <Box>
+              <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700"}}>Bình luận</p>
+              <Box sx={{marginTop: "10px", gap: "10px", display: "flex", flexDirection: "column"}}>
+                  {listComment.map((comment, ind) => (
+                      <Box key={ind} sx={{display: "flex", flexDirection: "row", backgroundColor: "#F2F2F2", borderRadius: "20px",
+                          padding: "10px 20px", gap: "10px"}}>
+                          <Box sx={{width: "30px", height: "30px"}}>
+                              <img style={{width: "100%", height: "100%", objectFit: "cover"}} src="https://www.nicepng.com/png/detail/115-1150821_default-avatar-comments-sign-in-icon-png.png"></img>
+                          </Box>
+                          <Box>
+                              <p style={{color: "rgb(0,32,96)", fontSize: "15px", fontWeight: "700"}}>{comment.name}</p>
+                              <p style={{color: "rgb(0,32,96)", fontSize: "10px", fontWeight: "500"}}>{comment.content}</p>
+                          </Box>
+                      </Box>
+                  ))}
+              </Box>
+              <Divider sx={{marginTop: "20px", backgroundColor: "rgb(0,32,96)"}}/>
+              <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700", marginTop: "20px"}}>Tham gia bình luận!</p>
+              <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                  <Box sx={{display: "flex", flexDirection: "row", width: "100%"}}>
+                      <TextField sx={{width: "50%", marginTop: "20px"}}
+                                 id="title-post"
+                                 label="Tên Nickname"
+                                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                     console.log(event.target.value);
+                                     setNameComment(event.target.value);
+                                 }}
+                      />
+                      <TextField sx={{width: "50%", marginTop: "20px"}}
+                                 id="title-post"
+                                 label="Email(Không bắt buộc)"
+                                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                     console.log(event.target.value);
+                                     setEmailComment(event.target.value);
+                                 }}
+                      />
+                  </Box>
+                  <TextField sx={{width: "100%", marginTop: "20px"}}
+                             id="title-post"
+                             label="Bình luận"
+                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                 console.log(event.target.value);
+                                 setContentComment(event.target.value);
+                             }}
+                  />
+                  <button style={{marginBottom:"20px", marginTop: "20px", padding: "10px 20px", borderRadius: "20px", backgroundColor: "red"}} onClick={() => createComment()}>Bình luận</button>
+              </Box>
+              <AlertComponent></AlertComponent>
           </Box>
       )
   }
@@ -237,49 +297,7 @@ export default function PostDetail() {
                 <Box className="post-detail-content">
                     <DetailPost></DetailPost>
                 </Box>
-                <Box>
-                    <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700"}}>Bình luận</p>
-                    <Box sx={{marginTop: "10px"}}>
-                        {listComment.map((comment, ind) => (
-                            <Box key={ind} sx={{display: "flex", flexDirection: "column", backgroundColor: "#F2F2F2", borderRadius: "20px",
-                                padding: "10px 20px"}}>
-                                <p style={{color: "rgb(0,32,96)", fontSize: "15px", fontWeight: "700"}}>{comment.name}</p>
-                                <p style={{color: "rgb(0,32,96)", fontSize: "10px", fontWeight: "500"}}>{comment.content}</p>
-                            </Box>
-                        ))}
-                    </Box>
-                    <Divider sx={{marginTop: "20px", backgroundColor: "rgb(0,32,96)"}}/>
-                    <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700", marginTop: "20px"}}>Tham gia bình luận!</p>
-                    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                        <Box sx={{display: "flex", flexDirection: "row", width: "100%"}}>
-                            <TextField sx={{width: "50%", marginTop: "20px"}}
-                                       id="title-post"
-                                       label="Tên Nickname"
-                                       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                           console.log(event.target.value);
-                                           setNameComment(event.target.value);
-                                       }}
-                            />
-                            <TextField sx={{width: "50%", marginTop: "20px"}}
-                                       id="title-post"
-                                       label="Email(Không bắt buộc)"
-                                       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                           console.log(event.target.value);
-                                           setEmailComment(event.target.value);
-                                       }}
-                            />
-                        </Box>
-                        <TextField sx={{width: "100%", marginTop: "20px"}}
-                                   id="title-post"
-                                   label="Bình luận"
-                                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                                       console.log(event.target.value);
-                                       setContentComment(event.target.value);
-                                   }}
-                        />
-                        <button style={{marginBottom:"20px", marginTop: "20px", padding: "10px 20px", borderRadius: "20px", backgroundColor: "red"}} onClick={() => createComment()}>Bình luận</button>
-                    </Box>
-                </Box>
+                <CommentComponent></CommentComponent>
             </Box>
           <Box className="post-page-ad-wrapper">
               <Box className="post-page-register-wrapper">
@@ -305,7 +323,6 @@ export default function PostDetail() {
               </Box>
           </Box>
         </Box>
-          <AlertComponent></AlertComponent>
       </Box>
     </Page>
   );

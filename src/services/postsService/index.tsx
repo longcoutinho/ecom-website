@@ -11,3 +11,10 @@ export const getAllPosts = async () => {
     let res = await getPostsData(null);
     return res;
 }
+
+export const getServicePosts = async () => {
+    const params = {
+        priority: -2,
+    }
+    return await getPostsData(params);
+}

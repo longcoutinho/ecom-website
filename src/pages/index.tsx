@@ -1,8 +1,9 @@
 import {PAGE} from "@/constants/message";
-import {listServicesTitle, HomePage} from "@/constants";
+import {listServicesTitle, HomePage, PostsService, ItemService} from "@/constants";
 import {formatVND} from "@/constants/FnCommon";
-import {getAllPosts} from "@/services/postsService"
+import {getAllPosts, getServicePosts} from "@/services/postsService"
 import {getTypeofPosts} from "@/services/typeService";
+import {getAllItems} from "@/services/itemService";
 import Page from "@/layouts";
 import { Box, Button} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,253 +14,171 @@ import "swiper/css/scrollbar";
 import {Navigation, Scrollbar, Pagination, A11y, Autoplay} from "swiper";
 import {Post, Item, Service, TypePost} from "@/interfaces/response";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
 export default function Home() {
-  /*************************************************** INIT DATA ******************************************************/
-  const [listPosts, setListPosts] = useState<Post[]>([])
-  const [listItems, setListItems] = useState<Item[]>([]);
-  const [listPriorityPosts, setListPriorityPosts] = useState<Post[]>([]);
-  const [listTypePost, setListTypePost] = useState<TypePost[]>([])
+    const route = useRouter();
   const [listServices, setListServices] = useState<Service[]>([]);
-  const route = useRouter();
 
-  /************************************************* INIT FUNCTION ****************************************************/
   useEffect(() => {
-    // Get data post type
-    getTypeofPosts().then(
-        (res) => {
-          setListTypePost(res.data);
-        },
-        (err) => {
-          console.error(err);
-        });
-    // Set featured post data (Các bài viết ở hàng trên)
-    getAllPosts().then(
-        (res) => {
-          console.log(res.data.content);
-          setListPriorityPosts(res.data.content.slice(0, HomePage.numFeaturedPost));
-        },
-        (err) => {
-          console.error(err);
-        });
-    // Set featured post data (Các bài viết ở hàng trên)
-    getAllPosts().then(
-        (res) => {
-          console.log(res.data.content);
-          setListPosts(res.data.content.slice(HomePage.numFeaturedPost, HomePage.numFeaturedPost + HomePage.numPost));
-        },
-        (err) => {
-          console.error(err);
-        });
-    axios({
-      method: "get",
-      url: "http://10.248.158.167:1112/item",
-    }).then(
-        (res) => {
-          // @ts-ignore
-          setListItems(res.data.content);
-        },
-        (err) => {
-          console.log(err);
-        }
-    );
-
-     getServicePost();
+      getServicePosts().then(
+          (res) => {
+              let serArr:Service[] = [];
+              for(let i = 0; i < res.data.content.length; i++) {
+                  serArr.push({
+                      titleImageUrlStream: res.data.content[i].titleImageUrlStream,
+                      id: res.data.content[i].id,
+                      title: listServicesTitle[i].title,
+                      content: listServicesTitle[i].content,
+                  })
+              }
+              setListServices(serArr);
+          },
+          (err) => {
+          }
+      );
   }, []);
 
-  const getServicePost = () => {
-    axios({
-      method: "get",
-      url: "http://10.248.158.167:1112/posts",
-      params: {
-        priority: -2,
-      }
-    }).then(
-        (res) => {
-          console.log(res.data);
-          let serArr:Service[] = [];
-          for(let i = 0; i < res.data.content.length; i++) {
-            serArr.push({
-                titleImageUrlStream: res.data.content[i].titleImageUrlStream,
-                id: res.data.content[i].id,
-                title: listServicesTitle[i].title,
-                content: listServicesTitle[i].content,
-            })
-          }
-          setListServices(serArr);
-        },
-        (err) => {
-          console.log(err);
+  const redirect = (path: any, params: any) => {
+    route.push({
+        pathname: path,
+        search: params ? "?" + new URLSearchParams(params) : null,
+    });
+  };
+
+    const goToDetailPost = (id: any) => {
+        const params = {
+            id: id,
         }
-    );
-  }
-
-  const redirect = (path: any) => {
-    route.push(path);
-  };
-
-  const goToDetailPost = (id: any) => {
-    route.push({
-      pathname: "posts/detail",
-      search: "?" + new URLSearchParams({ id: id }),
-    });
-  };
-
-  const goToDetailItem = (id: any) => {
-    route.push({
-      pathname: "item/detail",
-      search: "?" + new URLSearchParams({ id: id }),
-    });
-  };
-
-  const findTypePostName = (id: any) => {
-    for(let i = 0; i < listTypePost.length; i++) {
-      if (id === listTypePost[i].id) return listTypePost[i].name;
-    }
-    return "kk";
-  }
-
-  const timeStampToDate = (timestamp: any) => {
-    var dateFormat = new Date(timestamp);
-    var res = "";
-    res += dateFormat.getDate() + "/";
-    res += dateFormat.getMonth() + 1 + "/";
-    res += dateFormat.getFullYear();
-    return res;
-  }
-
-  const ListFeaturedPosts = () => {
-    const options = {
-      slidesPerView: 1,
-      spaceBetween: 50,
-      breakpoints: {
-        300: {
-          slidesPerView: 1,
-        },
-        690: {
-          slidesPerView: 1,
-        },
-        1100: {
-          slidesPerView: 1,
-        },
-        1300: {
-          slidesPerView: 1,
-        },
-        1600: {
-          slidesPerView: 1,
-        },
-        1900: {
-          slidesPerView: 1,
-        },
-      },
+        redirect(PostsService.getPostDetail, params);
     };
-
-    const ListFeaturedPostsComponent = listPriorityPosts.slice(0,5).map((featuredPost, index) => (
-        <Box key={index}>
-          <SwiperSlide onClick={() => goToDetailPost(featuredPost.id)} key={index} className="swiper-slide-featured-posts">
-            <div className="slide-post">
-              <div className="posts-image" style={{cursor:'pointer'}}>
-                <img
-                    src={featuredPost.titleImageUrlStream}
-                    className="swiper-slide-featured-posts-image"
-                    alt=""
-
-                /></div>
-              <div className="swiper-slide-featured-posts-content">
-                <p className="post-page-para-tilte">{featuredPost?.title}</p>
-                <p className="post-page-para-intro">{featuredPost?.introduction}</p>
-                <p className="post-page-create-at">{featuredPost?.createAt}</p>
-              </div></div>
-          </SwiperSlide>
-        </Box>
-    ));
-
-    return (
-        <Box className="list-posts-page-featured-container">
-          <Box className="list-posts-page-featured-wrapper">
-            <Swiper
-                className="list-posts-featured-swiper"
-                // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                {...options}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
-                navigation
-                pagination={{ clickable: true }}
-            >
-              {ListFeaturedPostsComponent}
-              ...
-            </Swiper>
-          </Box>
-        </Box>
-    )
-  }
-
-  const ListPostss = () => {
-    const ListPostComponents = (props: any) => {
-      return (
-          <Box
-              className="list-posts-container"
-          >
-            {listPosts.slice(0,3).map((post, index) => {
-              return (
-                  <Box
-                      onClick={() => goToDetailPost(post.id)}
-                      key={index}
-                      className="list-posts-element"
-                  >
-                    <Box className="image-and-content-element">
-                      <Box className="list-posts-image">
-                        <img
-                            alt=""
-                            id="image-post_tintuc"
-                            src={post.titleImageUrlStream}
-                        />
-                      </Box>
-                      <Box
-                          className="list-posts-content"
-                      >
-                        <h1 style={{ fontSize: "15px", fontWeight: "800", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
-                          {post.title}
-                        </h1>
-                        <p
-                            className="introduction-list-posts-element"
-                        >
-                          {post.introduction}
-                        </p>
-                        <Box className="list-posts-content-create-at">
-                          <p>{post.createAt}</p>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Box>
-              );
-            })}
-          </Box>
-      );
-    };
-
-    return (
-        <Box
-            className="list-posts-wrapper"
-            sx={{
-              padding: "0",
-              flexGrow: 1,
-            }}
-        >
-          <ListPostComponents />
-          {/*{<PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>}*/}
-        </Box>
-    );
-  };
 
   const ListPosts = () => {
-    const ListPostComponents = (props: any) => {
+      const [listPosts, setListPosts] = useState<Post[]>([]);
+      const [listTypePost, setListTypePost] = useState<TypePost[]>([])
+
+      useEffect(() => {
+          // Get data all posts
+          getAllPosts().then(
+              (res) => {
+                  setListPosts(res.data.content);
+              },
+              (err) => {
+              });
+              getTypeofPosts().then(
+                  (res) => {
+                      setListTypePost(res.data);
+                  },
+                  (err) => {
+                  });
+      }, []);
+
+      const ListPostComponents = (props: any) => {
+
+        const ListFeaturedPosts = () => {
+
+            const ListFeaturedPostsComponent = listPosts.slice(0,5).map((featuredPost, index) => (
+                <Box key={index}>
+                    <SwiperSlide onClick={() => goToDetailPost(featuredPost.id)} key={index} className="swiper-slide-featured-posts">
+                        <div className="slide-post">
+                            <div className="posts-image" style={{cursor:'pointer'}}>
+                                <img
+                                    src={featuredPost.titleImageUrlStream}
+                                    className="swiper-slide-featured-posts-image"
+                                    alt=""
+
+                                /></div>
+                            <div className="swiper-slide-featured-posts-content">
+                                <p className="post-page-para-tilte">{featuredPost?.title}</p>
+                                <p className="post-page-para-intro">{featuredPost?.introduction}</p>
+                                <p className="post-page-create-at">{featuredPost?.createAt}</p>
+                            </div></div>
+                    </SwiperSlide>
+                </Box>
+            ));
+
+            return (
+                <Box className="list-posts-page-featured-container">
+                    <Box className="list-posts-page-featured-wrapper">
+                        <Swiper
+                            className="list-posts-featured-swiper"
+                            // install Swiper modules
+                            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                            {...HomePage.optionTopPosts}
+                            autoplay={{
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            }}
+                            navigation
+                            pagination={{ clickable: true }}
+                        >
+                            {ListFeaturedPostsComponent}
+                            ...
+                        </Swiper>
+                    </Box>
+                </Box>
+            )
+        }
+
+        const ListPostss = () => {
+            const ListPostComponents = (props: any) => {
+                return (
+                    <Box
+                        className="list-posts-container"
+                    >
+                        {listPosts.slice(0,3).map((post, index) => {
+                            return (
+                                <Box
+                                    onClick={() => goToDetailPost(post.id)}
+                                    key={index}
+                                    className="list-posts-element"
+                                >
+                                    <Box className="image-and-content-element">
+                                        <Box className="list-posts-image">
+                                            <img
+                                                alt=""
+                                                id="image-post_tintuc"
+                                                src={post.titleImageUrlStream}
+                                            />
+                                        </Box>
+                                        <Box
+                                            className="list-posts-content"
+                                        >
+                                            <h1 style={{ fontSize: "15px", fontWeight: "800", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
+                                                {post.title}
+                                            </h1>
+                                            <p
+                                                className="introduction-list-posts-element"
+                                            >
+                                                {post.introduction}
+                                            </p>
+                                            <Box className="list-posts-content-create-at">
+                                                <p>{post.createAt}</p>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            );
+                        })}
+                    </Box>
+                );
+            };
+
+            return (
+                <Box
+                    className="list-posts-wrapper"
+                    sx={{
+                        padding: "0",
+                        flexGrow: 1,
+                    }}
+                >
+                    <ListPostComponents />
+                    {/*{<PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>}*/}
+                </Box>
+            );
+        };
+
         return (
           <Box className="list-posts-detail">
             <ListFeaturedPosts></ListFeaturedPosts>
@@ -269,39 +188,45 @@ export default function Home() {
     };
 
     const ListItemComponents = (props: any) => {
-      const ListItemsContent = listPosts.map((post, index) => {
-        return (
-          <>
-          <Box
-            key={index}
-            className="list-posts-detail-element-2"
-          >
-            <Box className="type-and-content">
-              <Box className="list-posts-detail-type">
-                <p>{findTypePostName(post.typeId)}</p>
-              </Box>
-              <Box onClick={() => goToDetailPost(post.id)} className="list-posts-detail-content">
-                <Box className="list-posts-para">
-                  <h1 style={{ fontSize: "20px", textTransform: "uppercase"}} className="title-post-home-1">{post.title}</h1>
-                  <p className="list-posts-para-content">{post.introduction}</p>
-                  <p className="list-posts-para-content">
-                    {post.createAt}
-                  </p>
-                </Box>
-                <Box className="list-posts-img">
-                  <img
-                      alt=""
-                      id="image-home-page-item"
-                      className="image-home-page"
-                      src={post.titleImageUrlStream}
-                  />
-                </Box>
-              </Box>
-            </Box>
 
-          </Box>
-          </>
-        );
+        const findTypeName = (id: string) => {
+                for(let i = 0; i < listTypePost.length; i++) {
+                    if (listTypePost[i].id === id) {
+                        return listTypePost[i].name;
+                    }
+                }
+        }
+
+      const ListItemsContent = listPosts.map((post, index) => {
+              return (
+                      <Box
+                          key={index}
+                          className="list-posts-detail-element-2"
+                      >
+                          <Box className="type-and-content">
+                              <Box className="list-posts-detail-type">
+                                  <p>{findTypeName(post.typeId)}</p>
+                              </Box>
+                              <Box onClick={() => goToDetailPost(post.id)} className="list-posts-detail-content">
+                                  <Box className="list-posts-para">
+                                      <h1 style={{ fontSize: "20px", textTransform: "uppercase"}} className="title-post-home-1">{post.title}</h1>
+                                      <p className="list-posts-para-content">{post.introduction}</p>
+                                      <p className="list-posts-para-content">
+                                          {post.createAt}
+                                      </p>
+                                  </Box>
+                                  <Box className="list-posts-img">
+                                      <img
+                                          alt=""
+                                          id="image-home-page-item"
+                                          className="image-home-page"
+                                          src={post.titleImageUrlStream}
+                                      />
+                                  </Box>
+                              </Box>
+                          </Box>
+                      </Box>
+              )
       });
       return (
         <Box className="list-posts-detail-2">
@@ -348,7 +273,7 @@ export default function Home() {
               Xin chào! Tôi là Kim Ca, tên thật là Lê Thanh Cần, một Phật tử theo Kim Cương Thừa. Một người chuyên nghiên cứu mệnh lý và ứng dụng tiềm năng con người. Tôi đam mê với những bộ môn nghiên cứu Số Mệnh, vậy bản chất Số Mệnh là gì?<br></br><br></br>
               Số Mệnh chính là sự định vị của con người về giàu nghèo, sang hèn, thọ yểu,  hạnh phúc hay đau khổ. Tại sao có người cuộc đời của họ rất may mắn, tại sao có người cuộc đời của họ dù rất có năng lực và tài trí mà lại chẳng thể có được địa vị cao? Tại sao có người sinh ra đã ngậm “thìa vàng”, còn có người sinh ra đã có nhiều bất hạnh? đó là Số Mệnh vậy.
             </p>
-            <Button onClick={() => redirect("/posts/detail?id=f700e67a-ec43-4fc6-a34c-fc697421e240")} className="intro-content-button">Xem thêm</Button>
+            <Button onClick={() => redirect("/posts/detail", {id: "f700e67a-ec43-4fc6-a34c-fc697421e240"})} className="intro-content-button">Xem thêm</Button>
           </Box>
           
         </Box>
@@ -376,7 +301,7 @@ export default function Home() {
             Tài liệu học Tử Vi đầy đủ có file do chính Kim Ca biên soạn dựa trên các sách gốc Tử Vi bằng tiếng Trung
             thời xưa.
             </p>
-            <Button onClick={() => redirect("/course")} className="intro-content-button">Xem thêm</Button>
+            <Button onClick={() => redirect("/course", null)} className="intro-content-button">Xem thêm</Button>
           </Box>
           <Box className="intro-image-container">
             <img src="https://www.kimca.net/wp-content/uploads/2021/07/vanmenh-500x300.jpg"/>
@@ -442,8 +367,6 @@ export default function Home() {
             {...options}
             navigation
             pagination={{ clickable: true }}
-            onSwiper={(swiper: any) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
           >
             {ListServicesSlide}
             
@@ -507,8 +430,6 @@ export default function Home() {
             {...options}
             navigation
             pagination={{ clickable: true }}
-            onSwiper={(swiper: any) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
           >
             {ListServicesSlide}
             
@@ -519,6 +440,24 @@ export default function Home() {
   }
 
   const ListItems = () => {
+      const [listItems, setListItems] = useState<Item[]>([]);
+
+      useEffect(() => {
+          //Get data all items
+          getAllItems().then(
+              (res) => {
+                  setListItems(res.data.content);
+              },
+              (err) => {
+              });
+      }, []);
+
+      const goToDetailItem = (id: any) => {
+          const params = {
+              id: id,
+          }
+          redirect(ItemService.getItemDetail, params);
+      };
     const options = {
       slidesPerView: 1,
       spaceBetween: 20,
@@ -573,8 +512,6 @@ export default function Home() {
             {...options}
             navigation
             pagination={{ clickable: true }}
-            onSwiper={(swiper: any) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
           >
             {ListItemsSlide}
             

@@ -11,8 +11,34 @@ export enum PAGE_TITLE {
 }
 
 export const HomePage = {
-  numFeaturedPost: 5,
-  numPost: 3,
+  numTopPosts: 5,
+  numBotPosts: 5,
+  numHotPosts: 5,
+  numItem: 4,
+  optionTopPosts:  {
+    slidesPerView: 1,
+    spaceBetween: 50,
+    breakpoints: {
+      300: {
+        slidesPerView: 1,
+      },
+      690: {
+        slidesPerView: 1,
+      },
+      1100: {
+        slidesPerView: 1,
+      },
+      1300: {
+        slidesPerView: 1,
+      },
+      1600: {
+        slidesPerView: 1,
+      },
+      1900: {
+        slidesPerView: 1,
+      },
+    },
+  }
 }
 
 export const ServiceType = {
@@ -28,7 +54,7 @@ export enum URL {
 export enum PostsService {
   getPost = "/posts",
   SAVE = "",
-  DETAIL = "/detail",
+  getPostDetail = "/posts/detail",
 }
 
 export enum TypeService {
@@ -37,9 +63,10 @@ export enum TypeService {
   DETAIL = "/detail",
 }
 
-export enum ITEM_SERVICE {
-  GET_ALL = "",
+export enum ItemService {
+  getItems = "/item",
   DETAIL = "/detail",
+  getItemDetail = "/item/detail"
 }
 
 export const HOME_PAGE_DISPLAY_ITEM = 3;

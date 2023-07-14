@@ -5,9 +5,9 @@ export interface Post {
   titleImageUrlStream: string;
   title: string;
   author: string;
-  typeId: Number;
+  typeId: string;
   content: string;
-  id: Number;
+  id: string;
   createAt: string;
   introduction: string;
 }
