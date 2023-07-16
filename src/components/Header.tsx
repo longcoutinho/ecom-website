@@ -14,8 +14,9 @@ import axios from "axios";
 import {useSelector} from "react-redux";
 import {useDispatch } from "react-redux";
 import { getNumberItemInCart} from "@/constants/FnCommon";
+import {Backend} from "@/constants";
 
-const Header = (props: any) => {
+export default function Header(props: any) {
   const route = useRouter();
   const [listPostsMenu, setListPostsMenu] = useState([
     {
@@ -41,7 +42,7 @@ const Header = (props: any) => {
     setDropDownState("none");
     axios({
       method: "get",
-      url: "http://10.248.158.167:1112/type/0",
+      url: Backend.URL + "/type/0",
     }).then(
         (res) => {
           setListPostsMenu(res.data);
@@ -265,4 +266,4 @@ const Header = (props: any) => {
     </Container>
   );
 };
-export default Header;
+
