@@ -37,11 +37,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                 display: flex;
                 flex-direction: column;
                 .intro-content-title {
-                    font-weight:normal;
                     color:#f70d28;
-                    font-size: 25px; 
+                    font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 700;
+                    font-weight: 800;
                 }
 
                 .intro-content-para {
@@ -211,11 +210,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                 display: flex;
                 flex-direction: column;
                 .intro-content-title {
-                    font-weight:normal;
                     color:#f70d28;
-                    font-size: 25px; 
+                    font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 700;
+                    font-weight: 800;
                 }
 
                 .intro-content-para {
@@ -299,6 +297,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     text-transform: uppercase;
                     color: white;
                     font-size: 30px;
+                    font-weight: 800;
                 }
             }
 
@@ -361,16 +360,22 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                                         width: 100%;
                                         p {
                                             color: $base-color;
-                                            font-size: 15px;
+                                            font-size: 12px;
                                             font-style: italic;
+                                            font-weight: 400;
                                         }
                                     }
                                     .swiper-slide-items-name {
                                         margin-top: 10px;
-                                        font-size: 15px;
+                                        font-size: 18px;
                                         font-weight: 700;
                                         color: $base-color;
                                         text-transform: uppercase;
+                                        text-overflow: ellipsis;
+                                        word-wrap: break-word;
+                                        overflow: hidden;
+                                        max-height: 1.2em;
+                                        line-height: 1.2em;
                                     }
                                     .swiper-slide-featured-news-image {
                                         width: 100%;

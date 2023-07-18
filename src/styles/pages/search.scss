@@ -1,3 +1,4 @@
+@import '../responsive.scss';
 $base-color: rgb(0,32,96);
 $title-fs: 25px;
 .post_content {
@@ -5,6 +6,12 @@ $title-fs: 25px;
   height: auto;
   padding: 0 20% 0 20%;
   background: #f9f9f9;
+  @media (max-width: $laptop) {
+    padding: 0px 10% 0px 10%;
+  }
+  @media (max-width: $mobile) {
+    padding: 0 6px;
+  }
   .post-page-content-container {
     padding: 10px 10px;
     width: 100%;

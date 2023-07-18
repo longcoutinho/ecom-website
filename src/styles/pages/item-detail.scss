@@ -1,3 +1,4 @@
+@import '../responsive.scss';
 $base-color: rgb(0,32,96);
 .item-detail-content {
   width: 100%;
@@ -6,6 +7,12 @@ $base-color: rgb(0,32,96);
   flex-direction: column;
   padding: 20px 20%;
   background: #f9f9f9;
+  @media (max-width: $laptop) {
+    padding: 0px 10% 0px 10%;
+  }
+  @media (max-width: $mobile) {
+    padding: 0 6px;
+  }
   .list-items-content {
     width: 100%;
     height: 100%;
@@ -44,11 +51,13 @@ $base-color: rgb(0,32,96);
           font-size: 15px;
           .introduction-item-title {
             font-size: 20px;
+            color: white;
           }
           .introduction-item-content {
             padding: 10px;
             border: 2px solid #2F528F;
             margin-top: 5px;
+            color: white;
           }
         }
         .price-item {
@@ -58,6 +67,8 @@ $base-color: rgb(0,32,96);
           align-items: center;
           .price-item-title {
             font-size: 20px;
+            color: white;
+
           }
           .price-item-content {
             margin-left: 5px;
