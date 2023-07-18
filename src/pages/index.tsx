@@ -5,7 +5,7 @@ import {getAllPosts, getServicePosts} from "@/services/postsService"
 import {getTypeofPosts} from "@/services/typeService";
 import {getAllItems} from "@/services/itemService";
 import Page from "@/layouts";
-import { Box, Button} from "@mui/material";
+import { Box, Button, CircularProgress} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,13 +13,15 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import {Navigation, Scrollbar, Pagination, A11y, Autoplay} from "swiper";
 import {Post, Item, Service, TypePost} from "@/interfaces/response";
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { useRouter } from "next/router";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
 export default function Home() {
     const route = useRouter();
   const [listServices, setListServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
       getServicePosts().then(
@@ -57,21 +59,25 @@ export default function Home() {
   const ListPosts = () => {
       const [listPosts, setListPosts] = useState<Post[]>([]);
       const [listTypePost, setListTypePost] = useState<TypePost[]>([])
+      const isFirstRender = useRef<any>(0);
 
       useEffect(() => {
           // Get data all posts
-          getAllPosts().then(
-              (res) => {
-                  setListPosts(res.data.content);
-              },
-              (err) => {
-              });
+          if (isFirstRender.current == 0) {
+              getAllPosts().then(
+                  (res) => {
+                      setListPosts(res.data.content);
+                  },
+                  (err) => {
+                  });
               getTypeofPosts().then(
                   (res) => {
                       setListTypePost(res.data);
                   },
                   (err) => {
                   });
+              isFirstRender.current = 1;
+          }
       }, []);
 
       const ListPostComponents = (props: any) => {
@@ -178,13 +184,12 @@ export default function Home() {
                 </Box>
             );
         };
-
-        return (
-          <Box className="list-posts-detail">
-            <ListFeaturedPosts></ListFeaturedPosts>
-            <ListPostss></ListPostss>
-          </Box> 
-        );
+            return (
+                <Box className="list-posts-detail">
+                    <ListFeaturedPosts></ListFeaturedPosts>
+                    <ListPostss></ListPostss>
+                </Box>
+            );
     };
 
     const ListItemComponents = (props: any) => {
@@ -242,20 +247,29 @@ export default function Home() {
       );
     };
 
-    return (
-      <>
-        {listPosts.length > 0 && (
-          
-          <Box className="list-posts-home-page-container"
-          >
-            <Box className="list-posts-home-page-content-container">
-              <ListPostComponents name={"Tin tức"}></ListPostComponents>
-              <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
+    if (listPosts.length) {
+        setLoading(false);
+        return (
+            <>
+                {listPosts.length > 0 && (
+
+                    <Box className="list-posts-home-page-container"
+                    >
+                        <Box className="list-posts-home-page-content-container">
+                            <ListPostComponents name={"Tin tức"}></ListPostComponents>
+                            <ListItemComponents name={"Sản phẩm"}></ListItemComponents>
+                        </Box>
+                    </Box>
+                )}
+            </>
+        );
+    }
+    else {
+        return (
+            <Box className="loading-page">
             </Box>
-          </Box>
-        )}
-      </>
-    );
+        )
+    }
   };
 
   const Intro = () => {
@@ -556,13 +570,15 @@ export default function Home() {
 
   return (
     <Page title={PAGE.TITLE} menuIndex={0}>
-      <Box className="home-page-content " sx={{ width: "100vw" }}>
+        <CircularProgress className='loading' sx={{display: loading?"block":"none"}}/>
+      <Box className='home-page-content'  sx={{ width: "100vw"}}>
         <ListPosts></ListPosts>
         <Intro></Intro>
         <IntroCourses></IntroCourses>
         <IntroItems></IntroItems>
         <Register></Register>
       </Box>
+
     </Page>
   );
 }
