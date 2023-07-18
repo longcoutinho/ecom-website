@@ -709,3 +709,8 @@ h1{    transition: all 0.3s linear;}
   height: 70%;
   overflow: hidden;
 }
+
+.ql-video {
+  width: 100%;
+  height: 56.25vw;
+}
