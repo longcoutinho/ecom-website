@@ -1,9 +1,16 @@
+@import '../responsive.scss';
 $base-color: rgb(0,32,96);
 .post-detail-content-wrapper {
   width: 100%;
   height: auto;
   padding: 0 20% 0 20%;
   background-color: #f9f9f9;
+  @media (max-width: $laptop) {
+    padding: 0px 10% 0px 10%;
+  }
+  @media (max-width: $mobile) {
+    padding: 0 6px;
+  }
   .post-detail-title-wrapper {
     padding: 10px 20px;
     .posts-detail-title {

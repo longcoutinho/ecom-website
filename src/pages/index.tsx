@@ -19,28 +19,12 @@ import { useRouter } from "next/router";
 
 export default function Home() {
     const route = useRouter();
-  const [listServices, setListServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
-      getServicePosts().then(
-          (res) => {
-              let serArr:Service[] = [];
-              for(let i = 0; i < res.data.content.length; i++) {
-                  serArr.push({
-                      titleImageUrlStream: res.data.content[i].titleImageUrlStream,
-                      id: res.data.content[i].id,
-                      title: listServicesTitle[i].title,
-                      content: listServicesTitle[i].content,
-                  })
-              }
-              setListServices(serArr);
-          },
-          (err) => {
-          }
-      );
-  }, []);
+    useEffect(() => {
+      console.log("home render");
+  }, [])
 
   const redirect = (path: any, params: any) => {
     route.push({
@@ -62,6 +46,7 @@ export default function Home() {
       const isFirstRender = useRef<any>(0);
 
       useEffect(() => {
+          console.log("render");
           // Get data all posts
           if (isFirstRender.current == 0) {
               getAllPosts().then(
@@ -236,7 +221,7 @@ export default function Home() {
       return (
         <Box className="list-posts-detail-2">
           <Box sx={{height: "10%", width: "100%"}}>
-            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "700"}}>Bài viết nổi bật</p>
+            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "800"}}>Bài viết nổi bật</p>
             <Box sx={{borderTop: "5px solid black", marginTop: "10px"}} className="underline-title"></Box>
           </Box>
           <Box className="list-posts-detail-2-content">
@@ -287,7 +272,7 @@ export default function Home() {
               Xin chào! Tôi là Kim Ca, tên thật là Lê Thanh Cần, một Phật tử theo Kim Cương Thừa. Một người chuyên nghiên cứu mệnh lý và ứng dụng tiềm năng con người. Tôi đam mê với những bộ môn nghiên cứu Số Mệnh, vậy bản chất Số Mệnh là gì?<br></br><br></br>
               Số Mệnh chính là sự định vị của con người về giàu nghèo, sang hèn, thọ yểu,  hạnh phúc hay đau khổ. Tại sao có người cuộc đời của họ rất may mắn, tại sao có người cuộc đời của họ dù rất có năng lực và tài trí mà lại chẳng thể có được địa vị cao? Tại sao có người sinh ra đã ngậm “thìa vàng”, còn có người sinh ra đã có nhiều bất hạnh? đó là Số Mệnh vậy.
             </p>
-            <Button onClick={() => redirect("/posts/detail", {id: "f700e67a-ec43-4fc6-a34c-fc697421e240"})} className="intro-content-button">Xem thêm</Button>
+            <Button onClick={() => redirect("/posts/detail", {id: "9f4d382d-a006-4692-b73a-30f5c4d96e52"})} className="intro-content-button">Xem thêm</Button>
           </Box>
           
         </Box>
@@ -328,7 +313,8 @@ export default function Home() {
   }
 
   const ListServices = () => {
-    const options = {
+      const [listServices, setListServices] = useState<Service[]>([]);
+      const options = {
       slidesPerView: 1,
       spaceBetween: 50,
       breakpoints: {
@@ -352,6 +338,25 @@ export default function Home() {
         },
       },
     };
+
+      useEffect(() => {
+          getServicePosts().then(
+              (res) => {
+                  let serArr:Service[] = [];
+                  for(let i = 0; i < res.data.content.length; i++) {
+                      serArr.push({
+                          titleImageUrlStream: res.data.content[i].titleImageUrlStream,
+                          id: res.data.content[i].id,
+                          title: listServicesTitle[i].title,
+                          content: listServicesTitle[i].content,
+                      })
+                  }
+                  setListServices(serArr);
+              },
+              (err) => {
+              }
+          );
+      }, [])
 
     const ListServicesSlide = listServices.map((service, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
@@ -391,7 +396,28 @@ export default function Home() {
   }
 
   const ListCourses = () => {
-    const options = {
+      const [listServices, setListServices] = useState<Service[]>([]);
+
+      useEffect(() => {
+          getServicePosts().then(
+              (res) => {
+                  let serArr:Service[] = [];
+                  for(let i = 0; i < res.data.content.length; i++) {
+                      serArr.push({
+                          titleImageUrlStream: res.data.content[i].titleImageUrlStream,
+                          id: res.data.content[i].id,
+                          title: listServicesTitle[i].title,
+                          content: listServicesTitle[i].content,
+                      })
+                  }
+                  setListServices(serArr);
+              },
+              (err) => {
+              }
+          );
+      }, [])
+
+      const options = {
       slidesPerView: 1,
       spaceBetween: 50,
       breakpoints: {
@@ -570,13 +596,14 @@ export default function Home() {
 
   return (
     <Page title={PAGE.TITLE} menuIndex={0}>
-        <CircularProgress className='loading' sx={{display: loading?"block":"none"}}/>
       <Box className='home-page-content'  sx={{ width: "100vw"}}>
         <ListPosts></ListPosts>
         <Intro></Intro>
         <IntroCourses></IntroCourses>
         <IntroItems></IntroItems>
         <Register></Register>
+          <CircularProgress className='loading' sx={{display: loading?"block":"none"}}/>
+
       </Box>
 
     </Page>

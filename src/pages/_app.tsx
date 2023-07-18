@@ -16,7 +16,9 @@ import "@/styles/responsive.scss"
 import type { AppProps } from "next/app";
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
-
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 
 const counter = (state = 0, action: any) => {

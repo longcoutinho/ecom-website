@@ -61,7 +61,6 @@ export default function PostDetail() {
   }
 
   useEffect(() => {
-    console.log("kkk");
     if (route.query.id !== undefined) {
       const URL = Backend.URL + "/item/" + route.query.id;
       console.log(route.query.id);

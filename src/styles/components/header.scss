@@ -1,17 +1,18 @@
 @import '../responsive.scss';
 $base-color: rgba(0, 32, 96);
 .big-menu{
+  width: 100%;
   background-color: #F2F2F2;
   padding: 10px;
-    display:none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 5px 5px rgb(122, 122, 122);
-    @media (min-width: 900px)  {
-        display:flex;
+    @media (max-width: $mobile)  {
         width: 100%;
+      display:none;
+
     }
 }
 .icon-menu{
@@ -30,20 +31,25 @@ $base-color: rgba(0, 32, 96);
 }
 
 .header-container {
-  @media (max-width: $xs) {
-    width: 100%;
-    padding: 0px 6px;
-    height: 50px;
-    background: #dddddd; 
-    display: flex;
-    flex-direction: column;
-  }
-  @media (min-width: 1100px) {
-    padding: 0px 20% 0px 20%;
+  padding: 0px 20% 0px 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: $laptop) {
+    padding: 0px 10% 0px 10%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  @media (max-width: $mobile) {
+    width: 100%;
+    padding: 0 6px;
+    height: 50px;
+    background: #dddddd;
+    display: flex;
+    flex-direction: column;
   }
   .introduction-header-container {
     width: 100%;
@@ -53,21 +59,24 @@ $base-color: rgba(0, 32, 96);
     align-items: center;
     background-color: $base-color;
     padding: 20px 50px;
+    @media (max-width: $mobile) {
+      justify-content: center;
+    }
     .logo-wrapper {
-      width: auto;
       background-color: #DDDDDD;
       padding: 10px;
       border-radius: 30px;
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 5px;
       .logo-container {
+        height: 60px;
         width: 20%;
-        height: 100%;
         overflow: hidden;
         display: flex;
         flex-direction: row;
-        @media (min-width: 1300px) {
+        @media (max-width: 1300px) {
           width: 50px;
           height: 50px;
           overflow: hidden;
@@ -83,10 +92,13 @@ $base-color: rgba(0, 32, 96);
         }
       }
       .logo-para {
-        height: 60px;
-        width: 80%;
         display: flex;
         flex-direction: column;
+        @media (max-width: 1300px) {
+          p:last-child {
+            display: none;
+          }
+        }
       }
     }
     .logo-wrapper:hover {
@@ -98,45 +110,69 @@ $base-color: rgba(0, 32, 96);
       display: flex;
       flex-direction: row;
       align-items: center;
-      @media(max-width: $xs) {
+      @media(max-width: 1300px) {
+        height: 40px;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      @media(max-width: $mobile) {
         display: none;
       }
       .search-input {
-        width: 300px;
+        @media(max-width: 1300px) {
+          padding-left: 10px;
+          width: 190px;
+        }
         height: 100%;
-        padding-left: 30px;
+        padding-left: 20px;
+        padding-right: 10px;
         color: #595959;
         background-color: white;
         border-radius: 10px;
         border: 1px solid white;
         box-shadow: inset 5px 5px #999999;
-        font-size: 20px;
+        font-size: 17px;
+        outline: none;
       }
+
       .search-button {
         background-color: #E9EAEC;
-        width: 100px;
+        padding: 15px;
         height: 100%;
         margin-left: -15px;
         border-radius: 10px;
         color: #6B5A59;
         text-transform: none;
-        font-size: 17px;
-        font-weight: 700;
         //box-shadow: inset 5px -20px #999999;
+        svg {
+          font-size: 20px;
+        }
       }
     }
     .phone-service-wrapper {
       background: transparent;
       display: flex;
       flex-direction: column;
+      align-items: center;
       border-radius: 50px;
       padding: 10px 30px;
-      @media(max-width: $xs) {
+      @media(max-width: 1300px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 10px;
+      }
+      @media(max-width: $mobile) {
         display: none;
       }
-      p {
+      p:first-child {
         color: white;
-        font-size: 20px;
+        font-size: 18px;
+        @media(max-width: 1300px){
+          display: none;
+        }
       }
       border: 2px solid white;
       .phone-service-content {
@@ -145,12 +181,16 @@ $base-color: rgba(0, 32, 96);
         align-items: center;
         .phone-icon {
           color: white;
-          font-size: 25px;
+          font-size: 20px;
         }
         p {
           margin-left: 10px;
           font-weight: 700;
           font-size: 25px;
+          color: white;
+          @media(max-width: 1300px){
+            font-size: 20px;
+          }
         }
       }
     }
@@ -162,7 +202,7 @@ $base-color: rgba(0, 32, 96);
       p {
         color: white;
       }
-      @media(max-width: $xs) {
+      @media(max-width: $mobile) {
         display: none;
       }
     }

@@ -14,7 +14,7 @@ export const getAllPosts = async () => {
 
 export const getServicePosts = async () => {
     const params = {
-        priority: -2,
+        typeId: 'e4e45ea2-6291-4543-a374-1fd616847c27'
     }
     return await getPostsData(params);
 }

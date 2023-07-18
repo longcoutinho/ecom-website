@@ -37,14 +37,14 @@ const Footer = () => {
       </Box>
       <Divider className="divider-footer" />
       <Box sx={{ paddingBottom: "12px", fontSize:'14px' }}>
-        <p style={{ color: "gray" }}>
-          Copyright © 2018{" "}
+        <p style={{ color: "white" }}>
+          Copyright © 2023{" "}
           <span style={{ fontWeight: "bold" }}>
-            TƯ VẤN PHONG THUỶ LONG GIANG - HONGKY FENGSHUI
+            TƯ VẤN PHONG THUỶ LONG GIANG
           </span>
         </p>
-        <p style={{ color: "gray" }}>
-          Thiết kế web : <span style={{ fontWeight: "bold" }}>TRUST.vn</span>
+        <p style={{ color: "white" }}>
+          Thiết kế web : <span style={{ fontWeight: "bold" }}>LONGGIANG.vn</span>
         </p>
       </Box>
       </Box>

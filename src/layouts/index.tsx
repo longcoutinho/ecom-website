@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 
 const Page = (props: any) => {
   const { children, title, admin, menuIndex, cartAmount: number } = props;
-  console.log("k");
 
 
 

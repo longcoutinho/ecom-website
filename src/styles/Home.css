@@ -221,6 +221,7 @@ width:33.3%;
   overflow: hidden;
   max-height: 1.1em;
   line-height: 1.2em;
+  font-weight: 300;
 }
 
 .title-list-posts-element:hover {
@@ -244,7 +245,7 @@ width:33.3%;
   max-height: 2.3em;
   line-height: 1.2em;
   font-size: 15px !important;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
 }
 

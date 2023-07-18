@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useDispatch } from "react-redux";
@@ -37,7 +37,6 @@ export default function Header(props: any) {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("long kk");
     dispatch(assign(getNumberItemInCart()));
     setDropDownState("none");
     axios({
@@ -224,7 +223,9 @@ export default function Header(props: any) {
       // @ts-ignore
       return <Box className="search-wrapper">
         <input ref={searchRef} onChange={(e) => handleSearchInput(e.target.value) } className="search-input" placeholder="Bạn muốn tư vấn gì?"></input>
-        <Button onClick={() => handleSearch(searchRef.current.value)} className="search-button">Tìm kiếm</Button>
+        <Button onClick={() => handleSearch(searchRef.current.value)} className="search-button">
+          <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+        </Button>
       </Box>;
     };
 
@@ -241,7 +242,7 @@ export default function Header(props: any) {
     const Cart = () => {
       return <Box className="cart-wrapper">
         <ShoppingCartIcon onClick={gotoCart} displayAmount={"none"} />
-        <p style={{fontWeight: '700', fontSize: '17px'}}>Giỏ hàng</p>
+        <p className="cart-title-p" style={{fontWeight: '700', fontSize: '17px'}}>Giỏ hàng</p>
         <Box className="cart-amount">
           <p>{counter}</p>
         </Box>
