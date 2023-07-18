@@ -15,12 +15,12 @@ $title-fs: 25px;
       margin-top: 10px;
       color: $base-color;
       text-transform: uppercase;
-      font-weight: 900;
+      font-weight: 700;
       border-left: 10px solid $base-color;
       padding-left: 10px;
       p {
         font-size: $title-fs;
-        font-weight: 800;
+        font-weight: 700;
       }
     }
     .post-page-content-wrapper {
@@ -73,7 +73,7 @@ $title-fs: 25px;
                   color: $base-color;
                   text-transform: uppercase;
                   padding: 5px 20px;
-                  font-weight: 900;
+                  font-weight: 700;
                   margin-bottom: 20px;
                 }
                 .post-page-para-intro {
@@ -144,7 +144,7 @@ $title-fs: 25px;
             overflow: hidden;
             p {
               color: $base-color;
-              font-weight: 800;
+              font-weight: 700;
             }
             input {
               background-color: white;
@@ -185,7 +185,7 @@ $title-fs: 25px;
   width: 100%;
   border-bottom: 2px solid $base-color;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 700;
   p {
     font-size: $title-fs;
   }
