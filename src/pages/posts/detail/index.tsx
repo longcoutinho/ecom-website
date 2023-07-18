@@ -284,7 +284,7 @@ export default function PostDetail() {
               <Box
                   className="posts-detail-title"
               >
-                  <p style={{fontSize:'30px', textTransform: "uppercase", fontWeight: "900"}}>{detailPost?.title}</p>
+                  <p style={{fontSize:'30px', textTransform: "uppercase", fontWeight: "700"}}>{detailPost?.title}</p>
               </Box>
               <Divider />
           </Box>

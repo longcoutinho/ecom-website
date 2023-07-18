@@ -145,7 +145,7 @@ export default function Home() {
                                         <Box
                                             className="list-posts-content"
                                         >
-                                            <h1 style={{ fontSize: "15px", fontWeight: "800", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
+                                            <h1 style={{ fontSize: "15px", fontWeight: "700", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
                                                 {post.title}
                                             </h1>
                                             <p
@@ -231,7 +231,7 @@ export default function Home() {
       return (
         <Box className="list-posts-detail-2">
           <Box sx={{height: "10%", width: "100%"}}>
-            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "900"}}>Bài viết nổi bật</p>
+            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "700"}}>Bài viết nổi bật</p>
             <Box sx={{borderTop: "5px solid black", marginTop: "10px"}} className="underline-title"></Box>
           </Box>
           <Box className="list-posts-detail-2-content">

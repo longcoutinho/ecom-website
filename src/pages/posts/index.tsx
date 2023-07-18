@@ -262,7 +262,7 @@ export default function PostComponent() {
                   <Box
                     className="list-posts-content"
                   >
-                    <h1 style={{ fontSize: "18px", fontWeight: "800", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
+                    <h1 style={{ fontSize: "18px", fontWeight: "700", color: "rgb(0,32,96)", textTransform: "uppercase"}} className="title-list-posts-element">
                       {post.title}
                     </h1>
                     <p
