@@ -30,7 +30,16 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
             @media (min-width: 1024px) {
                 margin-top: 50px;
             }
+            @media (max-width: 600px) {
+                flex-direction: column;
+                align-items: center;
+            }
             .intro-content-container {
+                @media (max-width: 600px) {
+                    width: 100%;
+                    margin-right: 20px;
+                    margin-top: 16px;
+                }
                 margin-left: 30px;
                 height: 100%;
                 width: 75%;
@@ -97,7 +106,11 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
             flex-direction: row;
             width: 100%;
             padding: 10px;
-            
+            @media (max-width: 600px) {
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
             .title-top-home-page {
                 border-bottom: 2px solid $base-color;
             }
@@ -203,7 +216,16 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
             @media (min-width: 1024px) {
                 margin-top: 50px;
             }
+            @media (max-width: 600px) {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
             .intro-content-container {
+                @media (max-width: 600px) {
+                    width: 100%;
+                    margin-right: 30px;
+                    margin-top: 10px;
+                }
                 margin-left: 30px;
                 height: 100%;
                 width: 75%;
@@ -277,7 +299,13 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
             height: 700px;
             @media (max-width: 500px) {
                 flex-direction: column;
+                height: 480px;
             }
+            @media (max-width: 800px) {
+                height: 580px;
+                padding: 0 20px;
+            }
+
         }
     }
     .intro-items-wrapper {
@@ -298,6 +326,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     color: white;
                     font-size: 30px;
                     font-weight: 800;
+                    @media (max-width: 600px) {
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -432,6 +463,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     font-size: 30px;
                     text-transform: uppercase;
                     font-weight: 700;
+                    @media (max-width: 600px) {
+                        font-size: 20px;
+                    }
                 }
             }
             .form-register-content-container {
@@ -440,6 +474,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                 flex-direction: column;
                 align-items: center;
                 input {
+                    @media (max-width: 460px) {
+                        width: 300px;
+                    }
                     width: 400px;
                     border-radius: 5px;
                     font-weight: 700;
@@ -462,6 +499,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     border-radius: 50px;
                     font-size: 20px;
                     font-weight: 600;
+                    @media (max-width: 600px) {
+                        font-size: 16px;
+                    }
                 }
             }
         }
@@ -534,6 +574,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
 }
   
 .list-posts-detail-2 {
+    @media (max-width: 800px) {
+        display: none;
+    }
     position: relative;
     width: 31%;
     height: 100%;
@@ -619,12 +662,18 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
 }
 
 .list-posts-detail {
+    @media (max-width: 800px) {
+        width: 100%;
+        margin-top: 70px;
+        align-items: center;
+    }
     position: relative;
     width: 65%;
     display: flex;
     flex-direction: column;
     height: 100%;
     .list-posts-page-featured-container {
+
         margin-top: 10px;
         border-radius: 20px;
         overflow: hidden;
@@ -663,6 +712,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                         flex-direction: column;
                         justify-content: flex-end;
                         .post-page-para-tilte {
+                            @media (max-width: 800px) {
+                                width: fit-content;
+                            }
                             border-radius: 2px;
                             background-color: rgb(255, 255, 255, 0.5);
                             color: $base-color;
@@ -698,6 +750,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
     }
 }
 .list-posts-wrapper {
+    @media (max-width: 800px) {
+        display: none;
+    }
     margin-top: 20px;
     width: 100%;
     display: flex;
@@ -727,7 +782,13 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
 div ::-webkit-scrollbar {
     width: 5px;
 }
-
+.title-mobile{
+    display:none;
+    margin-bottom: 12px;
+    @media (max-width: 800px) {
+        display: flex;
+    }
+}
 /* Track */
 div ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

@@ -20,8 +20,9 @@ margin:0 auto;
 .footer-item{
     display:flex;
     flex-direction:row;
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
         flex-direction: column;
+        gap: 10px;
     }
 }
 .footer-item p{
@@ -29,7 +30,7 @@ margin:0 auto;
 }
 .item1{
     width:45%;
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
         width:100%;
     
       }
@@ -38,7 +39,7 @@ margin:0 auto;
     width:40%;
     display:flex;
     justify-content: space-between;
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
         width:100%;
     flex-direction:column;
       }
@@ -47,7 +48,7 @@ margin:0 auto;
     width:15%;
     display:flex; 
     justify-content:flex-end;
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
         margin-top: 20px;
         width:100%;
         justify-content:center;
