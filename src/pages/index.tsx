@@ -90,25 +90,30 @@ export default function Home() {
             ));
 
             return (
-                <Box className="list-posts-page-featured-container">
-                    <Box className="list-posts-page-featured-wrapper">
-                        <Swiper
-                            className="list-posts-featured-swiper"
-                            // install Swiper modules
-                            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                            {...HomePage.optionTopPosts}
-                            autoplay={{
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            }}
-                            navigation
-                            pagination={{ clickable: true }}
-                        >
-                            {ListFeaturedPostsComponent}
-                            ...
-                        </Swiper>
+                <>
+                    <p className="title-mobile" style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "800"}}>Bài viết nổi bật</p>
+                    <Box className="list-posts-page-featured-container">
+
+                        <Box className="list-posts-page-featured-wrapper">
+                            <Swiper
+                                className="list-posts-featured-swiper"
+                                // install Swiper modules
+                                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                                {...HomePage.optionTopPosts}
+                                autoplay={{
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                }}
+                                navigation
+                                pagination={{ clickable: true }}
+                            >
+                                {ListFeaturedPostsComponent}
+                                ...
+                            </Swiper>
+                        </Box>
                     </Box>
-                </Box>
+                </>
+
             )
         }
 
@@ -171,6 +176,7 @@ export default function Home() {
         };
             return (
                 <Box className="list-posts-detail">
+
                     <ListFeaturedPosts></ListFeaturedPosts>
                     <ListPostss></ListPostss>
                 </Box>
