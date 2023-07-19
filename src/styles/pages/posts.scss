@@ -131,7 +131,6 @@ $title-fs: 25px;
       display: flex;
       flex-direction: column;
       .post-page-register-wrapper {
-        margin-top: 20px;
         width: 100%;
         .post-page-register-content {
           display: flex;
@@ -187,13 +186,13 @@ $title-fs: 25px;
   }
 }
 .post-page-title {
-  margin-top: 30px;
   color: $base-color;
   width: 100%;
   border-bottom: 2px solid $base-color;
   text-transform: uppercase;
   font-weight: 700;
   p {
+    margin-top: 20px;
     font-size: $title-fs;
   }
 }
@@ -230,6 +229,8 @@ $title-fs: 25px;
 
 .directiory-icon {
   color: $base-color;
+  font-weight: 700;
+  margin-left: 5px;
 }
 
 .menu-type-post-content {
@@ -238,6 +239,10 @@ $title-fs: 25px;
   flex-direction: column;
   .menu-type-post-element:hover {
     cursor: pointer;
+    background-color: $base-color;
+    p {
+      color: white;
+    }
   }
   .menu-type-post-element {
     padding: 10px;
@@ -258,14 +263,14 @@ $title-fs: 25px;
 .posts-search-input {
   input {
     background-color: white;
-    border: 1px solid $base-color;
+    border: 2px solid $base-color;
   }
   input:focus {
     background-color: white;
-    border: 1px solid $base-color;
+    border: 2px solid $base-color;
   }
   input:hover {
     background-color: white;
-    border: 1px solid $base-color;
+    border: 2px solid $base-color;
   }
 }

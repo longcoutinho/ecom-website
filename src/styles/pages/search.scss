@@ -131,8 +131,6 @@ $title-fs: 25px;
       display: flex;
       flex-direction: column;
       .post-page-register-wrapper {
-        margin-top: 20px;
-        width: 100%;
         .post-page-register-content {
           display: flex;
           flex-direction: column;
@@ -187,7 +185,6 @@ $title-fs: 25px;
   }
 }
 .post-page-title {
-  margin-top: 30px;
   color: $base-color;
   width: 100%;
   border-bottom: 2px solid $base-color;
@@ -226,10 +223,6 @@ $title-fs: 25px;
   a {
     color: $base-color;
   }
-}
-
-.directiory-icon {
-  color: $base-color;
 }
 
 .menu-type-post-content {

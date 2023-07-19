@@ -117,7 +117,7 @@ export default function PostDetail() {
         )
     }
     return (<Box className="directory-wrapper">
-      <a href="./">Trang chủ</a>
+      <a href="">Trang chủ</a>
       <p className="directiory-icon"> {'>>'} </p>
       <Link href="/posts?page=0&pageSize=9">Kho tàng tri thức</Link>
       <PostTypeDirectory></PostTypeDirectory>

@@ -319,8 +319,8 @@ export default function PostComponent() {
       else {
         return (
             <Box sx={{display: "flex", flexDirection: "row"}}>
-              <p className="directiory-icon"> {' >> '} </p>
-              <a style={{textTransform: "capitalize"}} href="#">{postsType}</a>
+              <p className="directiory-icon"> {'>>'} </p>
+              <a style={{textTransform: "capitalize", marginLeft: "5px"}} href="#">{postsType}</a>
             </Box>
         )
       }
@@ -334,7 +334,7 @@ export default function PostComponent() {
         return (
             <Box sx={{display: "flex", flexDirection: "row"}}>
               <p className="directiory-icon"> {' >> '} </p>
-              <a href="#">Tìm kiếm với từ khóa `&apos;`{query.title}`&apos;`</a>
+              <a style={{marginLeft: "5px"}} href="#">Tìm kiếm với từ khóa `&apos;`{query.title}`&apos;`</a>
             </Box>
         )
       }
@@ -342,8 +342,8 @@ export default function PostComponent() {
 
     return (<Box className="directory-wrapper">
       <a href="./">Trang chủ</a>
-      <p className="directiory-icon"> {'>>'} </p>
-      <Link href="/posts?page=0&pageSize=9">Kho tàng tri thức</Link>
+      <p className="directiory-icon"> {' >> '} </p>
+      <Link style={{marginLeft: "5px"}} href="/posts?page=0&pageSize=9">Kho tàng tri thức</Link>
       <PostTypeDirectory></PostTypeDirectory>
       <SearchDirectiory></SearchDirectiory>
     </Box>)
