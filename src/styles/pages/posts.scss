@@ -96,6 +96,9 @@ $title-fs: 25px;
         }
       }
       .list-posts-wrapper {
+        @media (max-width: 800px) {
+          display: none;
+        }
         margin-top: 20px;
         width: 100%;
         display: flex;
