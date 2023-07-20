@@ -528,6 +528,10 @@ h1{    transition: all 0.3s linear;}
   bottom:10px;
 }
 
+.btn-details-post:hover {
+  background-color: #8c0712;
+}
+
 .btn-details-post-course {
   margin-top: 10px;
   width: fit-content;
