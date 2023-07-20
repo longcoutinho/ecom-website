@@ -43,7 +43,8 @@ $base-color: rgb(0,32,96);
       background-color: $base-color;
       display: flex;
       flex-direction: row;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 30px;
     }
   }
 }

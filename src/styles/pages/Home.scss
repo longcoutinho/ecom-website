@@ -76,6 +76,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     border: 3px solid white;
                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
                 }
+                .intro-content-button:hover {
+                    background-color: black;
+                }
             }
 
             .intro-image-container {
@@ -179,6 +182,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
 
                         button:hover {
                             cursor: pointer;
+                            background-color: black;
                         }
 
                         button {
@@ -261,6 +265,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     font-weight: 700;
                     border: 1px solid white;
                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
+                }
+                .intro-content-button:hover {
+                    cursor: pointer;
+                    background-color: black;
                 }
             }
 
@@ -435,6 +443,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                                     font-weight: normal;
                                     margin-top: 10px;
                                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
+                                }
+
+                                button:hover {
+                                    background-color: #8F0101;
                                 }
                             }
 
@@ -736,12 +748,17 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                             margin-bottom: 20px;
                             margin-left: 20px;
                             font-weight: 300;
+                            text-overflow: ellipsis;
+                            word-wrap: break-word;
+                            overflow: hidden;
+                            max-height: 6.0em;
+                            line-height: 1.2em;
                         }
                         .post-page-create-at {
                             margin-bottom: 20px;
                             margin-left: 20px;
                             font-weight: 700;
-                            color: $base-color;
+                            color: white;
                         }
                     }
                 }
@@ -754,6 +771,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     @media (max-width: 800px) {
         display: none;
     }

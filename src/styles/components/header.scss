@@ -245,6 +245,8 @@ $base-color: rgba(0, 32, 96);
       }
       p:hover {
         cursor: pointer;
+        background-color: $base-color;
+        color: white;
       }
     }
     a {
