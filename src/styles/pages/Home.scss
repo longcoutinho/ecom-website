@@ -49,7 +49,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     color:#f70d28;
                     font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 800;
+                    font-weight: 700;
                 }
 
                 .intro-content-para {
@@ -239,7 +239,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     color:#f70d28;
                     font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 800;
+                    font-weight: 700;
                 }
 
                 .intro-content-para {
@@ -333,7 +333,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     text-transform: uppercase;
                     color: white;
                     font-size: 30px;
-                    font-weight: 800;
+                    font-weight: 700;
                     @media (max-width: 600px) {
                         font-size: 20px;
                     }
@@ -875,4 +875,12 @@ div ::-webkit-scrollbar-thumb {
 
 .list-posts-para-content:last-child {
     font-weight: 700;
+}
+
+.MuiPagination-root {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
