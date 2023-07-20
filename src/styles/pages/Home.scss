@@ -750,13 +750,13 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
     }
 }
 .list-posts-wrapper {
-    @media (max-width: 800px) {
-        display: none;
-    }
     margin-top: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
+    @media (max-width: 800px) {
+        display: none;
+    }
     .list-posts-container {
         width: 100%;
         height: 100%;
