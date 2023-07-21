@@ -15,15 +15,11 @@ import {useSelector} from "react-redux";
 import {useDispatch } from "react-redux";
 import { getNumberItemInCart} from "@/constants/FnCommon";
 import {Backend} from "@/constants";
+import {TypePost} from "@/interfaces/response";
 
 export default function Header(props: any) {
   const route = useRouter();
-  const [listPostsMenu, setListPostsMenu] = useState([
-    {
-      id: "1",
-      name: "Lý số 1",
-    }
-  ])
+  const [listPostsMenu, setListPostsMenu] = useState<TypePost[]>([])
   const [cartAmount, setCartAmount] = useState<number>();
   const searchRef = useRef<any>(null);
 

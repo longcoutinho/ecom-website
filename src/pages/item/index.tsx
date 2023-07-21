@@ -108,15 +108,14 @@ export default function ItemComponent() {
   const redirectPagination = (page: string, pageSize: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
+    let params = new URLSearchParams();
+    params.append('page', pageNumber.toString());
+    params.append('pageSize', pageSize);
+    if (title.current != null && title.current != '') params.append('title', title.current);
     router.push({
       pathname: "/item",
       search:
-        "?" +
-        new URLSearchParams({
-          page: pageNumber.toString(),
-          pageSize: pageSize,
-          title: title.current,
-        }),
+        "?" + params
     });
   };
 
