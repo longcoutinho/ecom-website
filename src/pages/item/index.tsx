@@ -15,6 +15,7 @@ import { Item } from "../../interfaces/response";
 import React from "react";
 import {formatVND} from "@/constants/FnCommon";
 import Link from "next/link";
+import PaginationMui from "@mui/material/Pagination";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -46,12 +47,12 @@ export default function ItemComponent() {
   const [listFeaturedPosts, setListFeaturedPosts] = useState<Item[]>([]);
   const [pageDefault, setPageDefault] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const [title, setTitle] = useState("");
   const router = useRouter();
   const {push, query} = useRouter();
   const textInput = useRef<any>();
   const [listMenuItem, setListMenuItem] = useState<TypePost[]>([]);
   const [itemsType, setItemsType] = useState("");
+  const title = useRef<any>(null);
 
   useEffect(() => {
     if (router.query.type !== undefined) setItemsType(router?.query?.type[0]);
@@ -107,15 +108,14 @@ export default function ItemComponent() {
   const redirectPagination = (page: string, pageSize: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
+    let params = new URLSearchParams();
+    params.append('page', pageNumber.toString());
+    params.append('pageSize', pageSize);
+    if (title.current != null && title.current != '') params.append('title', title.current);
     router.push({
       pathname: "/item",
       search:
-        "?" +
-        new URLSearchParams({
-          page: pageNumber.toString(),
-          pageSize: pageSize,
-          title: title,
-        }),
+        "?" + params
     });
   };
 
@@ -140,16 +140,13 @@ export default function ItemComponent() {
 
   const searchPosts = (event: any) => {
     if (event.key == "Enter") {
-      console.log(event.key);
-      console.log(event.target.value);
-
-      setTitle(event.target.value);
+      title.current = event.target.value;
       redirectSearchInput("1", 9, event.target.value);
     }
   };
 
   const handleChangeInput = (e: any) => {
-    setTitle(e.target.value);
+    title.current = e.target.value;
   };
 
   const SearchInput = () => {
@@ -157,7 +154,6 @@ export default function ItemComponent() {
       <Box className="posts-search-input full-width center flex-row">
         <input
           autoFocus
-          value={title}
           onChange={handleChangeInput}
           className="list-posts-input-content"
           onKeyDown={searchPosts}
@@ -170,21 +166,21 @@ export default function ItemComponent() {
 
   const Directory = () => {
     const PostTypeDirectory = () => {
-      if (itemsType === undefined) {
+      if (router.query.type === undefined) {
         return (<Box></Box>)
       }
       else {
         return (
             <Box sx={{display: "flex", flexDirection: "row"}}>
               <p className="directiory-icon"> {' >> '} </p>
-              <a style={{textTransform: "capitalize"}} href="#">{itemsType}</a>
+              <a style={{textTransform: "capitalize", marginLeft: "5px"}} href="#">{router.query.type}</a>
             </Box>
         )
       }
     }
 
     const SearchDirectiory = () => {
-      if (query.title == undefined) {
+      if (query.title == undefined || query.title == "") {
         return (<Box></Box>)
       }
       else {
@@ -200,7 +196,7 @@ export default function ItemComponent() {
     return (<Box className="directory-wrapper">
       <a href="./">Trang chủ</a>
       <p className="directiory-icon"> {'>>'} </p>
-      <Link href="/posts?page=0&pageSize=9">Vật phẩm</Link>
+      <Link style={{marginLeft: "5px"}} href="/item?page=0&pageSize=9">Vật phẩm</Link>
       <PostTypeDirectory></PostTypeDirectory>
       <SearchDirectiory></SearchDirectiory>
 
@@ -292,7 +288,7 @@ export default function ItemComponent() {
     return (
       <Box className="list-items-content">
         <Directory></Directory>
-        <Box sx={{display: "flex", flexDirection: "row", gap: "20px"}}>
+        <Box sx={{display: "flex", flexDirection: "row", gap: "20px", marginTop: "10px"}}>
           <Box sx={{display: "flex", flexDirection: "column", width: "25%"}}>
             <SearchInput></SearchInput>
             <Box sx={{marginTop: "10px"}} className="list-items-search-container">
@@ -306,36 +302,13 @@ export default function ItemComponent() {
               className="list-items-item-page-wrapper"
           >
             <ListItemComponents />
+            {<PaginationMui count={pageCount} defaultPage={pageDefault} variant="outlined" onChange={(e: any, value) => paginationChange(value)} sx={{color:'white'}}/>}
           </Box>
         </Box>
       </Box>
     );
   };
 
-  const MenuPostComponent = () => {
-    const listMenuItems = [
-      "Tin phong thủy",
-      "Vật phẩm phong thủy",
-      "Sự kiện",
-      "Ứng dụng vạn sự kỳ thư",
-      "Tin trà",
-    ];
-    const ListMenuPostComponent = listMenuItems.map((item, index) => {
-      return (
-        <Box key={index} sx={{ marginLeft: "20px" }}>
-          <p style={{ color: "gray", textTransform: "uppercase" }}>{item}</p>
-        </Box>
-      );
-    });
-    return (
-      <Box
-        sx={{ height: "50px", paddingTop: "30px" }}
-        className="flex-row full-width center"
-      >
-        {ListMenuPostComponent}
-      </Box>
-    );
-  };
   return (
     <Page title={PAGE_TITLE.HOME} menuIndex={1}>
       <Box className="home-page-content" sx={{ width: "100vw" }}>

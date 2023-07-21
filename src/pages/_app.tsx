@@ -34,8 +34,18 @@ const counter = (state = 0, action: any) => {
   }
 };
 
+const menuIndex = (state = 0, action: any) => {
+  switch (action.type) {
+    case "MENU_INDEX":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const allReducers = combineReducers({
   counter,
+  menuIndex,
   // add more reducers here
 });
 

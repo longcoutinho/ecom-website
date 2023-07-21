@@ -79,16 +79,16 @@ export default function PostComponent() {
 
   //datas
   
-  const redirectPagination = (page: string, pageSize: any) => {
+  const redirectPagination = (page: string, pageSize: any, typePost: any) => {
     var pageNumber = parseInt(page);
     pageNumber--;
+    let params = new URLSearchParams();
+    params.append('page', pageNumber.toString());
+    params.append('pageSize', pageSize);
+    if (typePost != "" && typePost != undefined) params.append('type', typePost);
     push({
       pathname: "/posts",
-      search: "?" + new URLSearchParams({ 
-        page: pageNumber.toString(),
-        pageSize: pageSize,
-        type: title.current.value,
-       }),
+      search: "?" + params,
     });
   };
 
@@ -107,7 +107,8 @@ export default function PostComponent() {
   }
 
   const paginationChange = (e: any) => {
-    redirectPagination(e, 9);
+    console.log(postsType);
+    redirectPagination(e, 9, postsType);
   }
 
   const searchPosts = (event: any) => {
@@ -313,7 +314,7 @@ export default function PostComponent() {
 
   const Directory = () => {
     const PostTypeDirectory = () => {
-      if (postsType === undefined) {
+      if (postsType === undefined || postsType == "") {
         return (<Box></Box>)
       }
       else {

@@ -81,10 +81,18 @@ $title-fs: 25px;
                   text-transform: uppercase;
                   padding: 5px 20px;
                   font-weight: 700;
-                  margin-bottom: 20px;
+                  margin-bottom: 10px;
+                  font-size: 20px;
                 }
                 .post-page-para-intro {
                   color: white;
+                  margin-left: 20px;
+                  margin-bottom: 10px;
+                  text-overflow: ellipsis;
+                  word-wrap: break-word;
+                  overflow: hidden;
+                  max-height: 3.6em;
+                  line-height: 1.2em;
                 }
                 .post-page-create-at {
                   margin-bottom: 20px;

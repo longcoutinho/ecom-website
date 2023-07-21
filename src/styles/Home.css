@@ -246,6 +246,6 @@ width:33.3%;
   line-height: 1.2em;
   font-size: 15px !important;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 

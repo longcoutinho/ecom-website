@@ -8,6 +8,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
     flex-direction: column;
     padding: 0px 20% 0px 20%;
     background: #f9f9f9;
+    margin-top: 5px;
     @media (max-width: $laptop) {
         padding: 0px 10% 0px 10%;
     }
@@ -49,7 +50,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     color:#f70d28;
                     font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 800;
+                    font-weight: 700;
                 }
 
                 .intro-content-para {
@@ -75,6 +76,9 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     font-weight: 700;
                     border: 3px solid white;
                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
+                }
+                .intro-content-button:hover {
+                    background-color: black;
                 }
             }
 
@@ -179,6 +183,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
 
                         button:hover {
                             cursor: pointer;
+                            background-color: black;
                         }
 
                         button {
@@ -235,7 +240,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     color:#f70d28;
                     font-size: 30px;
                     text-transform: uppercase;
-                    font-weight: 800;
+                    font-weight: 700;
                 }
 
                 .intro-content-para {
@@ -261,6 +266,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     font-weight: 700;
                     border: 1px solid white;
                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
+                }
+                .intro-content-button:hover {
+                    cursor: pointer;
+                    background-color: black;
                 }
             }
 
@@ -325,7 +334,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                     text-transform: uppercase;
                     color: white;
                     font-size: 30px;
-                    font-weight: 800;
+                    font-weight: 700;
                     @media (max-width: 600px) {
                         font-size: 20px;
                     }
@@ -435,6 +444,10 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                                     font-weight: normal;
                                     margin-top: 10px;
                                     box-shadow: 5px 5px 5px rgb(122, 122, 122);
+                                }
+
+                                button:hover {
+                                    background-color: #8F0101;
                                 }
                             }
 
@@ -594,7 +607,6 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
         }
     }
     .list-posts-detail-content {
-        margin-top: 5px;
         background-color: #F2F2F2;
         display: flex;
         flex-direction: row;
@@ -736,12 +748,17 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
                             margin-bottom: 20px;
                             margin-left: 20px;
                             font-weight: 300;
+                            text-overflow: ellipsis;
+                            word-wrap: break-word;
+                            overflow: hidden;
+                            max-height: 6.0em;
+                            line-height: 1.2em;
                         }
                         .post-page-create-at {
                             margin-bottom: 20px;
                             margin-left: 20px;
                             font-weight: 700;
-                            color: $base-color;
+                            color: white;
                         }
                     }
                 }
@@ -754,6 +771,7 @@ $box-shadow: 5px 5px 5px rgb(122, 122, 122);
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     @media (max-width: 800px) {
         display: none;
     }
@@ -857,4 +875,12 @@ div ::-webkit-scrollbar-thumb {
 
 .list-posts-para-content:last-child {
     font-weight: 700;
+}
+
+.MuiPagination-root {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
