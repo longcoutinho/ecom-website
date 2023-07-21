@@ -3,7 +3,7 @@ $base-color: rgba(0, 32, 96);
 .big-menu{
   width: 100%;
   background-color: #F2F2F2;
-  padding: 10px;
+  padding: 5px 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -217,18 +217,21 @@ $base-color: rgba(0, 32, 96);
   text-align: center;
   padding: 10px;
   box-shadow:  -5px 0px rgb(233, 232, 232);
-  margin: 0px;
+  margin: 0;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+  color: red;
   .menu-element {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     .drop-down-menu {
-      margin-top: 10px;
+      margin-top: 150px;
+      margin-left: -8px;
       display: none;
       position: absolute;
       background-color: #f9f9f9;
-      min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 10;
       color: $base-color;
@@ -236,10 +239,11 @@ $base-color: rgba(0, 32, 96);
       -ms-user-select: none; /* IE 10 and IE 11 */
       user-select: none; /* Standard syntax */
       p:not(:last-child) {
-        border-bottom: 2px solid $base-color;
+        border-bottom: 1px solid $base-color;
+        margin-top: 20px;
       }
       p {
-        padding: 10px;
+        padding: 5px;
         display: block;
         text-transform: uppercase;
       }
@@ -253,9 +257,13 @@ $base-color: rgba(0, 32, 96);
       color: $base-color;
       font-weight: 700;
     }
+
+    a:hover {
+      color: black;
+    }
     .arrow-icon {
-      margin-left: 10px;
-      font-size: 20px;
+      margin-left: 3px;
+      font-size: 13px;
       color: $base-color;
     }
     .arrow-icon:hover {

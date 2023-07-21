@@ -15,15 +15,21 @@ import {Navigation, Scrollbar, Pagination, A11y, Autoplay} from "swiper";
 import {Post, Item, Service, TypePost} from "@/interfaces/response";
 import {useEffect, useRef, useState} from "react";
 import { useRouter } from "next/router";
+import {useDispatch} from "react-redux";
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
 export default function Home() {
     const route = useRouter();
     const [loading, setLoading] = useState(true);
-
-
+    const setMenuIndex = (number: any) => {
+        return {
+            type: "MENU_INDEX",
+            payload: number,
+        }
+    }
+    const dispatch = useDispatch();
     useEffect(() => {
-      console.log("home render");
+      dispatch(setMenuIndex(0));
   }, [])
 
   const redirect = (path: any, params: any) => {
@@ -77,8 +83,6 @@ export default function Home() {
                                 <img
                                     src={featuredPost.titleImageUrlStream}
                                     className="swiper-slide-featured-posts-image"
-                                    alt=""
-
                                 /></div>
                             <div className="swiper-slide-featured-posts-content">
                                 <p className="post-page-para-tilte">{featuredPost?.title}</p>
@@ -91,7 +95,7 @@ export default function Home() {
 
             return (
                 <>
-                    <p className="title-mobile" style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "800"}}>Bài viết nổi bật</p>
+                    <p className="title-mobile" style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "700"}}>Bài viết nổi bật</p>
                     <Box className="list-posts-page-featured-container">
 
                         <Box className="list-posts-page-featured-wrapper">
@@ -205,7 +209,7 @@ export default function Home() {
                               </Box>
                               <Box onClick={() => goToDetailPost(post.id)} className="list-posts-detail-content">
                                   <Box className="list-posts-para">
-                                      <h1 style={{ fontSize: "20px", textTransform: "uppercase"}} className="title-post-home-1">{post.title}</h1>
+                                      <h1 style={{ fontSize: "20px"}} className="title-post-home-1">{post.title}</h1>
                                       <p className="list-posts-para-content">{post.introduction}</p>
                                       <p className="list-posts-para-content">
                                           {post.createAt}
@@ -227,7 +231,7 @@ export default function Home() {
       return (
         <Box className="list-posts-detail-2">
           <Box sx={{height: "10%", width: "100%"}}>
-            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "800"}}>Bài viết nổi bật</p>
+            <p style={{fontSize: "30px", color: "rgb(0,32,96)", textTransform: "uppercase", fontWeight: "700"}}>Bài viết nổi bật</p>
             <Box sx={{borderTop: "5px solid black", marginTop: "10px"}} className="underline-title"></Box>
           </Box>
           <Box className="list-posts-detail-2-content">

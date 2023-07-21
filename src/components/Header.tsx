@@ -24,21 +24,22 @@ export default function Header(props: any) {
       name: "Lý số 1",
     }
   ])
-  const [dropDownState, setDropDownState] = useState("none");
   const [cartAmount, setCartAmount] = useState<number>();
   const searchRef = useRef<any>(null);
 
   const counter = useSelector((state: any) => state.counter);
+  const menuIndex = useSelector((state: any) => state.menuIndex);
   const assign = (number: any) => {
     return {
       type: "ASSIGN",
       payload: number,
     }
   }
+
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(menuIndex);
     dispatch(assign(getNumberItemInCart()));
-    setDropDownState("none");
     axios({
       method: "get",
       url: Backend.URL + "/type/0",
@@ -128,26 +129,31 @@ export default function Header(props: any) {
     },
   ];
 
-  const redirect = (nameType: any) => {
-    setDropDownState("none");
-    route.push({
-      pathname: "/posts",
-      search: "?" + new URLSearchParams({
-        type: nameType,
-        page: "0",
-        pageSize: "9",
-      }),
-    });
-  }
+
 
   //components
   const MenuHeader = () => {
-    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
-      // eslint-disable-next-line react/jsx-key
-      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
-    });
+    const [dropDownState, setDropDownState] = useState("none");
+
+    const enableDropDown = () => {
+      setDropDownState( (dropDownState == "block") ? "none" : "block");
+    }
+
+
+    const redirect = (nameType: any) => {
+      setDropDownState("none");
+      route.push({
+        pathname: "/posts",
+        search: "?" + new URLSearchParams({
+          type: nameType,
+          page: "0",
+          pageSize: "9",
+        }),
+      });
+    }
 
     const MenuDropDown = (props: any) => {
+
       if (props.show) return (
           <Box className="drop-down-menu" style={{display: dropDownState}}>
             {ListPostsMenu}
@@ -156,9 +162,6 @@ export default function Header(props: any) {
       else return null;
     }
 
-    const enableDropDown = () => {
-      setDropDownState( (dropDownState == "block") ? "none" : "block");
-    }
 
     const ArrowDownIcon = (props: any) => {
       if (props.show) return (
@@ -166,6 +169,12 @@ export default function Header(props: any) {
       )
       else return null;
     }
+
+
+    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
+      // eslint-disable-next-line react/jsx-key
+      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
+    });
 
     // @ts-ignore
     const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
@@ -177,6 +186,7 @@ export default function Header(props: any) {
           display: "inline-block",
           fontWeight: 700,
           margin: "0px 10px 0px 10px",
+          // backgroundColor: 'red'
         }}
       >
           <Box className="menu-element">
