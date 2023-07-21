@@ -83,7 +83,7 @@ export default function PostDetail() {
     for(let i = 0; i < listTypePost.length; i++) {
       if (id === listTypePost[i].id) return listTypePost[i].name;
     }
-    return "kk";
+    return "";
   }
 
     const redirect = (id: any) => {
