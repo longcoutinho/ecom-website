@@ -217,12 +217,13 @@ $base-color: rgba(0, 32, 96);
   text-align: center;
   padding: 10px;
   box-shadow:  -5px 0px rgb(233, 232, 232);
-  margin: 0;
+  margin: 0px;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   color: red;
   .menu-element {
+    display: inline-block;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -240,7 +241,6 @@ $base-color: rgba(0, 32, 96);
       user-select: none; /* Standard syntax */
       p:not(:last-child) {
         border-bottom: 1px solid $base-color;
-        margin-top: 20px;
       }
       p {
         padding: 5px;
