@@ -110,8 +110,7 @@ $base-color: rgb(0,32,96);
 }
 #title-post {
   height: 10px !important;
-  box-shadow: inset 5px 5px #999999;
-  border: 2px solid $base-color;
+  // box-shadow: inset 5px 5px #999999;
   border-radius: 10px;
 }
 
@@ -162,4 +161,15 @@ $base-color: rgb(0,32,96);
       }
     }
   }
+}
+
+.email-button {
+  margin-top: 20px;
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+}
+.email-button:hover {
+  background-color: red;
 }
