@@ -19,19 +19,30 @@ $base-color: rgb(0,32,96);
     display: flex;
     flex-direction: row;
     padding: 0 10px;
+    @media (max-width: $mobile) {
+      flex-direction: column;
+    }
     .content-item {
-      margin-left: 20px;
+      height: fit-content;
       padding: 20px;
       background-color: $base-color;
       width: 80%;
       display: flex;
       flex-direction: row;
+      @media (max-width: $mobile) {
+        margin-left: 0;
+        width: 100%;
+        flex-direction: column;
+      }
       .image-item {
         width: 45%;
         height: 100%;
         object-fit: fill;
         display: flex;
         flex-direction: column;
+        @media (max-width: $mobile) {
+          width: 100%;
+        }
       }
       .info-item {
         margin-left: 20px;
@@ -39,6 +50,11 @@ $base-color: rgb(0,32,96);
         height: 100%;
         display: flex;
         flex-direction: column;
+        @media (max-width: $mobile) {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 20px;
+        }
         .title-item {
           color: white;
           font-size: 35px;
@@ -161,6 +177,10 @@ $base-color: rgb(0,32,96);
   height: 100%;
   display: flex;
   flex-direction: column;
+  @media (max-width: $mobile) {
+    width: 100%;
+    margin-left: 0px;
+  }
   .post-page-register-wrapper {
     width: 100%;
     .post-page-register-content {
@@ -208,5 +228,11 @@ $base-color: rgb(0,32,96);
         margin-top: 20px;
       }
     }
+  }
+}
+
+.item-relate-container {
+  @media (max-width: $mobile) {
+    width: 100%;
   }
 }

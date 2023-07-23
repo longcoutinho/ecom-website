@@ -108,7 +108,7 @@ export default function PostDetail() {
     const PostTypeDirectory = () => {
         const link = "/posts?type=" + findTypePostName(detailPost?.typeId) + "&page=0&pageSize=9";
         return (
-            <Box sx={{display: "flex", flexDirection: "row"}}>
+            <Box sx={{display: "flex", flexDirection: "row", flexWrap: 'wrap'}}>
               <p className="directiory-icon"> {' >> '} </p>
               <a style={{textTransform: "capitalize", marginLeft: "5px"}} href={link}>{findTypePostName(detailPost?.typeId)}</a>
               <p className="directiory-icon"> {' >> '} </p>
@@ -234,7 +234,7 @@ export default function PostDetail() {
       const [contentComment, setContentComment] = useState("");
 
         return (
-            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", width: "100%"}}>
                   <Box sx={{display: "flex", flexDirection: "row", width: "100%"}}>
                       <TextField sx={{width: "50%", marginTop: "20px"}}
                                  id="title-post"
@@ -271,14 +271,14 @@ export default function PostDetail() {
       return (
           <Box>
               <p style={{color: "rgb(0,32,96)", fontSize: "20px", fontWeight: "700"}}>Bình luận</p>
-              <Box sx={{marginTop: "10px", gap: "10px", display: "flex", flexDirection: "column"}}>
+              <Box sx={{marginTop: "10px", gap: "10px", display: "flex", flexDirection: "column", width: "100%"}}>
                   {listComment.map((comment, ind) => (
                       <Box key={ind} sx={{display: "flex", flexDirection: "row", backgroundColor: "#F2F2F2", borderRadius: "20px",
                           padding: "10px 20px", gap: "10px"}}>
                           <Box sx={{width: "30px", height: "30px"}}>
                               <img style={{width: "100%", height: "100%", objectFit: "cover"}} src="https://www.nicepng.com/png/detail/115-1150821_default-avatar-comments-sign-in-icon-png.png"></img>
                           </Box>
-                          <Box>
+                          <Box sx={{width: "100%"}}>
                               <p style={{color: "rgb(0,32,96)", fontSize: "15px", fontWeight: "700"}}>{comment.name}&#40;{comment.email}&#41;</p>
                               <Box sx={{backgroundColor: 'white', padding: '10px', marginTop: "5px"}}>
                                 <p style={{color: "rgb(0,32,96)", fontSize: "15px", fontWeight: "500"}}>{comment.content}</p>
@@ -319,7 +319,7 @@ export default function PostDetail() {
                 <CommentComponent></CommentComponent>
             </Box>
           <Box className="post-page-ad-wrapper">
-              <Box className="post-page-register-wrapper">
+              <Box className="post-page-register-wrapper laptop-view">
                   <Box className="post-page-title">
                       <p>Đăng ký xem tử vi</p>
                   </Box>

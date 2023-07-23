@@ -365,7 +365,7 @@ export default function PostDetail() {
               </Box>
         </Box>
         <Box className="post-page-ad-wrapper">
-          <Box className="post-page-register-wrapper">
+          <Box className="post-page-register-wrapper laptop-view">
             <Box className="post-page-title">
               <p>Đăng ký xem tử vi</p>
             </Box>
@@ -380,7 +380,7 @@ export default function PostDetail() {
               </Box>
               <button>Đăng ký</button></Box>
           </Box>
-          <Box>
+          <Box className="item-relate-container">
             <Box className="post-page-title">
               <p>Sản phẩm thường được mua cùng</p>
             </Box>

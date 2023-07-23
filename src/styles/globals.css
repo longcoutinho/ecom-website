@@ -293,21 +293,6 @@ body {
   cursor: pointer;
 }
 
-.list-items-element {
-  height: 350px;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-    padding: 0.6em;
-    border-radius: 12px;
-    position:relative;
-    align-items:center;
-    @media (min-width: 1800px) {
-      width:21%;
-    }
-}
-
 .list-items-element-course {
   margin-bottom: 20px;
   width: 32%;
@@ -323,9 +308,7 @@ body {
   width:23%;
 }
 }
-.list-items-element:hover {
-  cursor: pointer;
-}
+
 
 .list-posts-image:hover {
   transition-duration: 1s;
@@ -723,4 +706,10 @@ h1{    transition: all 0.3s linear;}
   @media(max-width: 1300px) {
     display: none;
   }
+}
+
+.display-laptop {
+@media(min-width: 800px) {
+  display: none;
+}
 }

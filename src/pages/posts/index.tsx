@@ -122,11 +122,22 @@ export default function PostComponent() {
     title.current.value = e.target.value;
   }
 
+  const SearchInputMobile = () => {
+    return (
+        <Box
+            sx={{marginTop: "40px"}}
+            className="posts-search-input display-laptop"
+        >
+          <input autoFocus ref={title} onChange={handleChangeInput} className="list-posts-input-content" onKeyDown={searchPosts} placeholder="Tìm kiếm bài viết" />
+        </Box>
+    );
+  }
+
   const SearchInput = () => {
     return (
       <Box
           sx={{marginTop: "40px"}}
-        className="posts-search-input"
+        className="posts-search-input laptop-view"
       >
         <input autoFocus ref={title} onChange={handleChangeInput} className="list-posts-input-content" onKeyDown={searchPosts} placeholder="Tìm kiếm bài viết" />
       </Box>
@@ -350,10 +361,10 @@ export default function PostComponent() {
     </Box>)
   }
 
-  const TypePost = () => {
+  const TypePostMobile = () => {
     if (postsType !== undefined) return (<Box></Box>)
     else return (
-        <Box className="menu-type-post-wrapper">
+        <Box className="menu-type-post-wrapper display-laptop">
           <Box className="post-page-title">
             <p>Kho tàng tri thức</p>
           </Box>
@@ -368,19 +379,47 @@ export default function PostComponent() {
     )
   }
 
+  const TypePost = () => {
+    if (postsType !== undefined) return (<Box></Box>)
+    else return (
+        <Box className="menu-type-post-wrapper laptop-view">
+          <Box className="post-page-title">
+            <p>Kho tàng tri thức</p>
+          </Box>
+          <Box className="menu-type-post-content">
+            {listTypePost.map((typePost, index) => (
+                <Box onClick={() => redirectSearchInput("1", 9, typePost.name, title.current.value)} className="menu-type-post-element" key={index}>
+                  <p>{typePost.name}</p>
+                </Box>
+            ))}
+          </Box>
+        </Box>
+    )
+  }
+
+  const MobileView = () => {
+    return (
+        <Box>
+          <TypePostMobile></TypePostMobile>
+          <SearchInputMobile></SearchInputMobile>
+        </Box>
+    )
+  }
+
   const Post = () => {
     return (
         <Box className="post-page-content-container">
           <Box className="post-page-content-wrapper">
             <Directory></Directory>
             <Title></Title>
+            <MobileView></MobileView>
             <ListFeaturedPosts></ListFeaturedPosts>
             <ListPosts></ListPosts>
           </Box>
           <Box className="post-page-ad-wrapper">
             <SearchInput></SearchInput>
             <TypePost></TypePost>
-            <Box className="post-page-register-wrapper">
+            <Box className="post-page-register-wrapper laptop-view">
               <Box className="post-page-title">
                 <p>Đăng ký xem tử vi</p>
               </Box>

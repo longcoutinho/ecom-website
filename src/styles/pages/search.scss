@@ -18,6 +18,9 @@ $title-fs: 25px;
     height: 100%;
     display: flex;
     flex-direction: row;
+    @media (max-width: $mobile) {
+      flex-direction: column;
+    }
     .post-page-title-wrapper {
       margin-top: 10px;
       color: $base-color;
@@ -121,11 +124,6 @@ $title-fs: 25px;
       }
     }
     .post-page-ad-wrapper {
-      margin-left: 20px;
-      width: 30%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
       .post-page-register-wrapper {
         .post-page-register-content {
           display: flex;

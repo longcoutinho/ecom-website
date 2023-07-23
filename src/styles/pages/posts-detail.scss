@@ -10,6 +10,7 @@ $base-color: rgb(0,32,96);
   }
   @media (max-width: $mobile) {
     padding: 0 6px;
+    margin-top: 60px;
   }
   .post-detail-title-wrapper {
     padding: 10px 20px;
@@ -25,8 +26,14 @@ $base-color: rgb(0,32,96);
     flex-direction: row;
     width: 100%;
     padding: 0 20px;
+    @media (max-width: $mobile) {
+      flex-direction: column;
+    }
     .post-detail-content-content {
       width: 75%;
+      @media (max-width: $mobile) {
+        width: 100%;
+      }
       .detail-posts-focus-title-container {
         display: flex;
         flex-direction: row;
@@ -57,6 +64,10 @@ $base-color: rgb(0,32,96);
       height: 100%;
       display: flex;
       flex-direction: column;
+      @media (max-width: $mobile) {
+        width: 100%;
+        margin-left: 0;
+      }
       .post-page-register-wrapper {
         width: 100%;
         .post-page-register-content {

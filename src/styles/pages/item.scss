@@ -1,11 +1,19 @@
+@import '../responsive.scss';
 $base-color: rgb(0,32,96);
 .list-items-content {
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
-  justify-content: space-between;
+      justify-content: space-between;
       padding: 10px;
+  @media (max-width: $laptop) {
+    padding: 0px 10% 0px 10%;
+  }
+  @media (max-width: $mobile) {
+    padding: 0 6px;
+    margin-top: 70px;
+  }
     .list-items-search-container {
         width: 100%;
         border-radius: 15px;
@@ -40,6 +48,9 @@ $base-color: rgb(0,32,96);
     }
   .list-items-item-page-wrapper {
     width: 75%;
+    @media (max-width: $mobile) {
+      width: 100%;
+    }
     .list-items-item-page-container {
       padding: 20px;
       width: 100%;
@@ -78,7 +89,7 @@ $base-color: rgb(0,32,96);
     max-height: 3.6em;
     line-height: 1.2em;
     font-style: italic;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 
@@ -123,4 +134,45 @@ $base-color: rgb(0,32,96);
   max-height: 1.3em;
   line-height: 1.3em;
   font-weight: 700 !important;
+}
+
+.list-items-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 10px;
+  @media (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
+.list-item-content-container {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  @media (max-width: $mobile) {
+    width: 100%;
+  }
+}
+
+.list-items-element {
+  height: 350px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0.6em;
+  border-radius: 12px;
+  position:relative;
+  align-items:center;
+  @media (min-width: $laptop) {
+    width:21%;
+  }
+  @media (max-width: $mobile) {
+    width: 45%;
+  }
+}
+
+.list-items-element:hover {
+  cursor: pointer;
 }

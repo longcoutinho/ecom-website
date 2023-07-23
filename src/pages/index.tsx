@@ -167,7 +167,7 @@ export default function Home() {
 
             return (
                 <Box
-                    className="list-posts-wrapper"
+                    className="list-posts-wrapper-home"
                     sx={{
                         padding: "0",
                         flexGrow: 1,

@@ -288,8 +288,8 @@ export default function ItemComponent() {
     return (
       <Box className="list-items-content">
         <Directory></Directory>
-        <Box sx={{display: "flex", flexDirection: "row", gap: "20px", marginTop: "10px"}}>
-          <Box sx={{display: "flex", flexDirection: "column", width: "25%"}}>
+        <Box className="list-items-content-wrapper">
+          <Box className="list-item-content-container">
             <SearchInput></SearchInput>
             <Box sx={{marginTop: "10px"}} className="list-items-search-container">
               <Box className="list-items-search-container-title">
