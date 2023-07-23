@@ -318,7 +318,9 @@ export default function PostDetail() {
             <p className="amount-title">Số lượng:</p>
             <Box key={"longhvh"} className="amount-container">
               <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(1)} icon={faMinusSquare}></FontAwesomeIcon>
-              <p className="amount-number">{amount}</p>
+              <Box className="amount-number">
+                <p>{amount}</p>
+              </Box>
               <FontAwesomeIcon className="amount-icon" onClick={() => changeAmount(0)} icon={faPlusSquare}></FontAwesomeIcon>
             </Box>
           </Box>

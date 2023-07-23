@@ -542,7 +542,7 @@ h1{    transition: all 0.3s linear;}
 }
 
 .image-zoom-detail {
-  height: 80%;
+  height: 400px;
   width: 100%;
   overflow: hidden;
 }
@@ -573,7 +573,7 @@ h1{    transition: all 0.3s linear;}
 
 .list-item-demo-elements img {
   width: 100%;
-  height: 300px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -701,7 +701,7 @@ h1{    transition: all 0.3s linear;}
 
 .ql-video {
   width: 100%;
-  height: 56.25vw;
+  height: 30vw;
 }
 
 .loading {

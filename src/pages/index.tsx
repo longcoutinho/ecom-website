@@ -371,7 +371,7 @@ export default function Home() {
     const ListServicesSlide = listServices.map((service, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
           <Box className="swiper-slide-featured-news-content">
-            <Box className="swiper-slide-featured-news-image">
+            <Box onClick={() => goToDetailPost(service.id)} className="swiper-slide-featured-news-image">
               <img id="swiper-slide-image" src={service.titleImageUrlStream}/>
             </Box>
             <p style={{fontWeight: 700, marginTop: "0px", fontSize: "1.563em"}}>{service.title}</p>
@@ -535,7 +535,7 @@ export default function Home() {
 
     const ListItemsSlide = listItems.map((item, index) => (
         <SwiperSlide key={index} className="swiper-slide-featured-news">
-          <Box className="swiper-slide-featured-news-content-items">
+          <Box onClick={() => goToDetailItem(item.id)} className="swiper-slide-featured-news-content-items">
             <Box className="swiper-slide-featured-news-image">
               <img id="swiper-slide-image" src={item.titleImageUrlStream}/>
             </Box>

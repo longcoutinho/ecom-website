@@ -32,7 +32,6 @@ $base-color: rgb(0,32,96);
         object-fit: fill;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
       }
       .info-item {
         margin-left: 20px;
@@ -91,15 +90,19 @@ $base-color: rgb(0,32,96);
             margin-left: 5px;
             .amount-number {
               border: 2px solid gray;
-              height: 100%;
-              width: 30px;
               display: flex;
               align-items: center;
               justify-content: center;
+              padding: 0 10px;
+              p {
+                font-size: 20px;
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+              }
             }
             .amount-icon {
               font-size: 30px;
-              height: 100%;
             }
           }
         }
@@ -108,7 +111,7 @@ $base-color: rgb(0,32,96);
           padding: 0 20px;
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: space-around;
           .buy-now-button {
             text-transform: none;
             background-color: red;

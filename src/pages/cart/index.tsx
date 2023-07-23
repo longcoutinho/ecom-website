@@ -19,6 +19,8 @@ import Paper from '@mui/material/Paper';
 import {deleteItemByIndex, formatVND} from "@/constants/FnCommon";
 import {ItemToCart} from "@/interfaces/response";
 import {useDispatch} from "react-redux";
+import {router} from "next/client";
+import {redirect} from "next/navigation";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
@@ -161,6 +163,7 @@ export default function Cart() {
             setAlertVisibility(true);
             setAlertType("success");
             setAlertContent("Đặt hàng thành công!");
+            router.push("/item?page=0&pageSize=9")
           }, (error) => {
             setAlertVisibility(true);
             setAlertType("error");
