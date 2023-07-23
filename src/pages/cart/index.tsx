@@ -19,8 +19,7 @@ import Paper from '@mui/material/Paper';
 import {deleteItemByIndex, formatVND} from "@/constants/FnCommon";
 import {ItemToCart} from "@/interfaces/response";
 import {useDispatch} from "react-redux";
-import {router} from "next/client";
-import {redirect} from "next/navigation";
+import {useRouter} from "next/router";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
 
@@ -32,6 +31,7 @@ interface SendItem {
 export default function Cart() {
   const [cart, setCart] = useState<ItemToCart[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const router = useRouter();
   const assign = (number: any) => {
     return {
       type: "ASSIGN",
