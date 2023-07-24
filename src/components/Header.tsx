@@ -23,7 +23,7 @@ export default function Header(props: any) {
   const [cartAmount, setCartAmount] = useState<number>();
   const searchRef = useRef<any>(null);
   const [menuState, setMenuState] = useState(false);
-
+  const [searchScreen, setSearchScreen] = useState(false);
 
   const counter = useSelector((state: any) => state.counter);
   const menuIndex = useSelector((state: any) => state.menuIndex);
@@ -81,6 +81,7 @@ export default function Header(props: any) {
         pageSize: "9",
       }),
     });
+    setSearchScreen(false);
   }
 
   const handleSearchInput = (e: any) => {
@@ -126,81 +127,6 @@ export default function Header(props: any) {
       drop_down: false,
     },
   ];
-
-  //components
-  const MenuVertical = () => {
-    const [dropDownState, setDropDownState] = useState("none");
-
-    const enableDropDown = () => {
-      setDropDownState( (dropDownState == "block") ? "none" : "block");
-    }
-
-
-    const redirect = (nameType: any) => {
-      setDropDownState("none");
-      route.push({
-        pathname: "/posts",
-        search: "?" + new URLSearchParams({
-          type: nameType,
-          page: "0",
-          pageSize: "9",
-        }),
-      });
-    }
-
-    const MenuDropDown = (props: any) => {
-
-      if (props.show) return (
-          <Box className="drop-down-menu" style={{display: dropDownState}}>
-            {ListPostsMenu}
-          </Box>
-      )
-      else return null;
-    }
-
-
-    const ArrowDownIcon = (props: any) => {
-      if (props.show) return (
-          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faCaretDown}></FontAwesomeIcon>
-      )
-      else return null;
-    }
-
-
-    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
-      // eslint-disable-next-line react/jsx-key
-      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
-    });
-
-    // @ts-ignore
-    const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
-        <Box
-            key={index}
-            className="menu-item"
-            sx={{
-              height: "20%",
-              display: "inline-block",
-              fontWeight: 700,
-              margin: "0px 10px 0px 10px",
-              // backgroundColor: 'red'
-            }}
-        >
-          <Box className="menu-element">
-            <Link href={menuItem.redirect_link}>{menuItem.title}</Link>
-            <ArrowDownIcon show={menuItem.drop_down}></ArrowDownIcon>
-            <MenuDropDown show={menuItem?.drop_down}></MenuDropDown>
-          </Box>
-        </Box>
-    ));
-    return (
-        <Box
-            className="vertical-menu"
-        >
-          {listMenu}
-        </Box>
-    );
-  };
-
 
   //components
   const MenuHeader = () => {
@@ -278,6 +204,24 @@ export default function Header(props: any) {
     );
   };
 
+  const SearchScreen = () => {
+    return (
+        <Box className="search-screen-wrapper"
+          sx = {{display: searchScreen?'flex':'none'}}
+        >
+          <Box className="cancel-icon-wrapper">
+            <FontAwesomeIcon onClick={() => setSearchScreen(false)} className="cancel-icon" icon={faTimes}></FontAwesomeIcon>
+          </Box>
+          <Box className="search-wrapper">
+            <input ref={searchRef} onChange={(e) => handleSearchInput(e.target.value) } className="search-input" placeholder="Bạn muốn tư vấn gì?"></input>
+            <Button onClick={() => handleSearch(searchRef.current.value)} className="search-button">
+              <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+            </Button>
+          </Box>
+        </Box>
+    )
+  }
+
   const MenuHeaderMobile = () => {
     const [dropDownState, setDropDownState] = useState("none");
 
@@ -347,7 +291,9 @@ export default function Header(props: any) {
             className="big-menu-mobile"
             sx={{display: menuState?'flex':'none'}}
         >
-          <Box className="cancel-icon-wrapper">
+          <Box className="cancel-icon-wrapper"
+          sx = {{ borderBottom: '1px solid #d7d7d7'}}
+          >
             <FontAwesomeIcon onClick={() => setMenuState(false)} className="cancel-icon" icon={faTimes}></FontAwesomeIcon>
           </Box>
           <Box className="menu-bars-wrapper">
@@ -380,7 +326,7 @@ export default function Header(props: any) {
     const SearchMobile = () => {
       return (
           <Box className="search-icon-wrapper laptop-none">
-            <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+            <FontAwesomeIcon onClick={() => setSearchScreen(true)} icon={faSearch}></FontAwesomeIcon>
           </Box>
       )
     }
@@ -439,8 +385,8 @@ export default function Header(props: any) {
         <Logo></Logo>
         <Search></Search>
         <PhoneService></PhoneService>
-        <Cart></Cart>
         <SearchMobile></SearchMobile>
+        <Cart></Cart>
       </Box>
     );
   };
@@ -451,6 +397,7 @@ export default function Header(props: any) {
       <IntroductionHeader></IntroductionHeader>
       <MenuHeader></MenuHeader>
       <MenuHeaderMobile></MenuHeaderMobile>
+      <SearchScreen></SearchScreen>
     </Container>
   );
 };

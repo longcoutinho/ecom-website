@@ -220,7 +220,8 @@ $base-color: rgba(0, 32, 96);
         color: white;
       }
       @media(max-width: $mobile) {
-        display: none;
+        //display: none;
+        padding: 10px;
       }
     }
     
@@ -343,7 +344,6 @@ $base-color: rgba(0, 32, 96);
   flex-direction: row;
   justify-content: flex-end;
   padding: 0 10px;
-  border-bottom: 1px solid #d7d7d7;
 }
 
 .cancel-icon {
@@ -354,5 +354,55 @@ $base-color: rgba(0, 32, 96);
 .laptop-none {
   @media (min-width: $mobile) {
     display: none;
+  }
+}
+
+.search-screen-wrapper {
+  @media (max-width: $mobile) {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-wrapper {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .search-input {
+      width: 100%;
+      height: 40px;
+      padding-left: 20px;
+      padding-right: 10px;
+      color: #595959;
+      background-color: white;
+      border-radius: 10px;
+      border: 1px solid white;
+      box-shadow: inset 5px 5px #999999;
+      font-size: 17px;
+      outline: none;
+    }
+
+    .search-button {
+      background-color: #E9EAEC;
+      padding: 15px;
+      height: 40px;
+      margin-left: -15px;
+      border-radius: 10px;
+      color: #6B5A59;
+      text-transform: none;
+      //box-shadow: inset 5px -20px #999999;
+      svg {
+        font-size: 20px;
+      }
+    }
   }
 }
