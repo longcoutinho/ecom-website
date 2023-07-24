@@ -59,7 +59,10 @@ export default function Cart() {
     setTotalPrice(0);
     dispatch(assign(newCart.length));
     window.localStorage.setItem('cart', JSON.stringify(newCart));
+  }
 
+  const deleteAllItems = () => {
+      window.localStorage.setItem('cart', JSON.stringify([]));
   }
 
   const CartTable = () => {
@@ -163,6 +166,7 @@ export default function Cart() {
             setAlertVisibility(true);
             setAlertType("success");
             setAlertContent("Đặt hàng thành công!");
+            deleteAllItems();
             router.push("/item?page=0&pageSize=9")
           }, (error) => {
             setAlertVisibility(true);

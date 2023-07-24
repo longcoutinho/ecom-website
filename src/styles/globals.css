@@ -492,21 +492,6 @@ h1{    transition: all 0.3s linear;}
   border-right:unset;
 }
 
-.btn-details-post {
-  margin-top: 10px;
-  width: fit-content;
-  padding: 0.5em 1.2em !important;
-  border-radius: 18px;
-  background-color: #eb1b24;
-  color: white;
-  position:absolute;
-  bottom:10px;
-}
-
-.btn-details-post:hover {
-  background-color: #8c0712;
-}
-
 .btn-details-post-course {
   margin-top: 10px;
   width: fit-content;
@@ -644,7 +629,7 @@ h1{    transition: all 0.3s linear;}
 }
 
 .mobile-view {
-  @media (max-width: 480px) {
+  @media (max-width: 800px) {
     display: none;
   }
 }

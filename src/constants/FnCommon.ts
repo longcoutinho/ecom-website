@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ItemToCart} from "@/interfaces/response";
+import {cloneWith} from "lodash";
 
 const insertStringAtIndex = (ind: number, str1: string, str2: string) => {
     let stringResult = "";
@@ -73,6 +74,12 @@ export const addItemToCart = (newItem: ItemToCart): ItemToCart[] => {
     if (!haveInCart) {
         cart[len] = newItem;
     }
+    return cart;
+}
+
+export const buyItem = (newItem: ItemToCart): ItemToCart[] => {
+    let cart: ItemToCart[] = [];
+    cart[0] = newItem;
     return cart;
 }
 

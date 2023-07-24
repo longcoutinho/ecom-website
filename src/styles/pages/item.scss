@@ -176,3 +176,18 @@ $base-color: rgb(0,32,96);
 .list-items-element:hover {
   cursor: pointer;
 }
+
+.btn-details-post {
+  margin-top: 10px;
+  width: fit-content;
+  padding: 0.5em 1.2em !important;
+  border-radius: 18px;
+  background-color: #eb1b24;
+  color: white;
+  position:absolute;
+  bottom:10px;
+}
+
+.btn-details-post:hover {
+  background-color: #8c0712;
+}

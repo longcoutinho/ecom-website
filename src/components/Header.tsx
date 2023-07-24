@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faCaretDown, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faSearch, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useDispatch } from "react-redux";
@@ -22,6 +22,8 @@ export default function Header(props: any) {
   const [listPostsMenu, setListPostsMenu] = useState<TypePost[]>([])
   const [cartAmount, setCartAmount] = useState<number>();
   const searchRef = useRef<any>(null);
+  const [menuState, setMenuState] = useState(false);
+
 
   const counter = useSelector((state: any) => state.counter);
   const menuIndex = useSelector((state: any) => state.menuIndex);
@@ -125,6 +127,79 @@ export default function Header(props: any) {
     },
   ];
 
+  //components
+  const MenuVertical = () => {
+    const [dropDownState, setDropDownState] = useState("none");
+
+    const enableDropDown = () => {
+      setDropDownState( (dropDownState == "block") ? "none" : "block");
+    }
+
+
+    const redirect = (nameType: any) => {
+      setDropDownState("none");
+      route.push({
+        pathname: "/posts",
+        search: "?" + new URLSearchParams({
+          type: nameType,
+          page: "0",
+          pageSize: "9",
+        }),
+      });
+    }
+
+    const MenuDropDown = (props: any) => {
+
+      if (props.show) return (
+          <Box className="drop-down-menu" style={{display: dropDownState}}>
+            {ListPostsMenu}
+          </Box>
+      )
+      else return null;
+    }
+
+
+    const ArrowDownIcon = (props: any) => {
+      if (props.show) return (
+          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faCaretDown}></FontAwesomeIcon>
+      )
+      else return null;
+    }
+
+
+    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
+      // eslint-disable-next-line react/jsx-key
+      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
+    });
+
+    // @ts-ignore
+    const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
+        <Box
+            key={index}
+            className="menu-item"
+            sx={{
+              height: "20%",
+              display: "inline-block",
+              fontWeight: 700,
+              margin: "0px 10px 0px 10px",
+              // backgroundColor: 'red'
+            }}
+        >
+          <Box className="menu-element">
+            <Link href={menuItem.redirect_link}>{menuItem.title}</Link>
+            <ArrowDownIcon show={menuItem.drop_down}></ArrowDownIcon>
+            <MenuDropDown show={menuItem?.drop_down}></MenuDropDown>
+          </Box>
+        </Box>
+    ));
+    return (
+        <Box
+            className="vertical-menu"
+        >
+          {listMenu}
+        </Box>
+    );
+  };
 
 
   //components
@@ -194,24 +269,118 @@ export default function Header(props: any) {
     ));
     return (
       <Box
-        className="big-menu mobile-view"
+        className="big-menu"
       >
-        {listMenu}
+        <Box className="menu-bars-wrapper">
+          {listMenu}
+        </Box>
       </Box>
     );
   };
+
+  const MenuHeaderMobile = () => {
+    const [dropDownState, setDropDownState] = useState("none");
+
+    const enableDropDown = () => {
+      setDropDownState( (dropDownState == "block") ? "none" : "block");
+    }
+
+
+    const redirect = (nameType: any) => {
+      setDropDownState("none");
+      route.push({
+        pathname: "/posts",
+        search: "?" + new URLSearchParams({
+          type: nameType,
+          page: "0",
+          pageSize: "9",
+        }),
+      });
+    }
+
+    const MenuDropDown = (props: any) => {
+
+      if (props.show) return (
+          <Box className="drop-down-menu" style={{display: dropDownState}}>
+            {ListPostsMenu}
+          </Box>
+      )
+      else return null;
+    }
+
+
+    const ArrowDownIcon = (props: any) => {
+      if (props.show) return (
+          <FontAwesomeIcon onClick={enableDropDown} className="arrow-icon" icon={faCaretDown}></FontAwesomeIcon>
+      )
+      else return null;
+    }
+
+
+    const ListPostsMenu = listPostsMenu?.map((element, index, ind) => {
+      // eslint-disable-next-line react/jsx-key
+      return (<p key={index} onClick={() => redirect(element.name)}>{element.name}</p>);
+    });
+
+    // @ts-ignore
+    const listMenu = initMenuItem.map((menuItem: IMenuItem, index: number) => (
+        <Box
+            key={index}
+            className="menu-item"
+            sx={{
+              height: "20%",
+              display: "inline-block",
+              fontWeight: 700,
+              margin: "0px 10px 0px 10px",
+              // backgroundColor: 'red'
+            }}
+        >
+          <Box className="menu-element">
+            <Link href={menuItem.redirect_link}>{menuItem.title}</Link>
+            <ArrowDownIcon show={menuItem.drop_down}></ArrowDownIcon>
+            <MenuDropDown show={menuItem?.drop_down}></MenuDropDown>
+          </Box>
+        </Box>
+    ));
+    return (
+        <Box
+            className="big-menu-mobile"
+            sx={{display: menuState?'flex':'none'}}
+        >
+          <Box className="cancel-icon-wrapper">
+            <FontAwesomeIcon onClick={() => setMenuState(false)} className="cancel-icon" icon={faTimes}></FontAwesomeIcon>
+          </Box>
+          <Box className="menu-bars-wrapper">
+            {listMenu}
+          </Box>
+        </Box>
+    );
+  };
+
   const gotoCart = () => {
     route.push({
       pathname: "/cart",
     });
   };
 
+  const openMenu = () => {
+    console.log('kkk');
+    setMenuState(true);
+  }
+
   const IntroductionHeader = () => {
     const MenuMobile = () => {
       return (
-          <Box className="menu-icon-wrapper">
-            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-            <p>kasdkaskdas</p>
+          <Box className="menu-icon-wrapper laptop-none">
+            <FontAwesomeIcon onClick={() => openMenu()} icon={faBars}></FontAwesomeIcon>
+          </Box>
+      )
+    }
+
+    const SearchMobile = () => {
+      return (
+          <Box className="search-icon-wrapper laptop-none">
+            <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
           </Box>
       )
     }
@@ -271,6 +440,7 @@ export default function Header(props: any) {
         <Search></Search>
         <PhoneService></PhoneService>
         <Cart></Cart>
+        <SearchMobile></SearchMobile>
       </Box>
     );
   };
@@ -280,6 +450,7 @@ export default function Header(props: any) {
     <Container className="header-container" disableGutters maxWidth={false}>
       <IntroductionHeader></IntroductionHeader>
       <MenuHeader></MenuHeader>
+      <MenuHeaderMobile></MenuHeaderMobile>
     </Container>
   );
 };

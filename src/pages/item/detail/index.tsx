@@ -11,7 +11,7 @@ import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import {Post, ItemToCart} from "@/interfaces/response";
-import {addItemToCart, formatVND} from "@/constants/FnCommon";
+import {addItemToCart, buyItem, formatVND} from "@/constants/FnCommon";
 import {useDispatch } from "react-redux";
 
 <link rel="preconnect" href="https://fonts.gstatic.com"></link>;
@@ -118,24 +118,6 @@ export default function PostDetail() {
       setDisplayAmout("flex");
     }
   }, [])
-
-  const gotoCart = () => {
-    route.push({
-      pathname: '/cart',
-    }
-    )
-  }
-
-  const CartComponent = () => {
-    return (
-      <Box className="cart-shopping" onClick={() => gotoCart()}>
-        <FontAwesomeIcon id="cart-shopping-icon" icon={faCartShopping}></FontAwesomeIcon>
-        <div className="cart-amount" style={{display: displayAmount}}>
-          <p>{amountCartItem}</p>
-        </div>
-      </Box>
-    )
-  }
 
   const hoverImage = (image: any) => {
     setZoomImage(image.target.src);
@@ -291,6 +273,22 @@ export default function PostDetail() {
       setAlertVisibility(true);
     }
 
+    const buyNow = () => {
+      let addItem: ItemToCart = {
+        itemId: detailItem?.id,
+        id: detailItem?.id,
+        title: detailItem?.title,
+        amount: amount,
+        price: detailItem?.price,
+        totalPrice: totalPrice,
+        titleImageUrlStream: zoomImage,
+      };
+      let newCart = buyItem(addItem);
+      dispatch(assign(newCart.length));
+      window.localStorage.setItem('cart', JSON.stringify(newCart));
+      route.push('/cart');
+    }
+
     const changeAmount = (type: any) => {
       let number = amount;
       if (type) {
@@ -325,7 +323,7 @@ export default function PostDetail() {
             </Box>
           </Box>
           <Box className="buy-button-container">
-            <Button className="buy-now-button">Đặt hàng</Button>
+            <Button className="buy-now-button" onClick={() => buyNow()}>Đặt hàng</Button>
             <Button className="add-to-cart-button" onClick={() => addToCart()}>Thêm vào giỏ</Button>
           </Box>
         </Box>
