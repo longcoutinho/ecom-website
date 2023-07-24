@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import ShoppingCartIcon from "./ShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faCaretDown, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useDispatch } from "react-redux";
@@ -207,6 +207,15 @@ export default function Header(props: any) {
   };
 
   const IntroductionHeader = () => {
+    const MenuMobile = () => {
+      return (
+          <Box className="menu-icon-wrapper">
+            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+            <p>kasdkaskdas</p>
+          </Box>
+      )
+    }
+
     const Logo = () => {
       return (
         <Box onClick={() => handleGoToPage("/")} className="logo-wrapper">
@@ -257,6 +266,7 @@ export default function Header(props: any) {
 
     return (
       <Box className="introduction-header-container">
+        <MenuMobile></MenuMobile>
         <Logo></Logo>
         <Search></Search>
         <PhoneService></PhoneService>
