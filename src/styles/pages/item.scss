@@ -7,13 +7,6 @@ $base-color: rgb(0,32,96);
       flex-direction: column;
       justify-content: space-between;
       padding: 10px;
-  @media (max-width: $laptop) {
-    padding: 0px 10% 0px 10%;
-  }
-  @media (max-width: $mobile) {
-    padding: 0 6px;
-    margin-top: 70px;
-  }
     .list-items-search-container {
         width: 100%;
         border-radius: 15px;
@@ -98,7 +91,6 @@ $base-color: rgb(0,32,96);
   height: 50%;
   object-fit: cover;
   overflow: hidden;
-  background-color: green;
   border-radius: 12px;
 }
 

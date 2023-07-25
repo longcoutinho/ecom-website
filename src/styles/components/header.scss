@@ -61,7 +61,7 @@ $base-color: rgba(0, 32, 96);
   @media (max-width: $mobile) {
     width: 100%;
     padding: 0;
-    height: 50px;
+    //height: 50px;
     background: #dddddd;
     display: flex;
     flex-direction: column;
