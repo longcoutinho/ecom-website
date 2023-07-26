@@ -133,14 +133,6 @@ export const listCourse : Course[] = [
   },
 ];
 
-export const listMenuCourse = [
-  "KHÓA HỌC MIỄN PHÍ",
-  "TỬ VI CƠ BẢN",
-  "TỬ VI NÂNG CAO",
-  "TỬ VI THỰC CHIẾN",
-  "KHÓA HỌC KHÁC",
-];
-
 export const listServicesTitle = [
   {
     img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",

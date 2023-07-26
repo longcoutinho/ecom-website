@@ -293,22 +293,6 @@ body {
   cursor: pointer;
 }
 
-.list-items-element-course {
-  margin-bottom: 20px;
-  width: 32%;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 0.6em;
-  border-radius: 12px;
-  position:relative;
-  align-items:center;
-@media (min-width: 1800px) {
-  width:23%;
-}
-}
-
 
 .list-posts-image:hover {
   transition-duration: 1s;
