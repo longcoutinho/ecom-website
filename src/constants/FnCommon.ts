@@ -1,6 +1,6 @@
 import axios from "axios";
 import {ItemToCart} from "@/interfaces/response";
-import {cloneWith} from "lodash";
+import {NextRouter} from "next/router";
 
 const insertStringAtIndex = (ind: number, str1: string, str2: string) => {
     let stringResult = "";
@@ -88,4 +88,8 @@ export const deleteItemByIndex = (index: number): ItemToCart[] => {
     let len = cart.length;
     let left = cart.slice(0, index), right = cart.slice(index + 1, len);
     return left.concat(right);
+}
+
+export const redirectUrl = (router: NextRouter, url: string) => {
+    router.push(url);
 }

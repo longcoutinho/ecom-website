@@ -1,4 +1,5 @@
 import {Course} from "@/interfaces/response";
+import {PATH_PAGE} from "@/routes/path";
 
 export enum Backend {
   URL = 'https://fengshui.ntg55.click'
@@ -153,5 +154,47 @@ export const listServicesTitle = [
     img: "https://www.kimca.net/wp-content/uploads/2022/02/163418138042938300_a640x364-1-364x363.jpg",
     title: "Làm viên chức",
     content: "Bạn muốn xem thời vận sắp tới có thuận lợi để đầu tư không?"
+  },
+];
+
+export enum PageURL {
+  HOME = "/home",
+}
+
+export const MenuTitle: any = [
+  {
+    title: "Trang chủ",
+    redirect_link: PATH_PAGE.user.tab1,
+    drop_down: false,
+  },
+  {
+    title: "Kho tàng tri thức",
+    redirect_link: PATH_PAGE.user.tab2,
+    drop_down: true,
+  },
+  {
+    title: "Vật phẩm",
+    redirect_link: PATH_PAGE.user.tab3,
+    drop_down: false,
+  },
+  {
+    title: "Lập lá số",
+    redirect_link: PATH_PAGE.user.tab4,
+    drop_down: false,
+  },
+  {
+    title: "Khóa học",
+    redirect_link: PATH_PAGE.user.tab5,
+    drop_down: false,
+  },
+  {
+    title: "Dịch vụ",
+    redirect_link: PATH_PAGE.user.tab6,
+    drop_down: false,
+  },
+  {
+    title: "Liên hệ",
+    redirect_link: PATH_PAGE.user.tab7,
+    drop_down: false,
   },
 ];

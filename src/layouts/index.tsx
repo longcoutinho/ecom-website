@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
-import Header from "@/components/Header";
 import { PAGE_TITLE } from "@/constants";
 import Footer from "@/components/Footer";
+import Header from "@/components/header/Header";
 
 
 
