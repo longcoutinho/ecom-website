@@ -163,38 +163,28 @@ export enum PageURL {
 
 export const MenuTitle: any = [
   {
-    title: "Trang chủ",
+    title: "Home",
     redirect_link: PATH_PAGE.user.tab1,
     drop_down: false,
   },
   {
-    title: "Kho tàng tri thức",
+    title: "Blog",
     redirect_link: PATH_PAGE.user.tab2,
     drop_down: true,
   },
   {
-    title: "Vật phẩm",
+    title: "Collection",
     redirect_link: PATH_PAGE.user.tab3,
     drop_down: false,
   },
   {
-    title: "Lập lá số",
+    title: "Contact",
     redirect_link: PATH_PAGE.user.tab4,
     drop_down: false,
   },
   {
-    title: "Khóa học",
+    title: "About Us",
     redirect_link: PATH_PAGE.user.tab5,
     drop_down: false,
-  },
-  {
-    title: "Dịch vụ",
-    redirect_link: PATH_PAGE.user.tab6,
-    drop_down: false,
-  },
-  {
-    title: "Liên hệ",
-    redirect_link: PATH_PAGE.user.tab7,
-    drop_down: false,
-  },
+  }
 ];

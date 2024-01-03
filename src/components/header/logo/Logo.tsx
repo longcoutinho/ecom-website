@@ -12,7 +12,7 @@ export default function Logo() {
                 <img
                     alt=""
                     id="logo"
-                    src="https://www.kimca.net/wp-content/uploads/2022/03/logo.png"
+                    src="https://preview.colorlib.com/theme/capitalshop/assets/img/logo/logo.png.webp"
                 />
             </Box>
         </Box>
