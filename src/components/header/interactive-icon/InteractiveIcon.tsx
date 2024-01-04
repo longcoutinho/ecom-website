@@ -4,8 +4,12 @@ import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useRouter} from "next/router";
+import {redirectUrl} from "@/constants/FnCommon";
+import {PageURL} from "@/constants";
 
 export default function InteractiveIcon() {
+    const router = useRouter();
     //cart
     const CartIcon = () => {
         return (
@@ -20,8 +24,11 @@ export default function InteractiveIcon() {
     }
 
     const UserIcon = () => {
+        const goToLoginPage = () => {
+            redirectUrl(router, PageURL.LOGIN);
+        }
         return (
-            <FontAwesomeIcon id="cart-shopping-iconn" icon={faUser}></FontAwesomeIcon>
+            <FontAwesomeIcon onClick={() => goToLoginPage()} id="cart-shopping-iconn" icon={faUser}></FontAwesomeIcon>
         )
     }
 

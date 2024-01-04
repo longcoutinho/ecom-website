@@ -159,6 +159,7 @@ export const listServicesTitle = [
 
 export enum PageURL {
   HOME = "/home",
+  LOGIN = "/login"
 }
 
 export const MenuTitle: any = [
