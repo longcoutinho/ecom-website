@@ -1,18 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/components/header.scss";
-import "@/styles/components/footer.scss";
-import "@/styles/Home.css";
-import "@/styles/Home.posts.css"
 import "@/styles/pages/Home.scss"
-import "@/styles/pages/cart.scss"
-import "@/styles/pages/item.scss"
-import "@/styles/pages/item-detail.scss"
-import "@/styles/pages/course.scss"
-import "@/styles/pages/posts.scss"
-import "@/styles/pages/lapla.scss"
-import "@/styles/pages/search.scss"
-import "@/styles/pages/posts-detail.scss"
-import "@/styles/responsive.scss"
+import "@/styles/pages/login.scss"
 import type { AppProps } from "next/app";
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
