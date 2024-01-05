@@ -604,15 +604,55 @@ export default function Home() {
         )
     }
 
+
+
+    const ListItem = () => {
+        const Banner = () => {
+            const [listBanner, setListBanner] = useState<string[]>([
+                "https://blogger.googleusercontent.com/img/a/AVvXsEgpT6rLRzQWQZEWQEnSnRSeWG00t-N0Nux4Vr2THVaQf1mdB96OrUAIrlV6iW90mZFtfTsbdH568FORmqTwtVfl1x2zrytk-A-pAuaHaSBm_amnwPEKwTfqRr7esDPh0EJdnqUGgb8ok-UDH0qJxIB8F808nbCGLyWezjivWoV9XsMdAvEf1cLoa-S0=w640-h426",
+                "https://t3.ftcdn.net/jpg/04/65/46/52/360_F_465465254_1pN9MGrA831idD6zIBL7q8rnZZpUCQTy.jpg",
+                "https://static.vecteezy.com/system/resources/thumbnails/004/707/502/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg",
+                "https://www.shutterstock.com/image-vector/ecommerce-website-banner-template-presents-260nw-2252124451.jpg",
+                "https://img.freepik.com/premium-psd/social-media-banner-design-with-3d-rendering-shopping-instrument_351527-1226.jpg?w=1380"
+            ]);
+            const ListBanner = listBanner.map((banner, index) => (
+                <SwiperSlide key={index} className="swiper-banner-container">
+                    <Box className="swiper-banner-element">
+                        <img src={banner} />
+                    </Box>
+                </SwiperSlide>
+            ));
+            return (
+                <Swiper
+                    className="banner-item-wrapper"
+                    // install Swiper modules
+                    modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                    {...HomePage.optionTopPosts}
+                    autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                    }}
+                    navigation
+                    pagination={{ clickable: true }}
+                >
+                    {ListBanner}
+                    ...
+                </Swiper>
+            )
+        }
+
+        return (
+            <Box className="item-home-wrapper">
+                <Banner></Banner>
+            </Box>
+        )
+    }
+
     return (
         <Page title={PAGE.TITLE} menuIndex={0}>
             <Box className='home-page-content'  sx={{ width: "100vw"}}>
-                {/*<ListPosts></ListPosts>*/}
-                {/*<Intro></Intro>*/}
-                {/*<IntroCourses></IntroCourses>*/}
-                {/*<IntroItems></IntroItems>*/}
-                {/*<Register></Register>*/}
-                {/*<CircularProgress className='loading' sx={{display: loading?"block":"none"}}/>*/}
+                <Box sx={{width: "100%", height: "20px", backgroundColor: "black"}}></Box>
+                <ListItem></ListItem>
             </Box>
 
         </Page>
