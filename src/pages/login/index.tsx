@@ -22,28 +22,26 @@ export default function Login() {
                         </Box>
                         <Box className="input-container">
                             <label>Password</label>
-                            <input type="text" placeholder="Enter Password"></input>
+                            <input type="password" placeholder="Enter Password"></input>
                         </Box>
-                        <Box>
-                            <Box>
+                        <Box className="forgot-password-container">
+                            <Box className="remember-me-container">
                                 <input type={"checkbox"}/>
                                 <label>keep me logged in</label>
                             </Box>
-                            <Box>
+                            <Box className="forgot-pass-container">
                                 <Link href={"/signup"}>forgot password?</Link>
                             </Box>
                         </Box>
                     </Box>
-                    <Box>
-                        <Box>
+                    <Box className="login-button-container">
+                        <Box className="sign-up-container">
                             <p>Don&apos;t have an account?
                             </p>
                             <Link href={"signup"}>Sign Up</Link>
                             <p>here</p>
                         </Box>
-                        <Box>
-                            <Button>Login</Button>
-                        </Box>
+                        <Button className="login-button">Login</Button>
                     </Box>
             </Box>
         )

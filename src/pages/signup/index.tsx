@@ -8,50 +8,47 @@ import Link from "next/link";
 
 export default function SignUp() {
     // const route = useRouter();
-    const LoginForm = () => {
+    const SignUpForm = () => {
         return (
-            <Box className="login-wrapper">
+            <Box className="signup-wrapper">
                 <Box className="title-container">
-                    <p>login</p>
-                    <p>Enter Login details to get access</p>
+                    <p>sign up</p>
+                    <p>Create your account to get full access</p>
                 </Box>
                 <Box className="form-container">
                     <Box className="input-container">
                         <label>Username</label>
-                        <input type="text" placeholder="Username"></input>
+                        <input type="text" placeholder="Enter Username"></input>
+                    </Box>
+                    <Box className="input-container">
+                        <label>Email Address</label>
+                        <input type="text" placeholder="Enter Email Address"></input>
                     </Box>
                     <Box className="input-container">
                         <label>Password</label>
-                        <input type="text" placeholder="Enter Password"></input>
+                        <input type="password" placeholder="Enter Password"></input>
                     </Box>
-                    <Box>
-                        <Box>
-                            <input type={"checkbox"}/>
-                            <label>keep me logged in</label>
-                        </Box>
-                        <Box>
-                            <Link href={"/signup"}>forgot password?</Link>
-                        </Box>
+                    <Box className="input-container">
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm Password"></input>
                     </Box>
                 </Box>
-                <Box>
-                    <Box>
-                        <p>Don&apos;t have an account?
+                <Box className="signup-button-container">
+                    <Box className="sign-up-container">
+                        <p>Already have an account?
                         </p>
                         <Link href={"login"}>Login</Link>
                         <p>here</p>
                     </Box>
-                    <Box>
-                        <Button>Login</Button>
-                    </Box>
+                    <Button className="signup-button">sign up</Button>
                 </Box>
             </Box>
         )
     }
 
     return (
-        <Box className="login-container" sx={{ width: "100vw"}}>
-            <LoginForm></LoginForm>
+        <Box className="signup-container" sx={{ width: "100vw"}}>
+            <SignUpForm></SignUpForm>
         </Box>
     );
 }
