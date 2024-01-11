@@ -22,18 +22,11 @@ export const formatVND = (num: number, ignore: boolean) => {
 }
 
 export const doPostRequest = (url: string, data: any): any => {
-    axios({
+    return axios({
         method: "post",
         url: url,
         data: data,
-    }).then(
-        (res) => {
-            return res;
-        },
-        (err) => {
-            return err;
-        }
-    );
+    });
 }
 
 export const doGetRequest = (url: string, params: any): any => {
@@ -92,4 +85,12 @@ export const deleteItemByIndex = (index: number): ItemToCart[] => {
 
 export const redirectUrl = (router: NextRouter, url: string) => {
     router.push(url);
+}
+
+export const isNullOrEmpty = (str: string): boolean => {
+    return str == undefined || str == null || str.length == 0;
+}
+
+export const isValidLength = (str: string, num_start: number, num_finish: number): boolean => {
+    return (num_start <= str.length && str.length <= num_finish);
 }

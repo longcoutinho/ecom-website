@@ -2,8 +2,13 @@ import {Course} from "@/interfaces/response";
 import {PATH_PAGE} from "@/routes/path";
 
 export enum Backend {
-  URL = 'https://fengshui.ntg55.click'
+  URL = 'https://fengshui.ntg55.click',
+  USER_SERVICE = "http://10.248.158.39:8989/user"
   // URL = 'http://10.248.158.167:1112'
+}
+
+export enum HTTP_STATUS {
+  OK = 200,
 }
 export enum PAGE_TITLE {
   PREFIX = "Phong Thuy | ",
