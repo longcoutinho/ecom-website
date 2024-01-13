@@ -8,7 +8,8 @@ export const COMMON_TEXT = {
     PASSWORD: "Password",
     CONFIRM_PASSWORD: "Confirm Password",
     LOGIN: "login",
-    SUCCESS: "success"
+    SUCCESS: "success",
+    SIGNUP: 'sign up',
 }
 
 export const SIGNUP_PAGE = {

@@ -52,7 +52,6 @@ export default function Home() {
         const isFirstRender = useRef<any>(0);
 
         useEffect(() => {
-            console.log("render");
             // Get data all posts
             if (isFirstRender.current == 0) {
                 getAllPosts().then(

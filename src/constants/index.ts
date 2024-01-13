@@ -3,7 +3,7 @@ import {PATH_PAGE} from "@/routes/path";
 
 export enum Backend {
   URL = 'https://fengshui.ntg55.click',
-  USER_SERVICE = "http://10.248.158.39:8989/user"
+  USER_SERVICE = "http://localhost:8989/user"
   // URL = 'http://10.248.158.167:1112'
 }
 
@@ -164,7 +164,8 @@ export const listServicesTitle = [
 
 export enum PageURL {
   HOME = "/home",
-  LOGIN = "/login"
+  LOGIN = "/login",
+  SIGNUP = "/signup"
 }
 
 export const MenuTitle: any = [

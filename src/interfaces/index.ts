@@ -12,3 +12,8 @@ export interface IPageProps {
   admin?: boolean;
   menuIndex: number;
 }
+
+export interface User {
+  username: string;
+  email: string;
+}

@@ -1,6 +1,7 @@
 import axios from "axios";
 import {ItemToCart} from "@/interfaces/response";
 import {NextRouter} from "next/router";
+import {User} from "@/interfaces";
 
 const insertStringAtIndex = (ind: number, str1: string, str2: string) => {
     let stringResult = "";
@@ -93,4 +94,27 @@ export const isNullOrEmpty = (str: string): boolean => {
 
 export const isValidLength = (str: string, num_start: number, num_finish: number): boolean => {
     return (num_start <= str.length && str.length <= num_finish);
+}
+
+export const getUserInfo = (): User | null => {
+    if (typeof window !== 'undefined') {
+        const userInfoStr = sessionStorage.getItem("user-info");
+        if (userInfoStr == null) return null;
+        return JSON.parse(userInfoStr);
+    }
+    return null;
+}
+
+export const deleteUserInfo = () => {
+    if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        sessionStorage.removeItem("user-info");
+    }
+}
+
+export const saveUserToSessionStorage = (userInfo: User) => {
+    if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        sessionStorage.setItem("user-info", JSON.stringify(userInfo));
+    }
 }

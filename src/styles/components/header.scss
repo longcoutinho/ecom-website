@@ -74,6 +74,34 @@ $black-color: #141517;
       svg:hover {
         cursor: pointer;
       }
+      .user-icon-wrapper {
+        position: relative;
+        display: inline-block;
+        .user-info-container {
+          display: block;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          padding: 12px 16px;
+          z-index: 100;
+          border-radius: 20px;
+          .user-info-element {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            a {
+              text-transform: capitalize;
+              color: black;
+              text-decoration: none;
+            }
+            a:hover {
+              color: red;
+            }
+          }
+        }
+      }
     }
   }
 }
