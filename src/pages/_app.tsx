@@ -1,8 +1,9 @@
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import "@/styles/components/header.scss";
 import "@/styles/pages/Home.scss"
 import "@/styles/pages/login.scss"
 import "@/styles/pages/signup.scss"
+import "@/styles/pages/item.scss"
 import type { AppProps } from "next/app";
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";

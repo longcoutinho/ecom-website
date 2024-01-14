@@ -1,5 +1,5 @@
 export const PAGE = {
-    TITLE: 'Web phong thủy'
+    TITLE: 'Capital Shop'
 }
 
 export const COMMON_TEXT = {
@@ -10,6 +10,7 @@ export const COMMON_TEXT = {
     LOGIN: "login",
     SUCCESS: "success",
     SIGNUP: 'sign up',
+    COLLECTION: 'collection',
 }
 
 export const SIGNUP_PAGE = {

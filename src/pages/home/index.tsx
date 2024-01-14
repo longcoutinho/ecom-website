@@ -5,7 +5,7 @@ import {getAllPosts, getServicePosts} from "@/services/postsService"
 import {getTypeofPosts} from "@/services/typeService";
 import {getAllItems} from "@/services/itemService";
 import Page from "@/layouts";
-import { Box, Button, CircularProgress} from "@mui/material";
+import { Box, Button} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -650,7 +650,6 @@ export default function Home() {
     return (
         <Page title={PAGE.TITLE} menuIndex={0}>
             <Box className='home-page-content'  sx={{ width: "100vw"}}>
-                <Box sx={{width: "100%", height: "20px", backgroundColor: "black"}}></Box>
                 <ListItem></ListItem>
             </Box>
 

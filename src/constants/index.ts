@@ -11,7 +11,7 @@ export enum HTTP_STATUS {
   OK = 200,
 }
 export enum PAGE_TITLE {
-  PREFIX = "Phong Thuy | ",
+  PREFIX = "",
   HOME = "Home",
   LAPLA = "Lap la so phong thuy",
 }
@@ -165,7 +165,9 @@ export const listServicesTitle = [
 export enum PageURL {
   HOME = "/home",
   LOGIN = "/login",
-  SIGNUP = "/signup"
+  SIGNUP = "/signup",
+  ITEM = "/item",
+  POST = "/post",
 }
 
 export const MenuTitle: any = [

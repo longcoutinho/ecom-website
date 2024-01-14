@@ -68,7 +68,7 @@ export default function InteractiveIcon() {
 
         return (
             <Box className="user-icon-wrapper">
-                <FontAwesomeIcon onClick={() => goToLoginPage()} id="cart-shopping-iconn" icon={faUser}></FontAwesomeIcon>
+                <FontAwesomeIcon className="user-icon" onClick={() => goToLoginPage()} id="cart-shopping-iconn" icon={faUser}></FontAwesomeIcon>
                 <DropDownUser></DropDownUser>
             </Box>
         )

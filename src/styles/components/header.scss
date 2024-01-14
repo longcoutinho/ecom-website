@@ -1,7 +1,6 @@
 $black-color: #141517;
 @import '../responsive.scss';
 .header-container {
-  padding: 20px 15%;
   width: 100%;
   @media (max-width: $laptop) {
     padding: 0px 10% 0px 10%;
@@ -11,6 +10,7 @@ $black-color: #141517;
     align-items: center;
   }
   .header-wrapper {
+    margin: 20px 15%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -78,7 +78,7 @@ $black-color: #141517;
         position: relative;
         display: inline-block;
         .user-info-container {
-          display: block;
+          display: none;
           position: absolute;
           background-color: #f9f9f9;
           min-width: 160px;
@@ -101,6 +101,9 @@ $black-color: #141517;
             }
           }
         }
+      }
+      .user-icon-wrapper:hover .user-info-container {
+        display: block;
       }
     }
   }
