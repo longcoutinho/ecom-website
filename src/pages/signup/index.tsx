@@ -21,6 +21,8 @@ export default function SignUp() {
         const [confirmPassword, setConfirmPassword] = useState('');
         const [notify, setNotify] = useState('');
         const [notifyColor, setNotifyColor] = useState('');
+        const [fullName, setFullName] = useState('');
+        const [phoneNumber, setPhoneNumber] = useState('');
 
         useEffect(() => {
             setUsername('');
@@ -28,6 +30,8 @@ export default function SignUp() {
             setPassword('');
             setConfirmPassword('');
             setNotify('');
+            setFullName('');
+            setPhoneNumber('');
         }, [])
 
         const Notify = (props: any) => {
@@ -51,6 +55,8 @@ export default function SignUp() {
                     username: username,
                     password: password,
                     email: email,
+                    fullName: fullName,
+                    phoneNumber: phoneNumber
                 }
                 signUp(request).then(
                     (res) => {
@@ -73,10 +79,16 @@ export default function SignUp() {
                 </Box>
                 <Box className="form-container">
                     <Box className="input-container">
-                        <label>{COMMON_TEXT.USERNAME}</label>
-                        <input type="text" value={username}
-                               onChange={e => { setUsername(e.currentTarget.value); }}
-                               placeholder="Enter Username"></input>
+                        <label>{COMMON_TEXT.FULL_NAME}</label>
+                        <input type="text" value={fullName}
+                               onChange={e => { setFullName(e.currentTarget.value); }}
+                               placeholder="Enter full name"></input>
+                    </Box>
+                    <Box className="input-container">
+                        <label>{COMMON_TEXT.PHONE_NUMBER}</label>
+                        <input type="text" value={phoneNumber}
+                               onChange={e => { setPhoneNumber(e.currentTarget.value); }}
+                               placeholder="Enter phone number"></input>
                     </Box>
                     <Box className="input-container">
                         <label>{COMMON_TEXT.EMAIL_ADDRESS}</label>
@@ -84,6 +96,12 @@ export default function SignUp() {
                                value={email}
                                onChange={e => { setEmail(e.currentTarget.value); }}
                                placeholder="Enter Email Address"></input>
+                    </Box>
+                    <Box className="input-container">
+                        <label>{COMMON_TEXT.USERNAME}</label>
+                        <input type="text" value={username}
+                               onChange={e => { setUsername(e.currentTarget.value); }}
+                               placeholder="Enter Username"></input>
                     </Box>
                     <Box className="input-container">
                         <label>{COMMON_TEXT.PASSWORD}</label>

@@ -2,15 +2,8 @@ $black-color: #141517;
 @import '../responsive.scss';
 .header-container {
   width: 100%;
-  @media (max-width: $laptop) {
-    padding: 0px 10% 0px 10%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
   .header-wrapper {
-    margin: 20px 15%;
+    margin: 20px 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -83,9 +76,11 @@ $black-color: #141517;
           background-color: #f9f9f9;
           min-width: 160px;
           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          padding: 12px 16px;
+          padding: 20px 16px;
           z-index: 100;
           border-radius: 20px;
+          margin-left: -70px;
+          font-size: 30px;
           .user-info-element {
             display: flex;
             flex-direction: row;
@@ -99,6 +94,15 @@ $black-color: #141517;
             a:hover {
               color: red;
             }
+          }
+          .user-info-element:hover {
+            cursor: pointer;
+          }
+          .user-info-element:hover p {
+            font-weight: bold;
+          }
+          .user-info-element {
+            margin-top: 5px;
           }
         }
       }

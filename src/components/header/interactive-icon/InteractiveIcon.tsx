@@ -1,4 +1,4 @@
-import {Box, Link} from "@mui/material";
+import {Box, Divider, Link} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
@@ -56,9 +56,16 @@ export default function InteractiveIcon() {
                 return (
                     <Box className="user-info-container">
                         <Box className="name-and-email-container">
-                            <p>{user.username}</p>
+                            <p>{user.fullName}</p>
                         </Box>
-                        <Box onClick={signOut}>
+                        <Divider></Divider>
+                        <Box className="user-info-element">
+                            <p>My profile</p>
+                        </Box>
+                        <Box className="user-info-element">
+                            <p>Edit profile</p>
+                        </Box>
+                        <Box className="user-info-element" onClick={signOut}>
                             <p>Sign out</p>
                         </Box>
                     </Box>

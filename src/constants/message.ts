@@ -11,6 +11,8 @@ export const COMMON_TEXT = {
     SUCCESS: "success",
     SIGNUP: 'sign up',
     COLLECTION: 'collection',
+    FULL_NAME: "Full name",
+    PHONE_NUMBER: "Phone number"
 }
 
 export const SIGNUP_PAGE = {
