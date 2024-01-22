@@ -60,7 +60,7 @@ export default function InteractiveIcon() {
                         </Box>
                         <Divider></Divider>
                         <Box className="user-info-element">
-                            <p>My profile</p>
+                            <Link href={"/profile"}>My profile</Link>
                         </Box>
                         <Box className="user-info-element">
                             <p>Edit profile</p>
