@@ -610,8 +610,6 @@ export default function Home() {
             const [listBanner, setListBanner] = useState<string[]>([
                 "https://blogger.googleusercontent.com/img/a/AVvXsEgpT6rLRzQWQZEWQEnSnRSeWG00t-N0Nux4Vr2THVaQf1mdB96OrUAIrlV6iW90mZFtfTsbdH568FORmqTwtVfl1x2zrytk-A-pAuaHaSBm_amnwPEKwTfqRr7esDPh0EJdnqUGgb8ok-UDH0qJxIB8F808nbCGLyWezjivWoV9XsMdAvEf1cLoa-S0=w640-h426",
                 "https://t3.ftcdn.net/jpg/04/65/46/52/360_F_465465254_1pN9MGrA831idD6zIBL7q8rnZZpUCQTy.jpg",
-                "https://static.vecteezy.com/system/resources/thumbnails/004/707/502/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg",
-                "https://www.shutterstock.com/image-vector/ecommerce-website-banner-template-presents-260nw-2252124451.jpg",
                 "https://img.freepik.com/premium-psd/social-media-banner-design-with-3d-rendering-shopping-instrument_351527-1226.jpg?w=1380"
             ]);
             const ListBanner = listBanner.map((banner, index) => (
@@ -652,7 +650,6 @@ export default function Home() {
             <Box className='home-page-content'  sx={{ width: "100vw"}}>
                 <ListItem></ListItem>
             </Box>
-
         </Page>
     );
 }
