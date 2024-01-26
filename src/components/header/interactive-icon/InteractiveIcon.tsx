@@ -43,7 +43,7 @@ export default function InteractiveIcon() {
 
             if (user == null) {
                 return (
-                    <Box className="user-info-container">
+                    <Box className="user-info-hover-container">
                         <Box className="user-info-element">
                             <Link href={PageURL.LOGIN}>{COMMON_TEXT.LOGIN}</Link>
                             <p>	&nbsp;/&nbsp;</p>
@@ -54,20 +54,16 @@ export default function InteractiveIcon() {
             }
             else {
                 return (
-                    <Box className="user-info-container">
-                        <Box className="name-and-email-container">
-                            <p>{user.fullName}</p>
-                        </Box>
-                        <Divider></Divider>
-                        <Box className="user-info-element">
-                            <Link href={"/profile"}>My profile</Link>
-                        </Box>
-                        <Box className="user-info-element">
-                            <p>Edit profile</p>
-                        </Box>
-                        <Box className="user-info-element" onClick={signOut}>
-                            <p>Sign out</p>
-                        </Box>
+                    <Box className="user-info-hover-container">
+                            <Box className="user-info-element">
+                                <Link href={"/profile"}>My profile</Link>
+                            </Box>
+                            <Box className="user-info-element">
+                                <p>Edit profile</p>
+                            </Box>
+                            <Box className="user-info-element" onClick={signOut}>
+                                <p>Sign out</p>
+                            </Box>
                     </Box>
                 )
             }

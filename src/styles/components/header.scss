@@ -70,45 +70,98 @@ $black-color: #141517;
       .user-icon-wrapper {
         position: relative;
         display: inline-block;
-        .user-info-container {
+        .user-info-hover-container {
+          overflow: hidden;
           display: none;
           position: absolute;
           background-color: #f9f9f9;
-          min-width: 160px;
+          min-width: 120px;
           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          padding: 20px 16px;
+          padding: 0;
           z-index: 100;
-          border-radius: 20px;
-          margin-left: -70px;
+          border-radius: 15px;
+          margin-left: -50px;
+          margin-top: 1px;
           font-size: 30px;
-          .user-info-element {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            a {
-              text-transform: capitalize;
-              color: black;
-              text-decoration: none;
+          flex-direction: column;
+          align-items: center;
+            .user-info-element {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              padding: 4px 0;
+              a {
+                text-transform: capitalize;
+                color: black;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 500;
+              }
+              a:hover {
+                color: red;
+              }
+              p {
+                color: black;
+                font-size: 14px;
+                font-weight: 500;
+              }
             }
-            a:hover {
+            .user-info-element:hover {
+              cursor: pointer;
+              background-color: rgb(240, 240, 240);
+            }
+            .user-info-element:hover p {
               color: red;
             }
-          }
-          .user-info-element:hover {
-            cursor: pointer;
-          }
-          .user-info-element:hover p {
-            font-weight: bold;
-          }
-          .user-info-element {
-            margin-top: 5px;
-          }
         }
       }
-      .user-icon-wrapper:hover .user-info-container {
-        display: block;
+      .user-icon-wrapper:hover .user-info-hover-container {
+        display: flex;
       }
     }
   }
+}
+
+.name-container {
+  margin-top: 7px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+#cart-shopping-iconn:hover {
+  color: red;
+}
+
+.black-header {
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: white;
+    font-size: 16px;
+  }
+  a {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #CEBD9C !important;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+.shop-now-wrapper {
+  margin-left: 5px;
+  border-bottom: 2px solid #CEBD9C;
 }

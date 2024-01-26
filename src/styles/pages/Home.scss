@@ -50,3 +50,33 @@
         }
     }
 }
+
+.swiper-button-prev, .swiper-button-next {
+    color: white;
+    background-color: rgba(41,38,33,0.2);
+    height: 100px !important;
+    width: 50px !important;
+
+}
+
+.swiper-button-prev {
+    left: 0 !important;
+}
+
+.swiper-button-next {
+    right: 0 !important;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    font-size: 20px !important;
+    line-height: 60px !important;
+    color: white;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    background-color: #292621;
+}
+
+.swiper-pagination{
+    display: none !important;
+}

@@ -17,8 +17,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: black;
       p:first-child {
         font-size: 30px;
+      }
+      p {
+        color: black;
       }
     }
     .user-info-container {
@@ -26,9 +30,12 @@
       flex-direction: row;
       flex-wrap: wrap;
       width: 100%;
-      .user-info-element {
+      .profile-user-info-element {
         width: 50%;
         padding: 20px;
+        p {
+          color: black;
+        }
       }
     }
   }

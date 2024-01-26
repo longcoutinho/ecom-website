@@ -15,8 +15,10 @@ export default function Header() {
                 <InteractiveIcon></InteractiveIcon>
             </Box>
             <Box className="black-header">
-                <p>Sale Up To 50% Biggest Discounts. Hurry! Limited Perriod Offer Shop Now</p>
-                <Link href={PageURL.ITEM}>Shop now</Link>
+                <p>Sale Up To 50% Biggest Discounts. Hurry! Limited Perriod Offer </p>
+                <Box className="shop-now-wrapper">
+                    <Link href={PageURL.ITEM}>Shop now</Link>
+                </Box>
             </Box>
         </Container>
     );

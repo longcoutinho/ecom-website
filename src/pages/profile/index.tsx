@@ -26,19 +26,19 @@ export default function Profile() {
                         <p>{user?.email}</p>
                     </Box>
                     <Box className="user-info-container">
-                        <Box className="user-info-element">
+                        <Box className="profile-user-info-element">
                             <p>Email ID</p>
                             <p>{user?.email}</p>
                         </Box>
-                        <Box className="user-info-element">
+                        <Box className="profile-user-info-element">
                             <p>Full Name</p>
                             <p>{user?.fullName}</p>
                         </Box>
-                        <Box className="user-info-element">
+                        <Box className="profile-user-info-element">
                             <p>Phone Number</p>
                             <p>{user?.phoneNumber}</p>
                         </Box>
-                        <Box className="user-info-element">
+                        <Box className="profile-user-info-element">
                             <p>DOB</p>
                             <p>2/11/2000</p>
                         </Box>
